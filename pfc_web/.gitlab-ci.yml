@@ -1,0 +1,55 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  SERVICE_NAME: 'pfc_web'
+  TAR_FILE: '${SERVICE_NAME}-bak' # Định nghĩa biến tên tệp bak
+
+cache:
+  paths:
+    - node_modules
+
+build:
+  stage: build
+  image: node:latest
+  script:
+    - rm -rf node_modules
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - dist
+    expire_in: 1 day
+  only:
+    - main
+
+deploy:
+  stage: deploy
+  before_script:
+    - 'which ssh-agent || ( apk add --update --no-cache openssh )'
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan -p 2222 -H 192.168.23.202 >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+  script:
+    - ssh -p 2222 root@192.168.23.202 "rm -rf /root/Docker/Nginx/nginx_html/${SERVICE_NAME}-bak"
+    - ssh -p 2222 root@192.168.23.202 "mv /root/Docker/Nginx/nginx_html/${SERVICE_NAME} /root/Docker/Nginx/nginx_html/${SERVICE_NAME}-bak"
+
+    # Truyền tệp build mới đến thư mục đích
+    - scp -P 2222 -r dist root@192.168.23.202:/root/Docker/Nginx/nginx_html/${SERVICE_NAME}
+
+    # Kiểm tra định dạng của tệp docker-compose.yaml có chính xác không
+    - ssh -p 2222 root@192.168.23.202 "docker compose -f /root/Docker/Nginx/docker-compose.yaml config -q || (echo 'Định dạng docker-compose.yaml không chính xác' && exit 1)"
+
+    # Kiểm tra tệp docker-compose.yaml có định nghĩa dịch vụ ${SERVICE_NAME} không
+    - ssh -p 2222 root@192.168.23.202 "grep -q '${SERVICE_NAME}:' /root/Docker/Nginx/docker-compose.yaml && echo 'Dịch vụ ${SERVICE_NAME} đã được định nghĩa' || (echo 'Dịch vụ ${my-nginx2} chưa được định nghĩa, vui lòng định nghĩa trước' && exit 1)"
+
+    # Quản lý container Nginx bằng docker compose
+    - ssh -p 2222 root@192.168.23.202 "cd /root/Docker/Nginx && docker compose stop ${SERVICE_NAME} && docker compose rm -f ${SERVICE_NAME} && docker compose up -d ${SERVICE_NAME}"
+  retry: 2
+  only:
+    - main
+
