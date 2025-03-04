@@ -16,239 +16,242 @@
                 class="el-menu-vertical-demo" @select="handleMenuSelect">
                 <el-menu-item index="1">
                     <el-icon>
-                        <Folder />
+                        <Watermelon />
                     </el-icon>
                     <template #title>Cover</template>
                 </el-menu-item>
                 <el-menu-item index="2">
                     <el-icon>
-                        <Document />
+                        <Pear />
                     </el-icon>
                     <template #title>Index</template>
                 </el-menu-item>
                 <el-menu-item index="3">
                     <el-icon>
-                        <Crop />
+                        <NoSmoking />
                     </el-icon>
                     <template #title>Lamination Process</template>
                 </el-menu-item>
                 <el-menu-item index="4">
                     <el-icon>
-                        <Scissor />
+                        <Smoking />
                     </el-icon>
                     <template #title>Common Cutting Process</template>
                 </el-menu-item>
                 <el-menu-item index="5">
                     <el-icon>
-                        <Tools />
+                        <Mug />
                     </el-icon>
                     <template #title>Upper Cutting Die Schedule</template>
                 </el-menu-item>
                 <el-menu-item index="6">
                     <el-icon>
-                        <Paperclip />
+                        <GobletSquareFull />
                     </el-icon>
                     <template #title>Perforation Specification</template>
                 </el-menu-item>
                 <el-menu-item index="7">
                     <el-icon>
-                        <SetUp />
+                        <GobletFull />
                     </el-icon>
                     <template #title>Upper Logo Specification</template>
                 </el-menu-item>
                 <el-menu-item index="8">
                     <el-icon>
-                        <Umbrella />
+                        <KnifeFork />
                     </el-icon>
                     <template #title>Elastic Gore Specification</template>
                 </el-menu-item>
                 <el-menu-item index="9">
                     <el-icon>
-                        <Football />
+                        <Sugar />
                     </el-icon>
                     <template #title>Upper Heating Pressing Process</template>
                 </el-menu-item>
                 <el-menu-item index="10">
                     <el-icon>
-                        <Brush />
+                        <Bowl />
                     </el-icon>
                     <template #title>Skiving Instructions</template>
                 </el-menu-item>
                 <el-menu-item index="11">
                     <el-icon>
-                        <Location />
+                        <MilkTea />
                     </el-icon>
                     <template #title>Marking Location</template>
                 </el-menu-item>
                 <el-menu-item index="12">
                     <el-icon>
-                        <SuitcaseLine />
+                        <Lollipop />
                     </el-icon>
                     <template #title>Common Stitching Process</template>
                 </el-menu-item>
                 <el-menu-item index="13">
                     <el-icon>
-                        <Tools />
+                        <Coffee />
                     </el-icon>
                     <template #title>Reinforcement Placement</template>
                 </el-menu-item>
                 <el-menu-item index="14">
                     <el-icon>
-                        <Refresh />
+                        <Chicken />
                     </el-icon>
                     <template #title>Second Process</template>
                 </el-menu-item>
                 <el-menu-item index="15">
                     <el-icon>
-                        <Monitor />
+                        <Dish />
                     </el-icon>
                     <template #title>Computer Stitching Schedule</template>
                 </el-menu-item>
                 <el-menu-item index="16">
                     <el-icon>
-                        <Brush />
+                        <IceTea />
                     </el-icon>
                     <template #title>Stitching Overview Sketch</template>
                 </el-menu-item>
                 <el-menu-item index="17">
                     <el-icon>
-                        <Medal />
+                        <ColdDrink />
                     </el-icon>
                     <template #title>Stitching Instruction</template>
                 </el-menu-item>
                 <el-menu-item index="18">
                     <el-icon>
-                        <Box />
+                        <CoffeeCup />
                     </el-icon>
                     <template #title>Common Stockfitting Process</template>
                 </el-menu-item>
                 <el-menu-item index="19">
                     <el-icon>
-                        <Crop />
+                        <DishDot />
                     </el-icon>
                     <template #title>Bottom Cutting Die Schedule</template>
                 </el-menu-item>
                 <el-menu-item index="20">
                     <el-icon>
-                        <Soccer />
+                        <IceDrink />
                     </el-icon>
                     <template #title>Bottom Logo Specification</template>
                 </el-menu-item>
                 <el-menu-item index="21">
                     <el-icon>
-                        <PartlyCloudy />
+                        <IceCream />
                     </el-icon>
                     <template #title>Bottom Parts Process</template>
                 </el-menu-item>
                 <el-menu-item index="22">
                     <el-icon>
-                        <FullScreen />
+                        <Dessert />
                     </el-icon>
                     <template #title>Bottom Silk Screen Process</template>
                 </el-menu-item>
                 <el-menu-item index="23">
                     <el-icon>
-                        <ShoppingTrolley />
+                        <Goblet />
                     </el-icon>
                     <template #title>Outsole Specification</template>
                 </el-menu-item>
-                <!-- <el-menu-item index="24">
+                <el-menu-item index="24">
                     <el-icon>
-                        <Press />
+                        <Burger />
                     </el-icon>
                     <template #title>Outsole Pressing Process</template>
                 </el-menu-item>
                 <el-menu-item index="25">
                     <el-icon>
-                        <Rubber />
+                        <Apple />
                     </el-icon>
                     <template #title>Rubber Component Specification</template>
                 </el-menu-item>
                 <el-menu-item index="26">
                     <el-icon>
-                        <Print />
+                        <Fries />
                     </el-icon>
                     <template #title>Common Silk Screen Process</template>
                 </el-menu-item>
                 <el-menu-item index="27">
                     <el-icon>
-                        <Socks />
+                        <Grape />
                     </el-icon>
                     <template #title>Sockliner Specification</template>
                 </el-menu-item>
                 <el-menu-item index="28">
                     <el-icon>
-                        <Shoes />
+                        <Food />
                     </el-icon>
                     <template #title>Heel Wedge Specification</template>
                 </el-menu-item>
                 <el-menu-item index="29">
                     <el-icon>
-                        <Brand />
+                        <IceCreamSquare />
                     </el-icon>
                     <template #title>Logo Application Process</template>
                 </el-menu-item>
                 <el-menu-item index="30">
                     <el-icon>
-                        <Mold />
+                        <HotWater />
                     </el-icon>
                     <template #title>Sockliner Molding Process</template>
                 </el-menu-item>
                 <el-menu-item index="31">
                     <el-icon>
-                        <Image />
+                        <Goblet />
                     </el-icon>
                     <template #title>Sockliner Graphic Process</template>
                 </el-menu-item>
                 <el-menu-item index="32">
                     <el-icon>
-                        <Conveyor />
+                        <Orange />
                     </el-icon>
                     <template #title>Outside Conveyor Process</template>
                 </el-menu-item>
                 <el-menu-item index="33">
                     <el-icon>
-                        <Assemble />
+                        <Cherry />
                     </el-icon>
                     <template #title>Common Assembling Process</template>
                 </el-menu-item>
                 <el-menu-item index="34">
                     <el-icon>
-                        <Cogs />
+                        <Printer />
                     </el-icon>
                     <template #title>Assembly Process</template>
                 </el-menu-item>
                 <el-menu-item index="35">
                     <el-icon>
-                        <Pad />
+                        <Calendar />
                     </el-icon>
                     <template #title>Pressing Pad Specification</template>
                 </el-menu-item>
                 <el-menu-item index="36">
                     <el-icon>
-                        <Checklist />
+                        <CreditCard />
                     </el-icon>
                     <template #title>Production Checklist</template>
                 </el-menu-item>
                 <el-menu-item index="37">
                     <el-icon>
-                        <Ruler />
+                        <Box />
                     </el-icon>
                     <template #title>Upper Measurement Specification</template>
                 </el-menu-item>
                 <el-menu-item index="38">
                     <el-icon>
-                        <Details />
+                        <Money />
                     </el-icon>
                     <template #title>Key Manufacturing Details</template>
                 </el-menu-item>
                 <el-menu-item index="39">
                     <el-icon>
-                        <Package />
+                        <Money />
                     </el-icon>
                     <template #title>Packing Process</template>
-                </el-menu-item> -->
-
+                </el-menu-item>
+                <el-menu-item index="40">
+                    <el-icon><MagicStick /></el-icon>
+                    <template #title>Packing Process</template>
+                </el-menu-item>
             </el-menu>
         </div>
     </div>
@@ -257,27 +260,6 @@
 <script lang="ts" setup>
 import { ref, watch, onMounted, nextTick } from "vue"
 import {
-    Folder,
-    Document,
-    Crop,
-    Scissor,
-    Tools,
-    Paperclip,
-    SetUp,
-    Umbrella,
-    Football,
-    Suitcase,
-    Brush,
-    Location,
-    SuitcaseLine,
-    Refresh,
-    Monitor,
-    Medal,
-    Box,
-    Soccer,
-    PartlyCloudy,
-    FullScreen,
-    ShoppingTrolley,
     Expand,
     Fold
 } from "@element-plus/icons-vue"
@@ -322,8 +304,7 @@ onMounted(() => {
 })
 </script>
   
-<style scoped>
-::-webkit-scrollbar {
+<style scoped>::-webkit-scrollbar {
     width: 6px;
 }
 
@@ -334,5 +315,4 @@ onMounted(() => {
 ::-webkit-scrollbar-thumb {
     background: #c1c1c1;
     border-radius: 4px;
-}
-</style>
+}</style>

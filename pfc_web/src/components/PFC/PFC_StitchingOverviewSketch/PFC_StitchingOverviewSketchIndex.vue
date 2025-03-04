@@ -93,7 +93,7 @@
                     </template>
                 </el-table-column>
                 <el-table-column prop="RightFoot" label="RightFoot" />
-                <el-table-column prop="Component" label="Component" />
+                <!-- <el-table-column prop="Component" label="Component" /> -->
                 <el-table-column align="right" width="200">
                     <template #header>
                         <el-input v-model="search1" size="small" placeholder="Type to search" />
@@ -115,69 +115,140 @@
         </div>
     </el-dialog>
 
-    <el-dialog v-model="dialogForm3Visible" width="45vw" :close-on-click-modal="false" @close="dialogForm1Visible = false">
+    <el-dialog v-model="dialogForm3Visible" width="95vw" :close-on-click-modal="false" @close="dialogForm1Visible = false">
         <template #header>
             <div style="text-align: center; width: 100%; font-weight: bold;">
                 {{ titleDialogForm2 }}
             </div>
         </template>
-        <el-form style="width: 40vw" :model="pfcItemStitchingOverviewSketch" label-width="auto" label-position="right"
-            size="default">
-            <el-form-item label="Item Index:">
-                <el-select v-model="pfcItemStitchingOverviewSketch.ItemIndex" clearable placeholder="Select">
-                    <el-option v-for="item in ItemIndex" :key="item" :label="item" :value="item" />
-                </el-select>
-            </el-form-item>
-            <el-form-item label="RightFoot: ">
-                <el-input v-model="pfcItemStitchingOverviewSketch.RightFoot" />
-            </el-form-item>
 
-            <el-form-item label="Component:">
-                <el-col>
-                    <el-table :data="arrComponent" :row-style="{ height: '30px' }" border>
-                        <el-table-column align="center" prop="arrComponent.Index" label="Index" width="100">
-                            <template #default="{ row }">
-                                <div v-if="!row.editingIndex" @dblclick="enableEdit(row, 'Index')"
-                                    style="min-height: 20px;">
-                                    {{ row.Index }}
-                                </div>
-                                <el-input v-else v-model="row.Index" @blur="disableEdit(row, 'Index')" />
-                            </template>
-                        </el-table-column>
-                        <el-table-column align="center" prop="arrComponent.COMPONENT" label="Note">
-                            <template #default="{ row }">
-                                <div v-if="!row.editingCOMPONENT" @dblclick="enableEdit(row, 'COMPONENT')"
-                                    style="min-height: 20px;">
-                                    {{ row.COMPONENT }}
-                                </div>
-                                <el-input v-else v-model="row.COMPONENT" @blur="disableEdit(row, 'COMPONENT')" />
-                            </template>
-                        </el-table-column>
-                    </el-table>
-                </el-col>
-            </el-form-item>
+        <div style="display: flex; justify-content: space-around;">
+            <!-- LEFT -->
+            <el-form style="width: 30vw" :model="pfcItemStitchingOverviewSketch" label-width="auto" label-position="right"
+                size="default">
+                <el-form-item label="Item Index:" style="width: 530px;">
+                    <el-select v-model="pfcItemStitchingOverviewSketch.ItemIndex" clearable placeholder="Select">
+                        <el-option v-for="item in ItemIndex" :key="item" :label="item" :value="item" />
+                    </el-select>
+                </el-form-item>
+                <el-form-item label=" ">
+                    <el-col>
+                        <el-table v-click-outside="handleClickOutside" :data="arrComponent" border style="width: 450px;"
+                            :row-style="{ height: '40px' }">
+                            <el-table-column label="COMPONENT 部件名称 Tên chi tiết:" header-align="center">
+                                <template #default="{ row }">
+                                    <div style="display: table; width: 100%; border: 1px solid #ccc; padding: 4px;">
+                                        <div
+                                            style="display: table-cell; width: 40px; text-align: center; vertical-align: middle; border-right: 1px solid #ccc; padding-right: 4px;">
+                                            <div v-if="!row.editingIndex" @click="() => enableEdit(row, 'Index')"
+                                                style="min-height: 20px; text-align: left;">
+                                                {{ row.Index }}
+                                            </div>
+                                            <el-input v-else v-model="row.Index" @blur="() => disableEdit(row, 'Index')"
+                                                style="text-align: left;" />
+                                        </div>
+                                        <div style="display: table-cell; padding-left: 10px; vertical-align: middle;">
+                                            <div v-if="!row.editingCOMPONENT" @click="() => enableEdit(row, 'COMPONENT')"
+                                                style="min-height: 20px; text-align: left;">
+                                                {{ row.COMPONENT }}
+                                            </div>
+                                            <el-input v-else v-model="row.COMPONENT"
+                                                @blur="() => disableEdit(row, 'COMPONENT')" style="text-align: left;" />
+                                        </div>
+                                    </div>
+                                </template>
+                            </el-table-column>
+                        </el-table>
 
-            <el-form-item label=" ">
-                <el-col>
-                    <el-card shadow="always" class="dark-mode">
-                        <el-col style="text-align: center; align-content: center;">
-                            <el-upload :show-file-list="false" :on-change="handleChange_Remark"
-                                :http-request="customUpload_Remark" :before-upload="checkTypeFileUpload">
-                                <img v-if="imageUrl_Content" :src="imageUrl_Content" />
-                                <el-icon v-else>
-                                    <Plus />
-                                </el-icon>
-                            </el-upload>
-                            <el-button v-if="imageUrl_Content" type="danger" icon="Delete" class="delete-button"
-                                @click="handleDelete_Remark" size="small">
-                            </el-button>
-                            <h5 style="margin-top: 10px;">Image Content</h5>
+                    </el-col>
+                </el-form-item>
+                <el-form-item label="RightFoot: " style="width: 530px;">
+                    <el-input v-model="pfcItemStitchingOverviewSketch.RightFoot" />
+                </el-form-item>
+            </el-form>
+            <!-- RIGHT -->
+
+            <el-form style="width: 60vw; min-height: 80vh;" :model="pfcItemStitchingOverviewSketch" label-width="auto"
+                label-position="right" size="default">
+                <div style="display: flex; justify-content: space-between; gap: 0;">
+                    <el-form-item label=" " style="width: 20vw;">
+                        <el-col>
+                            <el-card shadow="always" class="dark-mode" style="height: 400px;  align-content: center;">
+                                <el-col style="text-align: center; align-content: center;">
+                                    <el-upload>
+                                        <img v-if="imageUrl_Content" />
+                                        <el-icon v-else>
+                                            <Plus />
+                                        </el-icon>
+                                    </el-upload>
+                                    <el-button v-if="imageUrl_Content" type="danger" icon="Delete" class="delete-button"
+                                        @click="handleDelete_Remark" size="small">
+                                    </el-button>
+                                    <h5 style="margin-top: 10px;">Image Content</h5>
+                                </el-col>
+                            </el-card>
                         </el-col>
-                    </el-card>
-                </el-col>
-            </el-form-item>
+                    </el-form-item>
+                    <el-form-item label=" " style="width: 40vw;">
+                        <el-col>
+                            <el-card shadow="always" class="dark-mode" style="height: 400px; align-content: center;">
+                                <el-col style="text-align: center; align-content: center;">
+                                    <el-upload>
+                                        <img v-if="imageUrl_Content" />
+                                        <el-icon v-else>
+                                            <Plus />
+                                        </el-icon>
+                                    </el-upload>
+                                    <el-button v-if="imageUrl_Content" type="danger" icon="Delete" class="delete-button"
+                                        @click="handleDelete_Remark" size="small">
+                                    </el-button>
+                                    <h5 style="margin-top: 10px;">Image Content</h5>
+                                </el-col>
+                            </el-card>
+                        </el-col>
+                    </el-form-item>
+                </div>
+                <div style="display: flex;  ">
+                    <el-form-item label=" " style="width: 20vw;">
 
-        </el-form>
+                    </el-form-item>
+                    <el-form-item label=" " style="width: 40vw;">
+                        <el-col>
+                            <el-card shadow="always" class="dark-mode" style="height: 250px;  align-content: center;">
+                                <el-col style="text-align: center; align-content: center;">
+                                    <el-upload>
+                                        <img v-if="imageUrl_Content" />
+                                        <el-icon v-else>
+                                            <Plus />
+                                        </el-icon>
+                                    </el-upload>
+                                    <el-button v-if="imageUrl_Content" type="danger" icon="Delete" class="delete-button"
+                                        @click="handleDelete_Remark" size="small">
+                                    </el-button>
+                                    <h5 style="margin-top: 10px;">Image Content</h5>
+                                </el-col>
+                            </el-card>
+                        </el-col>
+                    </el-form-item>
+                </div>
+            </el-form>
+        </div>
+
+        <div style="display: flex; justify-content: center;">
+            <el-table :data="tableData2" border style="width: 87vw; margin-left:95px">
+                <el-table-column label="Photo" />
+                <el-table-column label="Address Stitching Guide Detail Information" fixed="right">
+                    <el-table-column prop="image1" label="Image 1" />
+                    <el-table-column prop="image2" label="Image 1" />
+                    <el-table-column prop="image3" label="Image 1" />
+                    <el-table-column prop="image4" label="Image 1" />
+                    <el-table-column prop="image5" label="Image 1" />
+                    <el-table-column prop="image6" label="Image 1" />
+                    <el-table-column prop="image7" label="Image 1" />
+                </el-table-column>
+
+            </el-table>
+        </div>
         <template #footer>
             <div class="dialog-footer">
                 <el-button @click="dialogForm3Visible = false">Cancel</el-button>
@@ -197,7 +268,7 @@ import { usePFCStore } from '@/stores/PFCStore';
 import { hideLoading, showLoading } from '@/utils/LoadingView';
 import { error, info, success } from '@/utils/NotificationsView';
 import { ElMessageBox, UploadProps } from 'element-plus';
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, getCurrentInstance } from 'vue';
 
 const search = ref('')
 const search1 = ref('')
@@ -223,6 +294,17 @@ const filterTableData1 = computed(() =>
 const tableData = ref([]);
 const arrComponent = ref([]);
 arrComponent.value = Array.from({ length: 12 }, () => ({}));
+const tableData2 = [
+    {
+        image1: '',
+        image2: '',
+        image3: '',
+        image4: '',
+        image5: '',
+        image6: '',
+        image7: '',
+
+    }]
 
 const dialogForm1Visible = ref(false)
 const dialogForm2Visible = ref(false)
@@ -363,7 +445,7 @@ const btnEditItemNewStitchingOverviewSketch = async (index: number, row) => {
 
 const btnDeleteItemNewStitchingOverviewSketch = async (index: number, row) => {
     ElMessageBox.confirm(
-        `Proxy will permanently delete the Component: "${row.Component}". Continue?`,
+        `Proxy will permanently delete the Index: "${row.ItemIndex}". Continue?`,
         'Warning',
         {
             confirmButtonText: 'OK',
@@ -424,18 +506,42 @@ const checkTypeFileUpload: UploadProps['beforeUpload'] = (rawFile) => {
     }
     return true;
 }
+const capitalize = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+};
 
-const enableEdit = (row: any, field: string) => {
+const enableEdit = (row, field) => {
+    row.editingIndex = false;
+    row.editingCOMPONENT = false;
     row[`editing${capitalize(field)}`] = true;
 };
 
-const disableEdit = (row: any, field: string) => {
+const disableEdit = (row, field) => {
     row[`editing${capitalize(field)}`] = false;
 };
 
-const capitalize = (str: string) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+const handleClickOutside = (event) => {
+    arrComponent.value.forEach((row) => {
+        row.editingIndex = false;
+        row.editingCOMPONENT = false;
+    });
 };
+const clickOutsideDirective = {
+    beforeMount(el, binding) {
+        el.clickOutsideEvent = function (event) {
+            if (!(el === event.target || el.contains(event.target))) {
+                binding.value(event);
+            }
+        };
+        document.body.addEventListener('click', el.clickOutsideEvent);
+    },
+    unmounted(el) {
+        document.body.removeEventListener('click', el.clickOutsideEvent);
+    },
+};
+
+const { appContext } = getCurrentInstance();
+appContext.app.directive('click-outside', clickOutsideDirective);
 
 const btnConfirmItemStitchingOverviewSketch = async () => {
     dialogForm3Visible.value = false;
@@ -490,4 +596,16 @@ const btnConfirmItemStitchingOverviewSketch = async () => {
 }
 </script>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.el-card {
+    margin: 10px;
+    position: relative;
+    z-index: 1;
+}
+</style>
