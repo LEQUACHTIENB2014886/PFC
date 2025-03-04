@@ -137,8 +137,7 @@
                     <el-table :data="arrComponent" :row-style="{ height: '30px' }" border>
                         <el-table-column align="center" prop="arrComponent.Index" label="Index" width="100">
                             <template #default="{ row }">
-                                <div v-if="!row.editingIndex" @dblclick="enableEdit(row, 'Index')"
-                                    style="min-height: 20px;">
+                                <div v-if="!row.editingIndex" @click="enableEdit(row, 'Index')" style="min-height: 20px;">
                                     {{ row.Index }}
                                 </div>
                                 <el-input v-else v-model="row.Index" @blur="disableEdit(row, 'Index')" />
@@ -146,7 +145,7 @@
                         </el-table-column>
                         <el-table-column align="center" prop="arrComponent.COMPONENT" label="Note">
                             <template #default="{ row }">
-                                <div v-if="!row.editingCOMPONENT" @dblclick="enableEdit(row, 'COMPONENT')"
+                                <div v-if="!row.editingCOMPONENT" @click="enableEdit(row, 'COMPONENT')"
                                     style="min-height: 20px;">
                                     {{ row.COMPONENT }}
                                 </div>

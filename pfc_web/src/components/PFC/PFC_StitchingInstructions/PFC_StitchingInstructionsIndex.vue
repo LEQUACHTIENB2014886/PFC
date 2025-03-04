@@ -133,8 +133,7 @@
                         <!-- 1 -->
                         <el-table-column align="center" prop="McType" label="M/C Type 机器 Loại máy" width="120">
                             <template #default="{ row }">
-                                <div v-if="!row.editingMcType" @dblclick="enableEdit(row, 'McType')"
-                                    style="min-height: 20px;">
+                                <div v-if="!row.editingMcType" @click="enableEdit(row, 'McType')" style="min-height: 20px;">
                                     {{ row.McType }}
                                 </div>
                                 <el-input v-else v-model="row.McType" @blur="disableEdit(row, 'McType')" />
@@ -143,7 +142,7 @@
                         <!-- 2 -->
                         <el-table-column align="center" prop="NeedleSystem" label="Needle System 针类 Loại kim" width="120">
                             <template #default="{ row }">
-                                <div v-if="!row.editingNeedleSystem" @dblclick="enableEdit(row, 'NeedleSystem')"
+                                <div v-if="!row.editingNeedleSystem" @click="enableEdit(row, 'NeedleSystem')"
                                     style="min-height: 20px;">
                                     {{ row.NeedleSystem }}
                                 </div>
@@ -153,7 +152,7 @@
                         <!-- 3 -->
                         <el-table-column align="center" prop="NeedleSize" label="Needle Size 尺寸 Kích cỡ kim" width="120">
                             <template #default="{ row }">
-                                <div v-if="!row.editingNeedleSize" @dblclick="enableEdit(row, 'NeedleSize')"
+                                <div v-if="!row.editingNeedleSize" @click="enableEdit(row, 'NeedleSize')"
                                     style="min-height: 20px;">
                                     {{ row.NeedleSize }}
                                 </div>
@@ -164,7 +163,7 @@
                         <el-table-column align="center" prop="NeedlePointType" label="Needle Point Type 针型头类 Loại đầu kim"
                             width="120">
                             <template #default="{ row }">
-                                <div v-if="!row.editingNeedlePointType" @dblclick="enableEdit(row, 'NeedlePointType')"
+                                <div v-if="!row.editingNeedlePointType" @click="enableEdit(row, 'NeedlePointType')"
                                     style="min-height: 20px;">
                                     {{ row.NeedlePointType }}
                                 </div>
@@ -175,7 +174,7 @@
                         <!-- 5 -->
                         <el-table-column align="center" prop="ThreadType" label="Thread Type 车线 Loại chỉ" width="120">
                             <template #default="{ row }">
-                                <div v-if="!row.editingThreadType" @dblclick="enableEdit(row, 'ThreadType')"
+                                <div v-if="!row.editingThreadType" @click="enableEdit(row, 'ThreadType')"
                                     style="min-height: 20px;">
                                     {{ row.ThreadType }}
                                 </div>
@@ -186,7 +185,7 @@
                         <el-table-column align="center" prop="StitchingMargin" label="Stitching Margin 边距 Cách biên  (mm)"
                             width="120">
                             <template #default="{ row }">
-                                <div v-if="!row.editingStitchingMargin" @dblclick="enableEdit(row, 'StitchingMargin')"
+                                <div v-if="!row.editingStitchingMargin" @click="enableEdit(row, 'StitchingMargin')"
                                     style="min-height: 20px;">
                                     {{ row.StitchingMargin }}
                                 </div>
@@ -198,7 +197,7 @@
                         <el-table-column align="center" prop="StitchPerInch"
                             label="SPI (Stitch Per Inch) 针数/英寸 Số mũi/inch">
                             <template #default="{ row }">
-                                <div v-if="!row.editingStitchPerInch" @dblclick="enableEdit(row, 'StitchPerInch')"
+                                <div v-if="!row.editingStitchPerInch" @click="enableEdit(row, 'StitchPerInch')"
                                     style="min-height: 20px;">
                                     {{ row.StitchPerInch }}
                                 </div>
@@ -208,7 +207,7 @@
                         <!-- 8 -->
                         <el-table-column align="center" prop="AttachingMethod" label="Attaching Method 贴法 Phương pháp dán ">
                             <template #default="{ row }">
-                                <div v-if="!row.editingAttachingMethod" @dblclick="enableEdit(row, 'AttachingMethod')"
+                                <div v-if="!row.editingAttachingMethod" @click="enableEdit(row, 'AttachingMethod')"
                                     style="min-height: 20px;">
                                     {{ row.AttachingMethod }}
                                 </div>
@@ -220,7 +219,7 @@
                         <el-table-column align="center" prop="StitchingGuideName"
                             label="Stitching Guide Name  靠边机名称Tên cử may">
                             <template #default="{ row }">
-                                <div v-if="!row.editingStitchingGuideName" @dblclick="enableEdit(row, 'StitchingGuideName')"
+                                <div v-if="!row.editingStitchingGuideName" @click="enableEdit(row, 'StitchingGuideName')"
                                     style="min-height: 20px;">
                                     {{ row.StitchingGuideName }}
                                 </div>
@@ -443,7 +442,7 @@ const btnEditItemNewStitchingInstructions = async (index, row) => {
     pfcItemStitchingInstructions.value = { ...row }
     oldImageUrl_Content.value = row.ImageContent.toString()
     arrComponent.value = []
-    
+
     try {
         arrComponent.value.push({
             McType: row.McType,

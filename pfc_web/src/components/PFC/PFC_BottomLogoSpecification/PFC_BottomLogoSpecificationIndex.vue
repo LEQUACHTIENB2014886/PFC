@@ -134,13 +134,12 @@
             <el-form-item label="MaterialApplication: ">
                 <el-input v-model="pfcItemBottomLogoSpecification.MaterialApplication" />
             </el-form-item>
-            <el-form-item label="">
+            <el-form-item label=" ">
                 <el-col>
-                    <el-table :data="arrComponent" :row-style="{ height: '30px' }" border  :span-method="mergeCells">
+                    <el-table :data="arrComponent" :row-style="{ height: '30px' }" border :span-method="mergeCells">
                         <el-table-column align="center" prop="arrModel.Model" label="Model">
                             <template #default="{ row }">
-                                <div v-if="!row.editingModel" @dblclick="enableEdit(row, 'Model')"
-                                    style="min-height: 20px;">
+                                <div v-if="!row.editingModel" @click="enableEdit(row, 'Model')" style="min-height: 20px;">
                                     {{ row.Model || "" }}
                                 </div>
                                 <el-input v-else v-model="row.Model" @blur="disableEdit(row, 'Model')" />
@@ -148,7 +147,7 @@
                         </el-table-column>
                         <el-table-column align="center" prop="arrComponent.SIZE" label="Size" width="100">
                             <template #default="{ row }">
-                                <div v-if="!row.editingSIZE" @dblclick="enableEdit(row, 'SIZE')" style="min-height: 20px;">
+                                <div v-if="!row.editingSIZE" @click="enableEdit(row, 'SIZE')" style="min-height: 20px;">
                                     {{ row.SIZE }}
                                 </div>
                                 <el-input v-else v-model="row.SIZE" @blur="disableEdit(row, 'SIZE')" />
@@ -156,8 +155,7 @@
                         </el-table-column>
                         <el-table-column align="center" prop="arrComponent.SizeA" label="SizeA">
                             <template #default="{ row }">
-                                <div v-if="!row.editingSizeA" @dblclick="enableEdit(row, 'SizeA')"
-                                    style="min-height: 20px;">
+                                <div v-if="!row.editingSizeA" @click="enableEdit(row, 'SizeA')" style="min-height: 20px;">
                                     {{ row.SizeA }}
                                 </div>
                                 <el-input v-else v-model="row.SizeA" @blur="disableEdit(row, 'SizeA')" />
@@ -165,8 +163,7 @@
                         </el-table-column>
                         <el-table-column align="center" prop="arrComponent.SizeB" label="SizeB">
                             <template #default="{ row }">
-                                <div v-if="!row.editingSizeB" @dblclick="enableEdit(row, 'SizeB')"
-                                    style="min-height: 20px;">
+                                <div v-if="!row.editingSizeB" @click="enableEdit(row, 'SizeB')" style="min-height: 20px;">
                                     {{ row.SizeB }}
                                 </div>
                                 <el-input v-else v-model="row.SizeB" @blur="disableEdit(row, 'SizeB')" />
@@ -243,7 +240,7 @@ const tableData = ref([]);
 const arrComponent = ref([]);
 arrComponent.value = Array.from({ length: 6 }, () => ({}));
 
-const arrModel= ref([{}]);
+const arrModel = ref([{}]);
 const mergeCells = ({ rowIndex, columnIndex }) => {
     if (columnIndex === 0) {
         if (rowIndex === 0) {
@@ -276,7 +273,7 @@ onMounted(async () => {
     }
     hideLoading();
 })
- 
+
 const reloadData = async () => {
     const { res, _ } = await getPFCBottomLogoSpecificationByModelID(pfcModel.value)
     tableData.value = res.data.data ? res.data.data : [];
@@ -384,10 +381,10 @@ const btnEditItemNewBottomLogoSpecification = async (index: number, row) => {
 
         arrComponent.value = arrComponent.value.map(item => ({
             ...item,
-            Model: row.Model || "" 
+            Model: row.Model || ""
         }));
 
-        arrModel.value = row.Model; 
+        arrModel.value = row.Model;
 
     } catch (error) {
         console.error("Lỗi khi parse JSON:", error);
@@ -484,7 +481,7 @@ const btnConfirmItemBottomLogoSpecification = async () => {
         ItemBottomLogoSpecificationID: pfcItemBottomLogoSpecification.value.ItemBottomLogoSpecificationID,
         BottomLogoSpecificationID: pfcItemBottomLogoSpecification.value.BottomLogoSpecificationID,
         MaterialApplication: pfcItemBottomLogoSpecification.value.MaterialApplication,
-        Model: arrComponent.value.length > 0 ? arrComponent.value[0].Model : "", 
+        Model: arrComponent.value.length > 0 ? arrComponent.value[0].Model : "",
         Vendor: pfcItemBottomLogoSpecification.value.Vendor,
         ImageContent: pfcItemBottomLogoSpecification.value.ImageContent,
         Size: JSON.stringify(arrComponent.value.map(({ Model, ...rest }) => rest)),

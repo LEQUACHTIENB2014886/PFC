@@ -40,8 +40,7 @@
     </el-col>
 
     <!-- DIA LOG -->
-    <el-dialog v-model="dialogForm1Visible" width="35vw" :close-on-click-modal="false"
-        @close="dialogForm1Visible = false">
+    <el-dialog v-model="dialogForm1Visible" width="35vw" :close-on-click-modal="false" @close="dialogForm1Visible = false">
         <template #header>
             <div style="text-align: center; width: 100%; font-weight: bold;">
                 {{ titleDialogForm1 }}
@@ -75,8 +74,8 @@
         </template>
     </el-dialog>
 
-    <el-dialog v-model="dialogForm2Visible" width="80vw" :close-on-click-modal="false"
-        @close="dialogForm2Visible = false" style="min-height: 60vh;">
+    <el-dialog v-model="dialogForm2Visible" width="80vw" :close-on-click-modal="false" @close="dialogForm2Visible = false"
+        style="min-height: 60vh;">
         <template #header>
             <div style="text-align: center; width: 100%; font-weight: bold;">
                 ITEM UPPER LOGO SPECIFICATION
@@ -117,8 +116,7 @@
         </div>
     </el-dialog>
 
-    <el-dialog v-model="dialogForm3Visible" width="45vw" :close-on-click-modal="false"
-        @close="dialogForm1Visible = false">
+    <el-dialog v-model="dialogForm3Visible" width="45vw" :close-on-click-modal="false" @close="dialogForm1Visible = false">
         <template #header>
             <div style="text-align: center; width: 100%; font-weight: bold;">
                 {{ titleDialogForm2 }}
@@ -164,8 +162,7 @@
                     <el-table :data="arrUpperLogo" :row-style="{ height: '30px' }" border>
                         <el-table-column align="center" prop="Model" label="Model">
                             <template #default="{ row }">
-                                <div v-if="!row.editingModel" @dblclick="enableEdit(row, 'Model')"
-                                    style="min-height: 20px;">
+                                <div v-if="!row.editingModel" @click="enableEdit(row, 'Model')" style="min-height: 20px;">
                                     {{ row.Model || "" }}
                                 </div>
                                 <el-input v-else v-model="row.Model" @blur="disableEdit(row, 'Model')" />
@@ -173,8 +170,7 @@
                         </el-table-column>
                         <el-table-column align="center" prop="SIZE" label="SIZE">
                             <template #default="{ row }">
-                                <div v-if="!row.editingSIZE" @dblclick="enableEdit(row, 'SIZE')"
-                                    style="min-height: 20px;">
+                                <div v-if="!row.editingSIZE" @click="enableEdit(row, 'SIZE')" style="min-height: 20px;">
                                     {{ row.SIZE || "" }}
                                 </div>
                                 <el-input v-else v-model="row.SIZE" @blur="disableEdit(row, 'SIZE')" />
@@ -182,7 +178,7 @@
                         </el-table-column>
                         <el-table-column align="center" prop="A" label="A">
                             <template #default="{ row }">
-                                <div v-if="!row.editingA" @dblclick="enableEdit(row, 'A')" style="min-height: 20px;">
+                                <div v-if="!row.editingA" @click="enableEdit(row, 'A')" style="min-height: 20px;">
                                     {{ row.A || "" }}
                                 </div>
                                 <el-input v-else v-model="row.A" @blur="disableEdit(row, 'A')" />
@@ -190,7 +186,7 @@
                         </el-table-column>
                         <el-table-column align="center" prop="B" label="B">
                             <template #default="{ row }">
-                                <div v-if="!row.editingB" @dblclick="enableEdit(row, 'B')" style="min-height: 20px;">
+                                <div v-if="!row.editingB" @click="enableEdit(row, 'B')" style="min-height: 20px;">
                                     {{ row.B || "" }}
                                 </div>
                                 <el-input v-else v-model="row.B" @blur="disableEdit(row, 'B')" />
@@ -209,7 +205,6 @@
             </div>
         </template>
     </el-dialog>
-
 </template>
 
 <script lang="ts" setup>

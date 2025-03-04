@@ -19,7 +19,7 @@
                                 <el-table-column type="index" label="Index" width="100" />
                                 <el-table-column label="Name 名称 Tên" width="200">
                                     <template #default="{ row }">
-                                        <div v-if="!row.editingName" @dblclick="enableEdit(row, 'Name')"
+                                        <div v-if="!row.editingName" @click="enableEdit(row, 'Name')"
                                             style="min-height: 20px;">
                                             {{ row.Name }}
                                         </div>
@@ -28,7 +28,7 @@
                                 </el-table-column>
                                 <el-table-column label="Mat# (MCS#)" width="200">
                                     <template #default="{ row }">
-                                        <div v-if="!row.editingMat" @dblclick="enableEdit(row, 'Mat')"
+                                        <div v-if="!row.editingMat" @click="enableEdit(row, 'Mat')"
                                             style="min-height: 20px;">
                                             {{ row.Mat }}
                                         </div>
@@ -44,7 +44,7 @@
                                 <el-table-column type="index" label="Index" width="100" />
                                 <el-table-column label="Type 类型 Loại" width="200">
                                     <template #default="{ row }">
-                                        <div v-if="!row.editingType" @dblclick="enableEdit(row, 'Type')"
+                                        <div v-if="!row.editingType" @click="enableEdit(row, 'Type')"
                                             style="min-height: 20px;">
                                             {{ row.Type }}
                                         </div>
@@ -53,7 +53,7 @@
                                 </el-table-column>
                                 <el-table-column label="Name 名称 Tên" width="200">
                                     <template #default="{ row }">
-                                        <div v-if="!row.editingName" @dblclick="enableEdit(row, 'Name')"
+                                        <div v-if="!row.editingName" @click="enableEdit(row, 'Name')"
                                             style="min-height: 20px;">
                                             {{ row.Name }}
                                         </div>
@@ -62,7 +62,7 @@
                                 </el-table-column>
                                 <el-table-column label="Vendor 厂商 Nhà cung ứng" width="200">
                                     <template #default="{ row }">
-                                        <div v-if="!row.editingVendor" @dblclick="enableEdit(row, 'Vendor')"
+                                        <div v-if="!row.editingVendor" @click="enableEdit(row, 'Vendor')"
                                             style="min-height: 20px;">
                                             {{ row.Vendor }}
                                         </div>
@@ -71,17 +71,16 @@
                                 </el-table-column>
                                 <el-table-column label="Thickness 厚度 Độ dày" width="200">
                                     <template #default="{ row }">
-                                        <div v-if="!row.editingThickness" @dblclick="enableEdit(row, 'Thickness')"
+                                        <div v-if="!row.editingThickness" @click="enableEdit(row, 'Thickness')"
                                             style="min-height: 20px;">
                                             {{ row.Thickness }}
                                         </div>
-                                        <el-input v-else v-model="row.Thickness"
-                                            @blur="disableEdit(row, 'Thickness')" />
+                                        <el-input v-else v-model="row.Thickness" @blur="disableEdit(row, 'Thickness')" />
                                     </template>
                                 </el-table-column>
                                 <el-table-column label="Melting point 熔点 Điểm nóng chảy" width="200">
                                     <template #default="{ row }">
-                                        <div v-if="!row.editingMeltingPoint" @dblclick="enableEdit(row, 'MeltingPoint')"
+                                        <div v-if="!row.editingMeltingPoint" @click="enableEdit(row, 'MeltingPoint')"
                                             style="min-height: 20px;">
                                             {{ row.MeltingPoint }}
                                         </div>
@@ -98,7 +97,7 @@
                                 <el-table-column type="index" label="Index" width="100" />
                                 <el-table-column label="Name 名称 Tên" width="200">
                                     <template #default="{ row }">
-                                        <div v-if="!row.editingName" @dblclick="enableEdit(row, 'Name')"
+                                        <div v-if="!row.editingName" @click="enableEdit(row, 'Name')"
                                             style="min-height: 20px;">
                                             {{ row.Name }}
                                         </div>
@@ -107,7 +106,7 @@
                                 </el-table-column>
                                 <el-table-column label="Description" width="200">
                                     <template #default="{ row }">
-                                        <div v-if="!row.editingDescription" @dblclick="enableEdit(row, 'Description')"
+                                        <div v-if="!row.editingDescription" @click="enableEdit(row, 'Description')"
                                             style="min-height: 20px;">
                                             {{ row.Description }}
                                         </div>
@@ -124,7 +123,7 @@
                                 <el-table-column type="index" label="Roll Index" width="100" />
                                 <el-table-column label="Temp 温度 Nhiệt độ" width="200">
                                     <template #default="{ row }">
-                                        <div v-if="!row.editingTemp" @dblclick="enableEdit(row, 'Temp')"
+                                        <div v-if="!row.editingTemp" @click="enableEdit(row, 'Temp')"
                                             style="min-height: 20px;">
                                             {{ row.Temp }}
                                         </div>
@@ -133,7 +132,7 @@
                                 </el-table-column>
                                 <el-table-column label="Roll Size 滚轮大小 Kích cở cuộn" width="200">
                                     <template #default="{ row }">
-                                        <div v-if="!row.editingRollSize" @dblclick="enableEdit(row, 'RollSize')"
+                                        <div v-if="!row.editingRollSize" @click="enableEdit(row, 'RollSize')"
                                             style="min-height: 20px;">
                                             {{ row.RollSize }}
                                         </div>
@@ -142,7 +141,7 @@
                                 </el-table-column>
                                 <el-table-column label="Time 时间 Thời gian" width="200">
                                     <template #default="{ row }">
-                                        <div v-if="!row.editingTime" @dblclick="enableEdit(row, 'Time')"
+                                        <div v-if="!row.editingTime" @click="enableEdit(row, 'Time')"
                                             style="min-height: 20px;">
                                             {{ row.Time }}
                                         </div>

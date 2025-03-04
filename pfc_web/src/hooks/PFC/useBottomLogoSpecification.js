@@ -10,7 +10,7 @@ const getPFCBottomLogoSpecificationByModelID = async (pfcModel) => {
         return { res: null, error: e };
     }
 }
- 
+
 const insertPFCBottomLogoSpecification = async (pfcBottomLogoSpecification) => {
     try {
         const res = await axios.post(`${URL}pfcBottomLogoSpecification`, pfcBottomLogoSpecification);

@@ -8,8 +8,7 @@
     </el-col>
 
     <!-- DIA LOG -->
-    <el-dialog v-model="dialogForm1Visible" width="75vw" :close-on-click-modal="false"
-        @close="dialogForm1Visible = false">
+    <el-dialog v-model="dialogForm1Visible" width="75vw" :close-on-click-modal="false" @close="dialogForm1Visible = false">
         <template #header>
             <div style="text-align: center; width: 100%; font-weight: bold;">
                 {{ titleDialogForm1 }}
@@ -79,7 +78,7 @@
                         <el-table-column type="index" label="No" width="50" align="center" />
                         <el-table-column align="center" prop="Process" label="Process 工段 Công đoạn">
                             <template #default="{ row }">
-                                <div v-if="!row.editingProcess" @dblclick="enableEdit(row, 'Process')"
+                                <div v-if="!row.editingProcess" @click="enableEdit(row, 'Process')"
                                     style="min-height: 20px; text-align: left;">
                                     {{ row.Process }}
                                 </div>
@@ -92,8 +91,8 @@
                                     Current Intensity <br> 电流 <br> Cường độ dòng điện
                                 </template>
                                 <template #default="{ row }">
-                                    <div v-if="!row.editingCurrentIntensity"
-                                        @dblclick="enableEdit(row, 'CurrentIntensity')" style="min-height: 20px;">
+                                    <div v-if="!row.editingCurrentIntensity" @click="enableEdit(row, 'CurrentIntensity')"
+                                        style="min-height: 20px;">
                                         {{ row.CurrentIntensity }}
                                     </div>
                                     <el-input v-else v-model="row.CurrentIntensity"
@@ -106,8 +105,7 @@
                                     khuôn)
                                 </template>
                                 <template #default="{ row }">
-                                    <div v-if="!row.editingTemp" @dblclick="enableEdit(row, 'Temp')"
-                                        style="min-height: 20px;">
+                                    <div v-if="!row.editingTemp" @click="enableEdit(row, 'Temp')" style="min-height: 20px;">
                                         {{ row.Temp }}
                                     </div>
                                     <el-input v-else v-model="row.Temp" @blur="disableEdit(row, 'Temp')" />
@@ -118,8 +116,7 @@
                                     Time <br> 时间 <br> Thời gian
                                 </template>
                                 <template #default="{ row }">
-                                    <div v-if="!row.editingTime" @dblclick="enableEdit(row, 'Time')"
-                                        style="min-height: 20px;">
+                                    <div v-if="!row.editingTime" @click="enableEdit(row, 'Time')" style="min-height: 20px;">
                                         {{ row.Time }}
                                     </div>
                                     <el-input v-else v-model="row.Time" @blur="disableEdit(row, 'Time')" />
@@ -130,7 +127,7 @@
                                     Pressure <br> 压力 <br> Lực ép
                                 </template>
                                 <template #default="{ row }">
-                                    <div v-if="!row.editingPressure" @dblclick="enableEdit(row, 'Pressure')"
+                                    <div v-if="!row.editingPressure" @click="enableEdit(row, 'Pressure')"
                                         style="min-height: 20px;">
                                         {{ row.Pressure }}
                                     </div>
@@ -142,7 +139,7 @@
                                     Comments <br> 备注 <br> Ghi chú
                                 </template>
                                 <template #default="{ row }">
-                                    <div v-if="!row.editingComments" @dblclick="enableEdit(row, 'Comments')"
+                                    <div v-if="!row.editingComments" @click="enableEdit(row, 'Comments')"
                                         style="min-height: 20px;">
                                         {{ row.Comments }}
                                     </div>
@@ -163,7 +160,6 @@
             </div>
         </template>
     </el-dialog>
-
 </template>
 
 <script lang="ts" setup>

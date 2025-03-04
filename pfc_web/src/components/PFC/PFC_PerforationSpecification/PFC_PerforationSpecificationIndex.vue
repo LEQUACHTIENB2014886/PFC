@@ -40,8 +40,7 @@
     </el-col>
 
     <!-- DIA LOG -->
-    <el-dialog v-model="dialogForm1Visible" width="35vw" :close-on-click-modal="false"
-        @close="dialogForm1Visible = false">
+    <el-dialog v-model="dialogForm1Visible" width="35vw" :close-on-click-modal="false" @close="dialogForm1Visible = false">
         <template #header>
             <div style="text-align: center; width: 100%; font-weight: bold;">
                 {{ titleDialogForm1 }}
@@ -75,8 +74,8 @@
         </template>
     </el-dialog>
 
-    <el-dialog v-model="dialogForm2Visible" width="80vw" :close-on-click-modal="false"
-        @close="dialogForm2Visible = false" style="min-height: 60vh;">
+    <el-dialog v-model="dialogForm2Visible" width="80vw" :close-on-click-modal="false" @close="dialogForm2Visible = false"
+        style="min-height: 60vh;">
         <template #header>
             <div style="text-align: center; width: 100%; font-weight: bold;">
                 ITEM PERFORATION SPECIFICATION
@@ -115,8 +114,7 @@
         </div>
     </el-dialog>
 
-    <el-dialog v-model="dialogForm3Visible" width="45vw" :close-on-click-modal="false"
-        @close="dialogForm1Visible = false">
+    <el-dialog v-model="dialogForm3Visible" width="45vw" :close-on-click-modal="false" @close="dialogForm1Visible = false">
         <template #header>
             <div style="text-align: center; width: 100%; font-weight: bold;">
                 {{ titleDialogForm2 }}
@@ -156,7 +154,7 @@
                     <el-table :data="arrPerforation" :row-style="{ height: '30px' }" border>
                         <el-table-column align="center" prop="SizeGroup" label="Size Group 分段 Phân đoạn size ">
                             <template #default="{ row }">
-                                <div v-if="!row.editingSizeGroup" @dblclick="enableEdit(row, 'SizeGroup')"
+                                <div v-if="!row.editingSizeGroup" @click="enableEdit(row, 'SizeGroup')"
                                     style="min-height: 20px;">
                                     {{ row.SizeGroup }}
                                 </div>
@@ -166,8 +164,7 @@
                         <el-table-column label="Perforation Size 冲孔尺寸 Kích cỡ lổ đục ">
                             <el-table-column prop="A" label="A" width="100">
                                 <template #default="{ row }">
-                                    <div v-if="!row.editingA" @dblclick="enableEdit(row, 'A')"
-                                        style="min-height: 20px;">
+                                    <div v-if="!row.editingA" @click="enableEdit(row, 'A')" style="min-height: 20px;">
                                         {{ row.A }}
                                     </div>
                                     <el-input v-else v-model="row.A" @blur="disableEdit(row, 'A')" />
@@ -175,8 +172,7 @@
                             </el-table-column>
                             <el-table-column prop="B" label="B" width="100">
                                 <template #default="{ row }">
-                                    <div v-if="!row.editingB" @dblclick="enableEdit(row, 'B')"
-                                        style="min-height: 20px;">
+                                    <div v-if="!row.editingB" @click="enableEdit(row, 'B')" style="min-height: 20px;">
                                         {{ row.B }}
                                     </div>
                                     <el-input v-else v-model="row.B" @blur="disableEdit(row, 'B')" />
@@ -184,8 +180,7 @@
                             </el-table-column>
                             <el-table-column prop="C" label="C" width="100">
                                 <template #default="{ row }">
-                                    <div v-if="!row.editingC" @dblclick="enableEdit(row, 'C')"
-                                        style="min-height: 20px;">
+                                    <div v-if="!row.editingC" @click="enableEdit(row, 'C')" style="min-height: 20px;">
                                         {{ row.C }}
                                     </div>
                                     <el-input v-else v-model="row.C" @blur="disableEdit(row, 'C')" />
@@ -193,8 +188,7 @@
                             </el-table-column>
                             <el-table-column prop="D" label="D" width="100">
                                 <template #default="{ row }">
-                                    <div v-if="!row.editingD" @dblclick="enableEdit(row, 'D')"
-                                        style="min-height: 20px;">
+                                    <div v-if="!row.editingD" @click="enableEdit(row, 'D')" style="min-height: 20px;">
                                         {{ row.D }}
                                     </div>
                                     <el-input v-else v-model="row.D" @blur="disableEdit(row, 'D')" />
@@ -202,8 +196,7 @@
                             </el-table-column>
                             <el-table-column prop="E" label="E" width="100">
                                 <template #default="{ row }">
-                                    <div v-if="!row.editingE" @dblclick="enableEdit(row, 'E')"
-                                        style="min-height: 20px;">
+                                    <div v-if="!row.editingE" @click="enableEdit(row, 'E')" style="min-height: 20px;">
                                         {{ row.E }}
                                     </div>
                                     <el-input v-else v-model="row.E" @blur="disableEdit(row, 'E')" />
@@ -223,7 +216,6 @@
             </div>
         </template>
     </el-dialog>
-
 </template>
 
 <script lang="ts" setup>
