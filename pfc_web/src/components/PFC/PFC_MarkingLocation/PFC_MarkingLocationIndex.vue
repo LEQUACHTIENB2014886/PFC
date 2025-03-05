@@ -60,7 +60,6 @@
             <el-form-item label="Title: ">
                 <el-input v-model="pfcMarkingLocation.Title" />
             </el-form-item>
-
         </el-form>
         <template #footer>
             <div class="dialog-footer">
@@ -195,16 +194,46 @@ const filterTableData = computed(() =>
     )
 );
 
-const filterTableData1 = computed(() =>
-    (arrItemMarkingLocation.value || []).filter(
-        (data) =>
-            !search1.value ||
-            data.Component.toLowerCase().includes(search1.value.toLowerCase())
-    )
-);
+const filterTableData1 = computed(() => {
+    return Array.isArray(arrItemMarkingLocation.value)
+        ? arrItemMarkingLocation.value.filter(data =>
+            !search1.value || data.Component.toLowerCase().includes(search1.value.toLowerCase())
+        )
+        : [];
+});
 
 const tableData = ref([]);
-const arrPerforation = ref([{}, {}, {}])
+
+const SizeRangeValueG = 7;
+const optionSizeRangeValueG = ref(
+    Array.from({ length: SizeRangeValueG }, (_, i) => {
+        const num = i + 1;
+        return [
+            { label: `${num}G`, value: `${num}G` }
+        ]
+    }).flat()
+);
+
+const SizeRangeValueT = 18;
+const optionSizeRangeValueT = ref(
+    Array.from({ length: SizeRangeValueT }, (_, i) => {
+        const num = i + 1;
+        return [
+            { label: `${num}`, value: `${num}` },
+            { label: `${num}T`, value: `${num}T` }
+        ]
+    }).flat()
+);
+
+const pfcItemMarkingLocation = ref({
+    SizeRange1: "",
+    SizeRange2: "",
+    SizeRange: ""
+} as Record<string, any>);
+
+const SizeRangeAreSame = ref([]);
+
+const trigger = ref("enter");
 
 const dialogForm1Visible = ref(false)
 const dialogForm2Visible = ref(false)
@@ -212,7 +241,6 @@ const dialogForm3Visible = ref(false)
 const titleDialogForm1 = ref("ADD NEW MARKING LOCATION")
 const titleDialogForm2 = ref("ADD NEW ITEM MARKING LOCATION")
 const pfcMarkingLocation = ref({} as Record<string, any>)
-const pfcItemMarkingLocation = ref({} as Record<string, any>)
 const ItemIndex = [1, 2, 3, 4]
 const arrItemMarkingLocation = ref([]);
 
@@ -310,7 +338,6 @@ const btnDeletePFCMarkingLocation = async (index: number, row) => {
     }
 }
 
-
 const btnUpdatePFCMarkingLocation = async (index: number, row) => {
     pfcMarkingLocation.value = {};
     pfcMarkingLocation.value = Object.assign({}, row);
@@ -323,29 +350,35 @@ const btnItemPFCMarkingLocation = async (index: number, row) => {
     pfcMarkingLocation.value = {};
     pfcMarkingLocation.value = Object.assign({}, row);
     const { res, _ } = await getPFCItemMarkingLocation(pfcMarkingLocation.value)
+    pfcMarkingLocation.value.MarkingLocationID = pfcMarkingLocation.value.MarkingLocationID
     arrItemMarkingLocation.value = res.data.data ? res.data.data : [];
     dialogForm2Visible.value = true;
     hideLoading();
 }
 
 const btnAddItemNewMarkingLocation = () => {
+    titleDialogForm2.value = "ADD NEW ITEM MARKING LOCATION";
     pfcItemMarkingLocation.value = {};
-    pfcItemMarkingLocation.value.ItemIndex = `${(arrItemMarkingLocation.value || []).length + 1}`
+    if (!Array.isArray(arrItemMarkingLocation.value)) {
+        arrItemMarkingLocation.value = [];
+    }
+    pfcItemMarkingLocation.value.ItemIndex = `${arrItemMarkingLocation.value.length + 1}`;
     pfcItemMarkingLocation.value.MarkingLocationID = pfcMarkingLocation.value.MarkingLocationID;
-    arrPerforation.value = [{}, {}, {}]
+    SizeRangeAreSame.value = [];
     formData_Content.delete("file");
     formData_Content.delete("ModelName");
     imageUrl_Content.value = null;
     oldImageUrl_Content.value = null;
     dialogForm3Visible.value = true;
-}
+};
 
-const btnEditItemNewMarkingLocation = async (index: number, row) => {
-    pfcItemMarkingLocation.value = Object.assign({}, row);
-    oldImageUrl_Content.value = row.ImageContent.toString();
-    imageUrl_Content.value = getURLImage(row.ImageContent, pfcModel.value);
+
+const btnEditItemNewMarkingLocation = async (index, row) => {
+    pfcItemMarkingLocation.value = { ...row }
+    oldImageUrl_Content.value = row.ImageContent.toString()
+    imageUrl_Content.value = getURLImage(row.ImageContent, pfcModel.value)
     titleDialogForm2.value = "UPDATE ITEM MARKING LOCATION"
-    dialogForm3Visible.value = true;
+    dialogForm3Visible.value = true
 }
 
 const btnDeleteItemNewMarkingLocation = async (index: number, row) => {
@@ -363,7 +396,7 @@ const btnDeleteItemNewMarkingLocation = async (index: number, row) => {
             }
             await deletePFCItemMarkingLocation(row);
             const { res, _ } = await getPFCItemMarkingLocation(pfcMarkingLocation.value)
-            arrItemMarkingLocation.value = res.data.data ? res.data.data : [];
+            arrItemMarkingLocation.value = res.data.data;
             success("Delete PFC Item MARKING LOCATION successfully!")
             hideLoading()
         })
@@ -412,21 +445,10 @@ const checkTypeFileUpload: UploadProps['beforeUpload'] = (rawFile) => {
     return true;
 }
 
-const enableEdit = (row: any, field: string) => {
-    row[`editing${capitalize(field)}`] = true;
-};
-
-const disableEdit = (row: any, field: string) => {
-    row[`editing${capitalize(field)}`] = false;
-};
-
-const capitalize = (str: string) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-};
-
 const btnConfirmItemMarkingLocation = async () => {
     dialogForm3Visible.value = false;
     showLoading();
+
     const itemMarkingLocation = {
         ItemMarkingLocationID: pfcItemMarkingLocation.value.ItemMarkingLocationID,
         MarkingLocationID: pfcItemMarkingLocation.value.MarkingLocationID,
@@ -437,45 +459,45 @@ const btnConfirmItemMarkingLocation = async () => {
         Process: pfcItemMarkingLocation.value.Process,
         ItemIndex: pfcItemMarkingLocation.value.ItemIndex.toString(),
     }
-
     if (titleDialogForm2.value === "ADD NEW ITEM MARKING LOCATION") {
         try {
             if (formData_Content && formData_Content.entries().next().value) {
-                const { res, err } = await uploadFilePFCModelFromFolderPFCModel(formData_Content, pfcModel.value)
-                itemMarkingLocation.ImageContent = res
+                const { res } = await uploadFilePFCModelFromFolderPFCModel(formData_Content, pfcModel.value);
+                itemMarkingLocation.ImageContent = res;
             }
             await insertItemPFCMarkingLocation(itemMarkingLocation);
-            const { res, _ } = await getPFCItemMarkingLocation(pfcMarkingLocation.value)
-            arrItemMarkingLocation.value = res.data.data ? res.data.data : [];
-            success("Insert new Item MARKING LOCATION successfully!")
+            const { res } = await getPFCItemMarkingLocation(pfcMarkingLocation.value);
+            arrItemMarkingLocation.value = res.data.data;
+            success("Insert new Item MARKING LOCATION successfully!");
         } catch (e) {
-            error(e)
+            error(e);
         }
     }
-
     if (titleDialogForm2.value === "UPDATE ITEM MARKING LOCATION") {
         try {
             if (formData_Content && formData_Content.entries().next().value) {
                 if (oldImageUrl_Content.value) {
-                    await deleteFilePFCModelFromFolderPFCModel(oldImageUrl_Content.value, pfcModel.value)
+                    await deleteFilePFCModelFromFolderPFCModel(oldImageUrl_Content.value, pfcModel.value);
                 }
-                const { res, err } = await uploadFilePFCModelFromFolderPFCModel(formData_Content, pfcModel.value)
-                itemMarkingLocation.ImageContent = res
+                const { res } = await uploadFilePFCModelFromFolderPFCModel(formData_Content, pfcModel.value);
+                itemMarkingLocation.ImageContent = res;
             } else {
                 if (oldImageUrl_Content.value && itemMarkingLocation.ImageContent === null) {
-                    const { res, err } = await deleteFilePFCModelFromFolderPFCModel(oldImageUrl_Content.value, pfcModel.value)
+                    await deleteFilePFCModelFromFolderPFCModel(oldImageUrl_Content.value, pfcModel.value);
                 }
             }
-            await updatePFCItemMarkingLocation(itemMarkingLocation)
-            const { res, _ } = await getPFCItemMarkingLocation(pfcMarkingLocation.value)
-            arrItemMarkingLocation.value = res.data.data ? res.data.data : [];
-            success("Insert new Item MARKING LOCATION successfully!")
+            await updatePFCItemMarkingLocation(itemMarkingLocation);
+            const { res } = await getPFCItemMarkingLocation(pfcMarkingLocation.value);
+            arrItemMarkingLocation.value = res.data.data;
+            success("Update Item MARKING LOCATION successfully!");
         } catch (e) {
-            error(e)
+            error(e);
         }
     }
     hideLoading();
-}
+};
+
+
 </script>
 
 <style lang="css" scoped></style>

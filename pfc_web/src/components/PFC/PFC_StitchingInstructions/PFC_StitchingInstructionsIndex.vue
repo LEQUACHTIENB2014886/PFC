@@ -426,16 +426,18 @@ const btnItemPFCStitchingInstructions = async (index: number, row) => {
 }
 
 const btnAddItemNewStitchingInstructions = () => {
+    titleDialogForm2.value = "ADD NEW ITEM STITCHING INSTRUCTION";
     pfcItemStitchingInstructions.value = {};
     pfcItemStitchingInstructions.value.ItemIndex = `${arrItemStitchingInstructions.value.length + 1}`
     pfcItemStitchingInstructions.value.StitchingInstructionsID = pfcStitchingInstructions.value.StitchingInstructionsID;
-    // console.log(pfcStitchingInstructions.value.StitchingInstructionID)
+    // console.log(pfcStitchingInstructions.value.ItemIndex)
     arrComponent.value = [{}];
     formData_Content.delete("file");
     formData_Content.delete("ModelName");
     imageUrl_Content.value = null;
     oldImageUrl_Content.value = null;
     dialogForm3Visible.value = true;
+
 }
 
 const btnEditItemNewStitchingInstructions = async (index, row) => {
@@ -560,8 +562,9 @@ const btnConfirmItemStitchingInstructions = async () => {
         AttachingMethod: arrComponent.value[0]?.AttachingMethod ?? "",
         StitchingGuideName: arrComponent.value[0]?.StitchingGuideName ?? "",
         ItemIndex: pfcItemStitchingInstructions.value.ItemIndex.toString(),
-    }
 
+    }
+    // console.log(pfcItemStitchingInstructions.value)
     // console.log("McType:", arrComponent.value[0]);
     // console.log(pfcStitchingInstructions.value.StitchingInstructionID)
     if (titleDialogForm2.value === "ADD NEW ITEM STITCHING INSTRUCTION") {

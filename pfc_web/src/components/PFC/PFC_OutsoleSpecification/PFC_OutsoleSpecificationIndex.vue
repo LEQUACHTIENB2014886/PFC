@@ -400,27 +400,17 @@ const btnItemPFCBottomSilkScreenProcess = async (index: number, row) => {
 }
 
 const btnAddItemNewBottomSilkScreenProcess = () => {
-    titleDialogForm2.value = "ADD NEW ITEM BOTTOM SILK SCREEN PROCESS";
-    pfcItemBottomSilkScreenProcess.value = {}; 
+    pfcItemBottomSilkScreenProcess.value = {};
     pfcItemBottomSilkScreenProcess.value.BottomSilkScreenProcessID = pfcBottomSilkScreenProcess.value.BottomSilkScreenProcessID;
-    
     arrComponent.value = Array.from({ length: 12 }, (_, i) => ({
         No: i + 1,
-        Process: '',
-        Chemical: '',
-        Hardener: '',
-        WB: '',
-        Temp: '',
-        Time: '',
-        Mesh: ''
     }));
-    
+    formData_Content.delete("file");
+    formData_Content.delete("ModelName");
     imageUrl_Content.value = null;
     oldImageUrl_Content.value = null;
-    
     dialogForm3Visible.value = true;
-};
-
+}
 
 const btnEditItemNewBottomSilkScreenProcess = async (index: number, row) => {
     pfcItemBottomSilkScreenProcess.value = Object.assign({}, row);

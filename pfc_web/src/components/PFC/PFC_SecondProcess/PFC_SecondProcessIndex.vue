@@ -1,8 +1,8 @@
 <template>
     <el-col :span="24" style="height: 100vh;">
-        <h4 style="width: 100%; text-align: center;">SENCOND PROCESS</h4>
+        <h4 style="width: 100%; text-align: center;">SECOND PROCESS</h4>
         <el-button class="btn-add" type="primary" plain size="small" @click="btnAddNewSecondProcess">
-            ADD NEW SENCOND PROCESS
+            ADD NEW SECOND PROCESS
         </el-button>
 
         <div style="margin: 20px;">
@@ -60,7 +60,6 @@
             <el-form-item label="Title: ">
                 <el-input v-model="pfcSecondProcess.Title" />
             </el-form-item>
-
         </el-form>
         <template #footer>
             <div class="dialog-footer">
@@ -72,30 +71,25 @@
         </template>
     </el-dialog>
 
-    <el-dialog v-model="dialogForm2Visible" width="80vw" :close-on-click-modal="false" @close="dialogForm2Visible = false"
+    <el-dialog v-model="dialogForm2Visible" width="90vw" :close-on-click-modal="false" @close="dialogForm2Visible = false"
         style="min-height: 60vh;">
         <template #header>
             <div style="text-align: center; width: 100%; font-weight: bold;">
-                ITEM SENCOND PROCESS
+                ITEM SECOND PROCESS
             </div>
         </template>
         <el-button class="btn-add" type="primary" plain size="small" @click="btnAddItemNewSecondProcess">
-            ADD NEW ITEM SENCOND PROCESS
+            ADD NEW ITEM SECOND PROCESS
         </el-button>
         <div style="margin: 20px;">
             <el-table :data="filterTableData1" style="width: 100%">
                 <el-table-column prop="ItemIndex" label="Item Index" width="100" />
-                <el-table-column label="SENCOND PROCESS" width="300">
-                    <template #default="{ row }">
-                        {{ pfcSecondProcess.Title }}
-                    </template>
-                </el-table-column>
-                <el-table-column prop="Component" label="Component" width="200" />
 
-                <el-table-column prop="ImageContent" label="ImageContent" width="200" />
-                <el-table-column prop="Material" label="Material" width="230" />
-                <el-table-column prop="Method" label="Method" width="230" />
-                <el-table-column align="right" width="200">
+                <el-table-column prop="Component" label="Component" width="300" />
+                <el-table-column prop="ImageContent" label="ImageContent" width="380" />
+                <el-table-column prop="Material" label="Material" width="380" />
+                <el-table-column prop="Method" label="Method" width="220" />
+                <el-table-column align="right">
                     <template #header>
                         <el-input v-model="search1" size="small" placeholder="Type to search" />
                     </template>
@@ -116,14 +110,13 @@
         </div>
     </el-dialog>
 
-    <el-dialog v-model="dialogForm3Visible" width="45vw" :close-on-click-modal="false" @close="dialogForm3Visible = false">
-
+    <el-dialog v-model="dialogForm3Visible" width="90vw" :close-on-click-modal="false" @close="dialogForm1Visible = false">
         <template #header>
             <div style="text-align: center; width: 100%; font-weight: bold;">
                 {{ titleDialogForm2 }}
             </div>
         </template>
-        <el-form style="width: 40vw" :model="pfcItemSecondProcess" label-width="auto" label-position="right" size="default">
+        <el-form style="width: 85vw" :model="pfcItemSecondProcess" label-width="auto" label-position="right" size="default">
             <el-form-item label="Item Index:">
                 <el-select v-model="pfcItemSecondProcess.ItemIndex" clearable placeholder="Select">
                     <el-option v-for="item in ItemIndex" :key="item" :label="item" :value="item" />
@@ -134,12 +127,6 @@
             </el-form-item>
             <el-form-item label="ImageContent: ">
                 <el-input v-model="pfcItemSecondProcess.ImageContent" />
-            </el-form-item>
-            <el-form-item label="Material: ">
-                <el-input v-model="pfcItemSecondProcess.Material" />
-            </el-form-item>
-            <el-form-item label="Method: ">
-                <el-input v-model="pfcItemSecondProcess.Method" />
             </el-form-item>
             <el-form-item label=" ">
                 <el-col>
@@ -159,6 +146,12 @@
                         </el-col>
                     </el-card>
                 </el-col>
+            </el-form-item>
+            <el-form-item label="Material: ">
+                <el-input v-model="pfcItemSecondProcess.Material" />
+            </el-form-item>
+            <el-form-item label="Method: ">
+                <el-input v-model="pfcItemSecondProcess.Method" />
             </el-form-item>
         </el-form>
         <template #footer>
@@ -195,24 +188,53 @@ const filterTableData = computed(() =>
     )
 );
 
-const filterTableData1 = computed(() =>
-    (arrItemSecondProcess.value || []).filter(
-        (data) =>
-            !search1.value ||
-            data.Component.toLowerCase().includes(search1.value.toLowerCase())
-    )
-);
+const filterTableData1 = computed(() => {
+    return Array.isArray(arrItemSecondProcess.value)
+        ? arrItemSecondProcess.value.filter(data =>
+            !search1.value || data.Component.toLowerCase().includes(search1.value.toLowerCase())
+        )
+        : [];
+});
 
 const tableData = ref([]);
-const arrPerforation = ref([{}, {}, {}])
+
+const SizeRangeValueG = 7;
+const optionSizeRangeValueG = ref(
+    Array.from({ length: SizeRangeValueG }, (_, i) => {
+        const num = i + 1;
+        return [
+            { label: `${num}G`, value: `${num}G` }
+        ]
+    }).flat()
+);
+
+const SizeRangeValueT = 18;
+const optionSizeRangeValueT = ref(
+    Array.from({ length: SizeRangeValueT }, (_, i) => {
+        const num = i + 1;
+        return [
+            { label: `${num}`, value: `${num}` },
+            { label: `${num}T`, value: `${num}T` }
+        ]
+    }).flat()
+);
+
+const pfcItemSecondProcess = ref({
+    SizeRange1: "",
+    SizeRange2: "",
+    SizeRange: ""
+} as Record<string, any>);
+
+const SizeRangeAreSame = ref([]);
+
+const trigger = ref("enter");
 
 const dialogForm1Visible = ref(false)
 const dialogForm2Visible = ref(false)
 const dialogForm3Visible = ref(false)
-const titleDialogForm1 = ref("ADD NEW SENCOND PROCESS")
-const titleDialogForm2 = ref("ADD NEW ITEM SENCOND PROCESS")
+const titleDialogForm1 = ref("ADD NEW SECOND PROCESS")
+const titleDialogForm2 = ref("ADD NEW ITEM SECOND PROCESS")
 const pfcSecondProcess = ref({} as Record<string, any>)
-const pfcItemSecondProcess = ref({} as Record<string, any>)
 const ItemIndex = [1, 2, 3, 4]
 const arrItemSecondProcess = ref([]);
 
@@ -236,7 +258,7 @@ const reloadData = async () => {
 }
 
 const btnAddNewSecondProcess = () => {
-    titleDialogForm1.value = "ADD NEW SENCOND PROCESS"
+    titleDialogForm1.value = "ADD NEW SECOND PROCESS"
     pfcSecondProcess.value = {};
     pfcSecondProcess.value.ModelType = pfcModel.value.ModelType
     pfcSecondProcess.value.ModelName = pfcModel.value.ModelName
@@ -248,20 +270,20 @@ const btnAddNewSecondProcess = () => {
 const btnConfirm = async () => {
     dialogForm1Visible.value = false;
     showLoading();
-    if (titleDialogForm1.value === "ADD NEW SENCOND PROCESS") {
+    if (titleDialogForm1.value === "ADD NEW SECOND PROCESS") {
         try {
             await insertPFCSecondProcess(pfcSecondProcess.value)
-            success("Insert new SENCOND PROCESS successfully!")
+            success("Insert new SECOND PROCESS successfully!")
             await reloadData()
         } catch (e) {
             error(e);
         }
     }
 
-    if (titleDialogForm1.value === "UPDATE SENCOND PROCESS") {
+    if (titleDialogForm1.value === "UPDATE SECOND PROCESS") {
         try {
             await updatePFCSecondProcess(pfcSecondProcess.value)
-            success("Update SENCOND PROCESS successfully!")
+            success("Update SECOND PROCESS successfully!")
             await reloadData()
         } catch (e) {
             error(e);
@@ -291,7 +313,7 @@ const btnDeletePFCSecondProcess = async (index: number, row) => {
         }
         const items = res.data.data || [];
         if (items.length > 0) {
-            error("Please delete Item SENCOND PROCESS!");
+            error("Please delete Item SECOND PROCESS!");
         } else {
             const { res: delRes, error: delError } = await deletePFCSecondProcess(row);
             if (delError) {
@@ -299,7 +321,7 @@ const btnDeletePFCSecondProcess = async (index: number, row) => {
                 error("Error occurred while deleting record!");
             } else {
                 await reloadData();
-                success("Delete SENCOND PROCESS successfully!");
+                success("Delete SECOND PROCESS successfully!");
             }
         }
         hideLoading();
@@ -310,11 +332,10 @@ const btnDeletePFCSecondProcess = async (index: number, row) => {
     }
 }
 
-
 const btnUpdatePFCSecondProcess = async (index: number, row) => {
     pfcSecondProcess.value = {};
     pfcSecondProcess.value = Object.assign({}, row);
-    titleDialogForm1.value = "UPDATE SENCOND PROCESS"
+    titleDialogForm1.value = "UPDATE SECOND PROCESS"
     dialogForm1Visible.value = true;
 }
 
@@ -323,29 +344,35 @@ const btnItemPFCSecondProcess = async (index: number, row) => {
     pfcSecondProcess.value = {};
     pfcSecondProcess.value = Object.assign({}, row);
     const { res, _ } = await getPFCItemSecondProcess(pfcSecondProcess.value)
+    pfcSecondProcess.value.SecondProcessID = pfcSecondProcess.value.SecondProcessID
     arrItemSecondProcess.value = res.data.data ? res.data.data : [];
     dialogForm2Visible.value = true;
     hideLoading();
 }
 
 const btnAddItemNewSecondProcess = () => {
+    titleDialogForm2.value = "ADD NEW ITEM SECOND PROCESS";
     pfcItemSecondProcess.value = {};
-    pfcItemSecondProcess.value.ItemIndex = `${(arrItemSecondProcess.value || []).length + 1}`
+    if (!Array.isArray(arrItemSecondProcess.value)) {
+        arrItemSecondProcess.value = [];
+    }
+    pfcItemSecondProcess.value.ItemIndex = `${arrItemSecondProcess.value.length + 1}`;
     pfcItemSecondProcess.value.SecondProcessID = pfcSecondProcess.value.SecondProcessID;
-    arrPerforation.value = [{}, {}, {}]
+    SizeRangeAreSame.value = [];
     formData_Content.delete("file");
     formData_Content.delete("ModelName");
     imageUrl_Content.value = null;
     oldImageUrl_Content.value = null;
     dialogForm3Visible.value = true;
-}
+};
 
-const btnEditItemNewSecondProcess = async (index: number, row) => {
-    pfcItemSecondProcess.value = Object.assign({}, row);
-    oldImageUrl_Content.value = row.ImageContent.toString();
-    imageUrl_Content.value = getURLImage(row.ImageContent, pfcModel.value);
-    titleDialogForm2.value = "UPDATE ITEM SENCOND PROCESS"
-    dialogForm3Visible.value = true;
+
+const btnEditItemNewSecondProcess = async (index, row) => {
+    pfcItemSecondProcess.value = { ...row }
+    oldImageUrl_Content.value = row.ImageContent.toString()
+    imageUrl_Content.value = getURLImage(row.ImageContent, pfcModel.value)
+    titleDialogForm2.value = "UPDATE ITEM SECOND PROCESS"
+    dialogForm3Visible.value = true
 }
 
 const btnDeleteItemNewSecondProcess = async (index: number, row) => {
@@ -363,8 +390,8 @@ const btnDeleteItemNewSecondProcess = async (index: number, row) => {
             }
             await deletePFCItemSecondProcess(row);
             const { res, _ } = await getPFCItemSecondProcess(pfcSecondProcess.value)
-            arrItemSecondProcess.value = res.data.data ? res.data.data : [];
-            success("Delete PFC Item SENCOND PROCESS successfully!")
+            arrItemSecondProcess.value = res.data.data;
+            success("Delete PFC Item SECOND PROCESS successfully!")
             hideLoading()
         })
         .catch(() => {
@@ -412,69 +439,58 @@ const checkTypeFileUpload: UploadProps['beforeUpload'] = (rawFile) => {
     return true;
 }
 
-const enableEdit = (row: any, field: string) => {
-    row[`editing${capitalize(field)}`] = true;
-};
-
-const disableEdit = (row: any, field: string) => {
-    row[`editing${capitalize(field)}`] = false;
-};
-
-const capitalize = (str: string) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-};
-
 const btnConfirmItemSecondProcess = async () => {
     dialogForm3Visible.value = false;
     showLoading();
+
     const itemSecondProcess = {
         ItemSecondProcessID: pfcItemSecondProcess.value.ItemSecondProcessID,
-        SecondProcessID: pfcItemSecondProcess.value.SecondProcessID,
+        SecondProcessID: pfcSecondProcess.value.SecondProcessID,
         Component: pfcItemSecondProcess.value.Component,
         ImageContent: pfcItemSecondProcess.value.ImageContent,
         Material: pfcItemSecondProcess.value.Material,
         Method: pfcItemSecondProcess.value.Method,
         ItemIndex: pfcItemSecondProcess.value.ItemIndex.toString(),
     }
-
-    if (titleDialogForm2.value === "ADD NEW ITEM SENCOND PROCESS") {
+    if (titleDialogForm2.value === "ADD NEW ITEM SECOND PROCESS") {
         try {
             if (formData_Content && formData_Content.entries().next().value) {
-                const { res, err } = await uploadFilePFCModelFromFolderPFCModel(formData_Content, pfcModel.value)
-                itemSecondProcess.ImageContent = res
+                const { res } = await uploadFilePFCModelFromFolderPFCModel(formData_Content, pfcModel.value);
+                itemSecondProcess.ImageContent = res;
             }
             await insertItemPFCSecondProcess(itemSecondProcess);
-            const { res, _ } = await getPFCItemSecondProcess(pfcSecondProcess.value)
-            arrItemSecondProcess.value = res.data.data ? res.data.data : [];
-            success("Insert new Item SENCOND PROCESS successfully!")
+            const { res } = await getPFCItemSecondProcess(pfcSecondProcess.value);
+            arrItemSecondProcess.value = res.data.data;
+            success("Insert new Item SECOND PROCESS successfully!");
         } catch (e) {
-            error(e)
+            error(e);
         }
     }
-
-    if (titleDialogForm2.value === "UPDATE ITEM SENCOND PROCESS") {
+    if (titleDialogForm2.value === "UPDATE ITEM SECOND PROCESS") {
         try {
             if (formData_Content && formData_Content.entries().next().value) {
                 if (oldImageUrl_Content.value) {
-                    await deleteFilePFCModelFromFolderPFCModel(oldImageUrl_Content.value, pfcModel.value)
+                    await deleteFilePFCModelFromFolderPFCModel(oldImageUrl_Content.value, pfcModel.value);
                 }
-                const { res, err } = await uploadFilePFCModelFromFolderPFCModel(formData_Content, pfcModel.value)
-                itemSecondProcess.ImageContent = res
+                const { res } = await uploadFilePFCModelFromFolderPFCModel(formData_Content, pfcModel.value);
+                itemSecondProcess.ImageContent = res;
             } else {
                 if (oldImageUrl_Content.value && itemSecondProcess.ImageContent === null) {
-                    const { res, err } = await deleteFilePFCModelFromFolderPFCModel(oldImageUrl_Content.value, pfcModel.value)
+                    await deleteFilePFCModelFromFolderPFCModel(oldImageUrl_Content.value, pfcModel.value);
                 }
             }
-            await updatePFCItemSecondProcess(itemSecondProcess)
-            const { res, _ } = await getPFCItemSecondProcess(pfcSecondProcess.value)
-            arrItemSecondProcess.value = res.data.data ? res.data.data : [];
-            success("Insert new Item SENCOND PROCESS successfully!")
+            await updatePFCItemSecondProcess(itemSecondProcess);
+            const { res } = await getPFCItemSecondProcess(pfcSecondProcess.value);
+            arrItemSecondProcess.value = res.data.data;
+            success("Update Item SECOND PROCESS successfully!");
         } catch (e) {
-            error(e)
+            error(e);
         }
     }
     hideLoading();
-}
+};
+
+
 </script>
 
 <style lang="css" scoped></style>

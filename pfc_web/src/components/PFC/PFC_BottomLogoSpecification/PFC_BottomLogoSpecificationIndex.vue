@@ -361,8 +361,9 @@ const btnItemPFCBottomLogoSpecification = async (index: number, row) => {
 }
 
 const btnAddItemNewBottomLogoSpecification = () => {
+    titleDialogForm2.value = "ADD NEW ITEM BOTTOM LOGO SPECIFICATION";
     pfcItemBottomLogoSpecification.value = {};
-    pfcItemBottomLogoSpecification.value.ItemIndex = `${arrItemBottomLogoSpecification.value.length + 1}`
+    pfcItemBottomLogoSpecification.value.ItemIndex = `${arrItemBottomLogoSpecification.value.length + 1}`;
     pfcItemBottomLogoSpecification.value.BottomLogoSpecificationID = pfcBottomLogoSpecification.value.BottomLogoSpecificationID;
     arrComponent.value = Array.from({ length: 6 }, () => ({}));
     formData_Content.delete("file");
@@ -370,7 +371,8 @@ const btnAddItemNewBottomLogoSpecification = () => {
     imageUrl_Content.value = null;
     oldImageUrl_Content.value = null;
     dialogForm3Visible.value = true;
-}
+};
+
 
 const btnEditItemNewBottomLogoSpecification = async (index: number, row) => {
     pfcItemBottomLogoSpecification.value = Object.assign({}, row);

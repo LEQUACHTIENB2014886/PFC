@@ -5,7 +5,7 @@ interface PFC_StitchingInstruction {
     MaterialNumber: string;
     Title: string;
     ItemIndex: string;
-    IteStitchingInstructionID: PFC_ItemStitchingInstruction[];
+    ItemStitchingInstructionID: PFC_ItemStitchingInstruction[];
 }
 
 interface PFC_ItemStitchingInstruction {

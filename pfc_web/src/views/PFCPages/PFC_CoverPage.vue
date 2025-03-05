@@ -102,58 +102,59 @@ import PFC_BottomPartsProcessIndex from "@/components/PFC/PFC_BottomPartsProcess
 import PFC_BottomSilkScreenProcessIndex from "@/components/PFC/PFC_BottomSilkScreenProcess/PFC_BottomSilkScreenProcessIndex.vue"
 
 // 23
-// import PFC_CommonStockfittingProcessIndex from "@/components/PFC/PFC_CommonStockfittingProcess/PFC_CommonStockfittingProcessIndex.vue"
+import PFC_OutsoleSpecificationIndex from "@/components/PFC/PFC_OutsoleSpecification/PFC_OutsoleSpecificationIndex.vue"
 
 // 24
-// import PFC_OutsoleSpecificationIndex from "@/components/PFC/PFC_OutsoleSpecification/PFC_OutsoleSpecificationIndex.vue"
-
-// 25
 // import PFC_OutsolePressingProcessIndex from "@/components/PFC/PFC_OutsolePressingProcess/PFC_OutsolePressingProcessIndex.vue"
 
-// 26
+// 25
 // import PFC_RubberComponentSpecificatIndex from "@/components/PFC/PFC_RubberComponentSpecificat/PFC_RubberComponentSpecificatIndex.vue"
 
-// 27
+// 26
 // import PFC_CommonSilkScreenProcessIndex from "@/components/PFC/PFC_CommonSilkScreenProcess/PFC_CommonSilkScreenProcessIndex.vue"
 
-// 28
+// 27
 // import PFC_SocklinerSpecificationIndex from "@/components/PFC/PFC_SocklinerSpecification/PFC_SocklinerSpecificationIndex.vue"
 
-// 29
+// 28
 // import PFC_HeelWedgeSpecificationIndex from "@/components/PFC/PFC_HeelWedgeSpecification/PFC_HeelWedgeSpecificationIndex.vue"
 
-// 30
+// 29
 // import PFC_LogoApplicationProcessIndex from "@/components/PFC/PFC_LogoApplicationProcess/PFC_LogoApplicationProcessIndex.vue"
 
-// 31
+// 30
 // import PFC_SocklinerMoldingProcessIndex from "@/components/PFC/PFC_SocklinerMoldingProcess/PFC_SocklinerMoldingProcessIndex.vue"
 
-// 32
+// 31
 // import PFC_SocklinerGraphicProcessIndex from "@/components/PFC/PFC_SocklinerGraphicProcess/PFC_SocklinerGraphicProcessIndex.vue"
 
-// 33
+// 32
 // import PFC_OutsideConveyorProcessIndex from "@/components/PFC/PFC_OutsideConveyorProcess/PFC_OutsideConveyorProcessIndex.vue"
 
-// 34
+
+// 33
 // import PFC_CommonAssemblingProcessIndex from "@/components/PFC/PFC_CommonAssemblingProcess/PFC_CommonAssemblingProcessIndex.vue"
 
-// 35
+// 34
 // import PFC_AssemblyProcessIndex from "@/components/PFC/PFC_AssemblyProcess/PFC_AssemblyProcessIndex.vue"
 
-// 36
+// 35
 // import PFC_PressingPadSpecificationIndex from "@/components/PFC/PFC_PressingPadSpecification/PFCPressingPadSpecificationIndex.vue"
 
-// 37
+// 36
 // import PFC_ProductionChecklistIndex from "@/components/PFC/PFC_ProductionChecklist/PFC_ProductionChecklistIndex.vue"
 
-// 38
+// 37
 // import PFC_UpperMeasurementSpecIndex from "@/components/PFC/PFC_UpperMeasurementSpec/PFC_UpperMeasurementSpecIndex.vue"
 
-// 39
+// 38
 // import PFC_KeyManufacturingDetailsIndex from "@/components/PFC/PFC_KeyManufacturingDetails/PFC_KeyManufacturingDetailsIndex.vue"
 
-// 40
+
+// 39
 // import PFC_PackingProcessIndex from "@/components/PFC/PFC_PackingProcess/PFC_PackingProcessIndex.vue"
+
+
 
 function goBack() {
   router.back()
@@ -206,24 +207,23 @@ const currentComponent = computed(() => {
     case "20": return PFC_BottomLogoSpecificationIndex;
     case "21": return PFC_BottomPartsProcessIndex;
     case "22": return PFC_BottomSilkScreenProcessIndex;
-    // case "23": return PFC_CommonStockfittingProcessIndex;
-    // case "24": return PFC_OutsoleSpecificationIndex;
-    // case "25": return PFC_OutsolePressingProcessIndex;
-    // case "26": return PFC_RubberComponentSpecificatIndex;
-    // case "27": return PFC_CommonSilkScreenProcessIndex;
-    // case "28": return PFC_SocklinerSpecificationIndex;
-    // case "29": return PFC_HeelWedgeSpecificationIndex;
-    // case "30": return PFC_LogoApplicationProcessIndex;
-    // case "31": return PFC_SocklinerMoldingProcessIndex;
-    // case "32": return PFC_SocklinerGraphicProcessIndex;
-    // case "33": return PFC_OutsideConveyorProcessIndex;
-    // case "34": return PFC_CommonAssemblingProcessIndex;
-    // case "35": return PFC_AssemblyProcessIndex;
-    // case "36": return PFC_PressingPadSpecificationIndex;
-    // case "37": return PFC_ProductionChecklistIndex;
-    // case "38": return PFC_UpperMeasurementSpecIndex;
-    // case "39": return PFC_KeyManufacturingDetailsIndex;
-    // case "40": return PFC_PackingProcessIndex;
+    case "23": return PFC_OutsoleSpecificationIndex;
+    // case "24": return PFC_OutsolePressingProcessIndex;
+    // case "25": return PFC_RubberComponentSpecificatIndex;
+    // case "26": return PFC_CommonSilkScreenProcessIndex;
+    // case "27": return PFC_SocklinerSpecificationIndex;
+    // case "28": return PFC_HeelWedgeSpecificationIndex;
+    // case "29": return PFC_LogoApplicationProcessIndex;
+    // case "30": return PFC_SocklinerMoldingProcessIndex;
+    // case "31": return PFC_SocklinerGraphicProcessIndex;
+    // case "32": return PFC_OutsideConveyorProcessIndex;
+    // case "33": return PFC_CommonAssemblingProcessIndex;
+    // case "34": return PFC_AssemblyProcessIndex;
+    // case "35": return PFC_PressingPadSpecificationIndex;
+    // case "36": return PFC_ProductionChecklistIndex;
+    // case "37": return PFC_UpperMeasurementSpecIndex;
+    // case "38": return PFC_KeyManufacturingDetailsIndex;
+    // case "39": return PFC_PackingProcessIndex;
     default: return null;
   }
 });

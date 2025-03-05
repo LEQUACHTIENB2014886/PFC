@@ -12,7 +12,6 @@
                 <el-table-column prop="ModelName" label="Model Name" width="220" />
                 <el-table-column prop="MaterialNumber" label="Material Number" width="180" />
                 <el-table-column prop="Title" label="Title" />
-                <el-table-column prop="SkivingKey" label="SkivingKey" />
                 <el-table-column align="right" width="180">
                     <template #header>
                         <el-input v-model="search" size="small" placeholder="Type to search" />
@@ -64,10 +63,6 @@
             <el-form-item label="Title: ">
                 <el-input v-model="pfcSkivingInstructions.Title" />
             </el-form-item>
-            <el-form-item label="SkivingKey: ">
-                <el-input v-model="pfcSkivingInstructions.SkivingKey" />
-            </el-form-item>
-
         </el-form>
         <template #footer>
             <div class="dialog-footer">
@@ -100,7 +95,7 @@
                 <el-table-column prop="Component" label="Component" width="200" />
                 <el-table-column prop="ImageContent" label="ImageContent" width="450" />
                 <el-table-column prop="SkivedEdgeThickness" label="SkivedEdgeThickness" width="200" />
-                <el-table-column prop="SkivingWidth" label="SkivingWidth"  />
+                <el-table-column prop="SkivingWidth" label="SkivingWidth" />
                 <el-table-column align="right" width="200">
                     <template #header>
                         <el-input v-model="search1" size="small" placeholder="Type to search" />
@@ -122,6 +117,7 @@
         </div>
     </el-dialog>
 
+
     <el-dialog v-model="dialogForm3Visible" width="45vw" :close-on-click-modal="false" @close="dialogForm1Visible = false">
         <template #header>
             <div style="text-align: center; width: 100%; font-weight: bold;">
@@ -141,15 +137,7 @@
             <el-form-item label="Component: ">
                 <el-input v-model="pfcItemSkivingInstructions.Component" />
             </el-form-item>
-            <el-form-item label="ImageContent: ">
-                <el-input v-model="pfcItemSkivingInstructions.ImageContent" />
-            </el-form-item>
-            <el-form-item label="SkivedEdgeThickness: ">
-                <el-input v-model="pfcItemSkivingInstructions.SkivedEdgeThickness" />
-            </el-form-item>
-            <el-form-item label="SkivingWidth: ">
-                <el-input v-model="pfcItemSkivingInstructions.SkivingWidth" />
-            </el-form-item>
+
             <el-form-item label=" ">
                 <el-col>
                     <el-card shadow="always" class="dark-mode">
@@ -168,6 +156,15 @@
                         </el-col>
                     </el-card>
                 </el-col>
+            </el-form-item>
+            <el-form-item label="ImageContent: ">
+                <el-input v-model="pfcItemSkivingInstructions.ImageContent" />
+            </el-form-item>
+            <el-form-item label="SkivedEdgeThickness: ">
+                <el-input v-model="pfcItemSkivingInstructions.SkivedEdgeThickness" />
+            </el-form-item>
+            <el-form-item label="SkivingWidth: ">
+                <el-input v-model="pfcItemSkivingInstructions.SkivingWidth" />
             </el-form-item>
         </el-form>
         <template #footer>
@@ -204,16 +201,46 @@ const filterTableData = computed(() =>
     )
 );
 
-const filterTableData1 = computed(() =>
-    (arrItemSkivingInstructions.value || []).filter(
-        (data) =>
-            !search1.value ||
-            data.Component.toLowerCase().includes(search1.value.toLowerCase())
-    )
-);
+const filterTableData1 = computed(() => {
+    return Array.isArray(arrItemSkivingInstructions.value)
+        ? arrItemSkivingInstructions.value.filter(data =>
+            !search1.value || data.Component.toLowerCase().includes(search1.value.toLowerCase())
+        )
+        : [];
+});
 
 const tableData = ref([]);
-const arrPerforation = ref([{}, {}, {}])
+
+const SizeRangeValueG = 7;
+const optionSizeRangeValueG = ref(
+    Array.from({ length: SizeRangeValueG }, (_, i) => {
+        const num = i + 1;
+        return [
+            { label: `${num}G`, value: `${num}G` }
+        ]
+    }).flat()
+);
+
+const SizeRangeValueT = 18;
+const optionSizeRangeValueT = ref(
+    Array.from({ length: SizeRangeValueT }, (_, i) => {
+        const num = i + 1;
+        return [
+            { label: `${num}`, value: `${num}` },
+            { label: `${num}T`, value: `${num}T` }
+        ]
+    }).flat()
+);
+
+const pfcItemSkivingInstructions = ref({
+    SizeRange1: "",
+    SizeRange2: "",
+    SizeRange: ""
+} as Record<string, any>);
+
+const SizeRangeAreSame = ref([]);
+
+const trigger = ref("enter");
 
 const dialogForm1Visible = ref(false)
 const dialogForm2Visible = ref(false)
@@ -221,7 +248,6 @@ const dialogForm3Visible = ref(false)
 const titleDialogForm1 = ref("ADD NEW SKIVING INSTRUCTIONS")
 const titleDialogForm2 = ref("ADD NEW ITEM SKIVING INSTRUCTIONS")
 const pfcSkivingInstructions = ref({} as Record<string, any>)
-const pfcItemSkivingInstructions = ref({} as Record<string, any>)
 const ItemIndex = [1, 2, 3, 4]
 const arrItemSkivingInstructions = ref([]);
 
@@ -319,7 +345,6 @@ const btnDeletePFCSkivingInstructions = async (index: number, row) => {
     }
 }
 
-
 const btnUpdatePFCSkivingInstructions = async (index: number, row) => {
     pfcSkivingInstructions.value = {};
     pfcSkivingInstructions.value = Object.assign({}, row);
@@ -332,59 +357,60 @@ const btnItemPFCSkivingInstructions = async (index: number, row) => {
     pfcSkivingInstructions.value = {};
     pfcSkivingInstructions.value = Object.assign({}, row);
     const { res, _ } = await getPFCItemSkivingInstructions(pfcSkivingInstructions.value)
+    pfcSkivingInstructions.value.SkivingInstructionsID = pfcSkivingInstructions.value.SkivingInstructionsID
     arrItemSkivingInstructions.value = res.data.data ? res.data.data : [];
     dialogForm2Visible.value = true;
     hideLoading();
 }
 
 const btnAddItemNewSkivingInstructions = () => {
+    titleDialogForm2.value = "ADD NEW ITEM SKIVING INSTRUCTIONS";
     pfcItemSkivingInstructions.value = {};
-    pfcItemSkivingInstructions.value.ItemIndex = `${(arrItemSkivingInstructions.value || []).length + 1}`;
+    if (!Array.isArray(arrItemSkivingInstructions.value)) {
+        arrItemSkivingInstructions.value = [];
+    }
+    pfcItemSkivingInstructions.value.ItemIndex = `${arrItemSkivingInstructions.value.length + 1}`;
     pfcItemSkivingInstructions.value.SkivingInstructionsID = pfcSkivingInstructions.value.SkivingInstructionsID;
-    console.log(pfcItemSkivingInstructions)
-    arrPerforation.value = [{}, {}, {}]
+    SizeRangeAreSame.value = [];
     formData_Content.delete("file");
     formData_Content.delete("ModelName");
     imageUrl_Content.value = null;
     oldImageUrl_Content.value = null;
     dialogForm3Visible.value = true;
-}
+};
 
-const btnEditItemNewSkivingInstructions = async (index: number, row) => {
-    pfcItemSkivingInstructions.value = Object.assign({}, row);
-    oldImageUrl_Content.value = row.ImageContent.toString();
-    imageUrl_Content.value = getURLImage(row.ImageContent, pfcModel.value);
+
+const btnEditItemNewSkivingInstructions = async (index, row) => {
+    pfcItemSkivingInstructions.value = { ...row }
+    oldImageUrl_Content.value = row.ImageContent.toString()
+    imageUrl_Content.value = getURLImage(row.ImageContent, pfcModel.value)
     titleDialogForm2.value = "UPDATE ITEM SKIVING INSTRUCTIONS"
-    dialogForm3Visible.value = true;
+    dialogForm3Visible.value = true
 }
 
 const btnDeleteItemNewSkivingInstructions = async (index: number, row) => {
-    try {
-        await ElMessageBox.confirm(
-            `Proxy will permanently delete the Component: "${row.Component}". Continue?`,
-            'Warning',
-            {
-                confirmButtonText: 'OK',
-                cancelButtonText: 'Cancel',
-                type: 'warning',
+    ElMessageBox.confirm(
+        `Proxy will permanently delete the Component: "${row.Component}". Continue?`,
+        'Warning',
+        {
+            confirmButtonText: 'OK',
+            cancelButtonText: 'Cancel',
+            type: 'warning',
+        }).then(async () => {
+            showLoading();
+            if (row.ImageContent) {
+                await deleteFilePFCModelFromFolderPFCModel(row.ImageContent, pfcModel.value)
             }
-        );
-        showLoading();
-        if (row.ImageContent) {
-            await deleteFilePFCModelFromFolderPFCModel(row.ImageContent, pfcModel.value);
-        }
-        await deletePFCItemSkivingInstructions(row);
-        const { res } = await getPFCItemSkivingInstructions(pfcSkivingInstructions.value);
-        arrItemSkivingInstructions.value = res.data.data ? res.data.data : [];
-
-        success("Delete PFC Item SKIVING INSTRUCTIONS successfully!");
-    } catch (error) {
-        info('Cancel delete!');
-    } finally {
-        hideLoading();
-    }
-};
-
+            await deletePFCItemSkivingInstructions(row);
+            const { res, _ } = await getPFCItemSkivingInstructions(pfcSkivingInstructions.value)
+            arrItemSkivingInstructions.value = res.data.data;
+            success("Delete PFC Item SKIVING INSTRUCTIONS successfully!")
+            hideLoading()
+        })
+        .catch(() => {
+            info('Cancel delete!')
+        })
+}
 
 const formData_Content = new FormData();
 const imageUrl_Content = ref('')
@@ -426,21 +452,10 @@ const checkTypeFileUpload: UploadProps['beforeUpload'] = (rawFile) => {
     return true;
 }
 
-const enableEdit = (row: any, field: string) => {
-    row[`editing${capitalize(field)}`] = true;
-};
-
-const disableEdit = (row: any, field: string) => {
-    row[`editing${capitalize(field)}`] = false;
-};
-
-const capitalize = (str: string) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-};
-
 const btnConfirmItemSkivingInstructions = async () => {
     dialogForm3Visible.value = false;
     showLoading();
+
     const itemSkivingInstructions = {
         ItemSkivingInstructionsID: pfcItemSkivingInstructions.value.ItemSkivingInstructionsID,
         SkivingInstructionsID: pfcItemSkivingInstructions.value.SkivingInstructionsID,
@@ -449,48 +464,46 @@ const btnConfirmItemSkivingInstructions = async () => {
         SkivedEdgeThickness: pfcItemSkivingInstructions.value.SkivedEdgeThickness,
         SkivingWidth: pfcItemSkivingInstructions.value.SkivingWidth,
         ItemIndex: pfcItemSkivingInstructions.value.ItemIndex.toString(),
-        // Title: pfcItemSkivingInstructions.value.Title,
     }
     if (titleDialogForm2.value === "ADD NEW ITEM SKIVING INSTRUCTIONS") {
         try {
             if (formData_Content && formData_Content.entries().next().value) {
-                const { res, err } = await uploadFilePFCModelFromFolderPFCModel(formData_Content, pfcModel.value)
-                itemSkivingInstructions.ImageContent = res
+                const { res } = await uploadFilePFCModelFromFolderPFCModel(formData_Content, pfcModel.value);
+                itemSkivingInstructions.ImageContent = res;
             }
             await insertItemPFCSkivingInstructions(itemSkivingInstructions);
-            const { res, _ } = await getPFCItemSkivingInstructions(pfcSkivingInstructions.value)
-            arrItemSkivingInstructions.value = res.data.data ? res.data.data : [];
-
-            success("Insert new Item SKIVING INSTRUCTIONS successfully!")
+            const { res } = await getPFCItemSkivingInstructions(pfcSkivingInstructions.value);
+            arrItemSkivingInstructions.value = res.data.data;
+            success("Insert new Item SKIVING INSTRUCTIONS successfully!");
         } catch (e) {
-            error(e)
+            error(e);
         }
     }
-
     if (titleDialogForm2.value === "UPDATE ITEM SKIVING INSTRUCTIONS") {
         try {
             if (formData_Content && formData_Content.entries().next().value) {
                 if (oldImageUrl_Content.value) {
-                    await deleteFilePFCModelFromFolderPFCModel(oldImageUrl_Content.value, pfcModel.value)
+                    await deleteFilePFCModelFromFolderPFCModel(oldImageUrl_Content.value, pfcModel.value);
                 }
-                const { res, err } = await uploadFilePFCModelFromFolderPFCModel(formData_Content, pfcModel.value)
-                itemSkivingInstructions.ImageContent = res
+                const { res } = await uploadFilePFCModelFromFolderPFCModel(formData_Content, pfcModel.value);
+                itemSkivingInstructions.ImageContent = res;
             } else {
                 if (oldImageUrl_Content.value && itemSkivingInstructions.ImageContent === null) {
-                    const { res, err } = await deleteFilePFCModelFromFolderPFCModel(oldImageUrl_Content.value, pfcModel.value)
+                    await deleteFilePFCModelFromFolderPFCModel(oldImageUrl_Content.value, pfcModel.value);
                 }
             }
-            await updatePFCItemSkivingInstructions(itemSkivingInstructions)
-            const { res, _ } = await getPFCItemSkivingInstructions(pfcSkivingInstructions.value)
-            arrItemSkivingInstructions.value = res.data.data ? res.data.data : [];
-
-            success("Insert new Item SKIVING INSTRUCTIONS successfully!")
+            await updatePFCItemSkivingInstructions(itemSkivingInstructions);
+            const { res } = await getPFCItemSkivingInstructions(pfcSkivingInstructions.value);
+            arrItemSkivingInstructions.value = res.data.data;
+            success("Update Item SKIVING INSTRUCTIONS successfully!");
         } catch (e) {
-            error(e)
+            error(e);
         }
     }
     hideLoading();
-}
+};
+
+
 </script>
 
 <style lang="css" scoped></style>

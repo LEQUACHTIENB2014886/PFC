@@ -385,16 +385,21 @@ const btnItemPFCBottomCuttingDieSchedule = async (index: number, row) => {
 }
 
 const btnAddItemNewBottomCuttingDieSchedule = () => {
+    titleDialogForm2.value = "ADD NEW ITEM BOTTOM CUTTING DIE SCHEDULE";
     pfcItemBottomCuttingDieSchedule.value = {};
-    pfcItemBottomCuttingDieSchedule.value.ItemIndex = `${arrItemBottomCuttingDieSchedule.value.length + 1}`
+    if (!Array.isArray(arrItemBottomCuttingDieSchedule.value)) {
+        arrItemBottomCuttingDieSchedule.value = [];
+    }
+    pfcItemBottomCuttingDieSchedule.value.ItemIndex = `${arrItemBottomCuttingDieSchedule.value.length + 1}`;
     pfcItemBottomCuttingDieSchedule.value.BottomCuttingDieScheduleID = pfcBottomCuttingDieSchedule.value.BottomCuttingDieScheduleID;
-    SizeRangeAreSame.value = [];
+    SizeRangeAreSame.value = []; 
     formData_Content.delete("file");
     formData_Content.delete("ModelName");
     imageUrl_Content.value = null;
     oldImageUrl_Content.value = null;
     dialogForm3Visible.value = true;
-}
+};
+
 
 const btnEditItemNewBottomCuttingDieSchedule = async (index, row) => {
     pfcItemBottomCuttingDieSchedule.value = { ...row }
@@ -473,6 +478,9 @@ const checkTypeFileUpload: UploadProps['beforeUpload'] = (rawFile) => {
 const btnConfirmItemBottomCuttingDieSchedule = async () => {
     dialogForm3Visible.value = false;
     showLoading();
+    const sizeRangeAreSameArray = Array.isArray(pfcItemBottomCuttingDieSchedule.value.SizeRangeAreSame)
+        ? pfcItemBottomCuttingDieSchedule.value.SizeRangeAreSame
+        : [];
     const itemBottomCuttingDieSchedule = {
         ItemBottomCuttingDieScheduleID: pfcItemBottomCuttingDieSchedule.value.ItemBottomCuttingDieScheduleID,
         BottomCuttingDieScheduleID: pfcBottomCuttingDieSchedule.value.BottomCuttingDieScheduleID,
@@ -480,7 +488,7 @@ const btnConfirmItemBottomCuttingDieSchedule = async () => {
         SizeRange1: pfcItemBottomCuttingDieSchedule.value.SizeRange1,
         SizeRange2: pfcItemBottomCuttingDieSchedule.value.SizeRange2,
         SizeRange: pfcItemBottomCuttingDieSchedule.value.SizeRange,
-        SizeRangeAreSame: pfcItemBottomCuttingDieSchedule.value.SizeRangeAreSame.join(", "),
+        SizeRangeAreSame: sizeRangeAreSameArray.join(", "),
         Remarks: pfcItemBottomCuttingDieSchedule.value.Remarks,
         NumberOfLayers: pfcItemBottomCuttingDieSchedule.value.NumberOfLayers,
         Thickness: pfcItemBottomCuttingDieSchedule.value.Thickness,
@@ -488,48 +496,46 @@ const btnConfirmItemBottomCuttingDieSchedule = async () => {
         Hardness: pfcItemBottomCuttingDieSchedule.value.Hardness,
         ImageContent: pfcItemBottomCuttingDieSchedule.value.ImageContent,
         ItemIndex: pfcItemBottomCuttingDieSchedule.value.ItemIndex.toString(),
-
     }
     if (titleDialogForm2.value === "ADD NEW ITEM BOTTOM CUTTING DIE SCHEDULE") {
         try {
-
             if (formData_Content && formData_Content.entries().next().value) {
-                const { res, err } = await uploadFilePFCModelFromFolderPFCModel(formData_Content, pfcModel.value)
-                itemBottomCuttingDieSchedule.ImageContent = res
+                const { res } = await uploadFilePFCModelFromFolderPFCModel(formData_Content, pfcModel.value);
+                itemBottomCuttingDieSchedule.ImageContent = res;
             }
             await insertItemPFCBottomCuttingDieSchedule(itemBottomCuttingDieSchedule);
-            const { res, _ } = await getPFCItemBottomCuttingDieSchedule(pfcBottomCuttingDieSchedule.value)
+            const { res } = await getPFCItemBottomCuttingDieSchedule(pfcBottomCuttingDieSchedule.value);
             arrItemBottomCuttingDieSchedule.value = res.data.data;
-            success("Insert new Item BOTTOM CUTTING DIE SCHEDULE successfully!")
+            success("Insert new Item BOTTOM CUTTING DIE SCHEDULE successfully!");
         } catch (e) {
-            error(e)
+            error(e);
         }
     }
-
     if (titleDialogForm2.value === "UPDATE ITEM BOTTOM CUTTING DIE SCHEDULE") {
-
         try {
             if (formData_Content && formData_Content.entries().next().value) {
                 if (oldImageUrl_Content.value) {
-                    await deleteFilePFCModelFromFolderPFCModel(oldImageUrl_Content.value, pfcModel.value)
+                    await deleteFilePFCModelFromFolderPFCModel(oldImageUrl_Content.value, pfcModel.value);
                 }
-                const { res, err } = await uploadFilePFCModelFromFolderPFCModel(formData_Content, pfcModel.value)
-                itemBottomCuttingDieSchedule.ImageContent = res
+                const { res } = await uploadFilePFCModelFromFolderPFCModel(formData_Content, pfcModel.value);
+                itemBottomCuttingDieSchedule.ImageContent = res;
             } else {
                 if (oldImageUrl_Content.value && itemBottomCuttingDieSchedule.ImageContent === null) {
-                    const { res, err } = await deleteFilePFCModelFromFolderPFCModel(oldImageUrl_Content.value, pfcModel.value)
+                    await deleteFilePFCModelFromFolderPFCModel(oldImageUrl_Content.value, pfcModel.value);
                 }
             }
-            await updatePFCItemBottomCuttingDieSchedule(itemBottomCuttingDieSchedule)
-            const { res, _ } = await getPFCItemBottomCuttingDieSchedule(pfcBottomCuttingDieSchedule.value)
+            await updatePFCItemBottomCuttingDieSchedule(itemBottomCuttingDieSchedule);
+            const { res } = await getPFCItemBottomCuttingDieSchedule(pfcBottomCuttingDieSchedule.value);
             arrItemBottomCuttingDieSchedule.value = res.data.data;
-            success("Insert new Item BOTTOM CUTTING DIE SCHEDULE successfully!")
+            success("Update Item BOTTOM CUTTING DIE SCHEDULE successfully!");
         } catch (e) {
-            error(e)
+            error(e);
         }
     }
     hideLoading();
-}
+};
+
+
 </script>
 
 <style lang="css" scoped></style>

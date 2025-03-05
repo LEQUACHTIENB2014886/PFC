@@ -409,13 +409,19 @@ const btnItemPFCBottomPartsProcess = async (index: number, row) => {
 }
 
 const btnAddItemNewBottomPartsProcess = () => {
+    titleDialogForm2.value = "ADD NEW ITEM BOTTOM PATRS PROCESS";
     pfcItemBottomPartsProcess.value = {};
     // pfcItemBottomPartsProcess.value.ItemIndex = `${arrItemBottomPartsProcess.value.length + 1}`
     pfcItemBottomPartsProcess.value.BottomPartsProcessID = pfcBottomPartsProcess.value.BottomPartsProcessID;
     arrComponent.value = Array.from({ length: 16 }, (_, i) => ({
         No: i + 1,
+        Process: "",
+        Temp: "",
+        Time: "",
+        Pressure: "",
+        Remarks: "",
     }));
-    arrRemarks.value = Array.from({ length: 10 }, () => ({}));
+    arrRemarks.value = Array.from({ length: 10 }, () => ({ RemarksSize: "", }));
     formData_Content.delete("file");
     formData_Content.delete("ModelName");
     imageUrl_Content.value = null;
@@ -554,7 +560,7 @@ const clickOutsideDirective = {
     },
 };
 const { appContext } = getCurrentInstance();
-appContext.app.directive('click-outside', clickOutsideDirective);
+// appContext.app.directive('click-outside', clickOutsideDirective);
 const btnConfirmItemBottomPartsProcess = async () => {
     dialogForm3Visible.value = false;
     showLoading();

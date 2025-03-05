@@ -88,16 +88,15 @@
         <div style="margin: 20px;">
             <el-table :data="filterTableData1" style="width: 100%">
                 <el-table-column prop="ItemIndex" label="Item Index" width="100" />
-                <el-table-column label="COMPUTER STITCHING SCHEDULE">
+                <el-table-column label="COMPUTER STITCHING SCHEDULE" width="380" >
                     <template #default="{ row }">
                         {{ pfcComputerStitchingSchedule.Title }}
                     </template>
                 </el-table-column>
                 <el-table-column prop="Component" label="Component" width="320" />
-
                 <el-table-column prop="ImageContent" label="ImageContent" width="380" />
                 <el-table-column prop="Process" label="Process" width="230" />
-                <el-table-column align="right" width="200">
+                <el-table-column align="right">
                     <template #header>
                         <el-input v-model="search1" size="small" placeholder="Type to search" />
                     </template>

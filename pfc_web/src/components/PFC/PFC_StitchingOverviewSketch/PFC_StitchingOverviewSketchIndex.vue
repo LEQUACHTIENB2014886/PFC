@@ -416,16 +416,20 @@ const btnItemPFCStitchingOverviewSketch = async (index: number, row) => {
 }
 
 const btnAddItemNewStitchingOverviewSketch = () => {
-    pfcItemStitchingOverviewSketch.value = {};
-    pfcItemStitchingOverviewSketch.value.ItemIndex = `${arrItemStitchingOverviewSketch.value.length + 1}`
-    pfcItemStitchingOverviewSketch.value.StitchingOverviewSketchID = pfcStitchingOverviewSketch.value.StitchingOverviewSketchID;
+    titleDialogForm2.value = "ADD NEW ITEM STITCHING OVERVIEW SKETCH";
+    pfcItemStitchingOverviewSketch.value = {
+       ItemIndex: `${arrItemStitchingOverviewSketch.value.length + 1}`,
+       StitchingOverviewSketchID: pfcStitchingOverviewSketch.value.StitchingOverviewSketchID,
+       RightFoot: "",
+       ImageContent: ""
+    };
     arrComponent.value = Array.from({ length: 12 }, () => ({}));
     formData_Content.delete("file");
     formData_Content.delete("ModelName");
     imageUrl_Content.value = null;
     oldImageUrl_Content.value = null;
     dialogForm3Visible.value = true;
-}
+};
 
 const btnEditItemNewStitchingOverviewSketch = async (index: number, row) => {
     pfcItemStitchingOverviewSketch.value = Object.assign({}, row);
@@ -541,7 +545,7 @@ const clickOutsideDirective = {
 };
 
 const { appContext } = getCurrentInstance();
-appContext.app.directive('click-outside', clickOutsideDirective);
+// appContext.app.directive('click-outside', clickOutsideDirective);
 
 const btnConfirmItemStitchingOverviewSketch = async () => {
     dialogForm3Visible.value = false;
