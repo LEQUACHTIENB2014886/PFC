@@ -18,11 +18,6 @@ type PFCModel struct {
 	BottomView                string `gorm:"column:BottomView"`
 	FrontView                 string `gorm:"column:FrontView"`
 	HeelView                  string `gorm:"column:HeelView"`
-	MedialSideViewV1          string `gorm:"column:MedialSideViewV1"`
-	LateralSideViewV1         string `gorm:"column:LateralSideViewV1"`
-	BottomViewV1              string `gorm:"column:BottomViewV1"`
-	FrontViewV1               string `gorm:"column:FrontViewV1"`
-	HeelViewV1                string `gorm:"column:HeelViewV1"`
 	KeyManufacturingProcesses string `gorm:"column:KeyManufacturingProcesses"`
 	IDS                       string `gorm:"column:IDS"`
 	Converse                  string `gorm:"column:Converse"`

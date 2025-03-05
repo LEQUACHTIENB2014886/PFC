@@ -226,4 +226,158 @@ func RegisterPFCModelRouter(router *gin.RouterGroup) {
 	router.PUT("/pfcItemBottomSilkScreenProcess", controllers.PFCBottomSilkScreenProces.UpdatePFCItemBottomSilkScreenProcess)     //item
 	router.DELETE("/pfcItemBottomSilkScreenProcess", controllers.PFCBottomSilkScreenProces.DeletePFCItemBottomSilkScreenProcess)  //item
 
+	//PFC Outsole Specification
+	router.POST("/getPFCOutsoleSpecificationByModelID", controllers.PFCOutsoleSpecificatio.GetAllPFCOutsoleSpecification)
+	router.POST("/pfcOutsoleSpecification", controllers.PFCOutsoleSpecificatio.InsertPFCOutsoleSpecification)
+	router.PUT("/pfcOutsoleSpecification", controllers.PFCOutsoleSpecificatio.UpdatePFCOutsoleSpecification)
+	router.DELETE("/pfcOutsoleSpecification", controllers.PFCOutsoleSpecificatio.DeletePFCOutsoleSpecification)
+
+	router.POST("/getPFCItemOutsoleSpecification", controllers.PFCOutsoleSpecificatio.GetAllPFCItemOutsoleSpecification) //item
+	router.POST("/pfcItemOutsoleSpecification", controllers.PFCOutsoleSpecificatio.InsertPFCItemOutsoleSpecification)    //item
+	router.PUT("/pfcItemOutsoleSpecification", controllers.PFCOutsoleSpecificatio.UpdatePFCItemOutsoleSpecification)     //item
+	router.DELETE("/pfcItemOutsoleSpecification", controllers.PFCOutsoleSpecificatio.DeletePFCItemOutsoleSpecification)  //item
+
+	//PFC Outsole Pressing Process
+	router.POST("/getPFCOutsolePressingProcessByModelID", controllers.PFCOutsolePressingProces.GetAllPFCOutsolePressingProcess)
+	router.POST("/pfcOutsolePressingProcess", controllers.PFCOutsolePressingProces.InsertPFCOutsolePressingProcess)
+	router.PUT("/pfcOutsolePressingProcess", controllers.PFCOutsolePressingProces.UpdatePFCOutsolePressingProcess)
+	router.DELETE("/pfcOutsolePressingProcess", controllers.PFCOutsolePressingProces.DeletePFCOutsolePressingProcess)
+
+	router.POST("/getPFCItemOutsolePressingProcess", controllers.PFCOutsolePressingProces.GetAllPFCItemOutsolePressingProcess) //item
+	router.POST("/pfcItemOutsolePressingProcess", controllers.PFCOutsolePressingProces.InsertPFCItemOutsolePressingProcess)    //item
+	router.PUT("/pfcItemOutsolePressingProcess", controllers.PFCOutsolePressingProces.UpdatePFCItemOutsolePressingProcess)     //item
+	router.DELETE("/pfcItemOutsolePressingProcess", controllers.PFCOutsolePressingProces.DeletePFCItemOutsolePressingProcess)  //item
+
+	//PFC Rubber Component Specification
+	router.POST("/getPFCRubberComponentSpecificationByModelID", controllers.PFCRubberComponentSpecificatio.GetAllPFCRubberComponentSpecification)
+	router.POST("/pfcRubberComponentSpecification", controllers.PFCRubberComponentSpecificatio.InsertPFCRubberComponentSpecification)
+	router.PUT("/pfcRubberComponentSpecification", controllers.PFCRubberComponentSpecificatio.UpdatePFCRubberComponentSpecification)
+	router.DELETE("/pfcRubberComponentSpecification", controllers.PFCRubberComponentSpecificatio.DeletePFCRubberComponentSpecification)
+
+	router.POST("/getPFCItemRubberComponentSpecification", controllers.PFCRubberComponentSpecificatio.GetAllPFCItemRubberComponentSpecification) //item
+	router.POST("/pfcItemRubberComponentSpecification", controllers.PFCRubberComponentSpecificatio.InsertPFCItemRubberComponentSpecification)    //item
+	router.PUT("/pfcItemRubberComponentSpecification", controllers.PFCRubberComponentSpecificatio.UpdatePFCItemRubberComponentSpecification)     //item
+	router.DELETE("/pfcItemRubberComponentSpecification", controllers.PFCRubberComponentSpecificatio.DeletePFCItemRubberComponentSpecification)  //item
+
+	//PFC Sockliner Specification
+	router.POST("/getPFCSocklinerSpecificationByModelID", controllers.PFCSocklinerSpecificatio.GetAllPFCSocklinerSpecification)
+	router.POST("/pfcSocklinerSpecification", controllers.PFCSocklinerSpecificatio.InsertPFCSocklinerSpecification)
+	router.PUT("/pfcSocklinerSpecification", controllers.PFCSocklinerSpecificatio.UpdatePFCSocklinerSpecification)
+	router.DELETE("/pfcSocklinerSpecification", controllers.PFCSocklinerSpecificatio.DeletePFCSocklinerSpecification)
+
+	router.POST("/getPFCItemSocklinerSpecification", controllers.PFCSocklinerSpecificatio.GetAllPFCItemSocklinerSpecification) //item
+	router.POST("/pfcItemSocklinerSpecification", controllers.PFCSocklinerSpecificatio.InsertPFCItemSocklinerSpecification)    //item
+	router.PUT("/pfcItemSocklinerSpecification", controllers.PFCSocklinerSpecificatio.UpdatePFCItemSocklinerSpecification)     //item
+	router.DELETE("/pfcItemSocklinerSpecification", controllers.PFCSocklinerSpecificatio.DeletePFCItemSocklinerSpecification)  //item
+
+	//PFC Heel Wedge Specification
+	router.POST("/getPFCHeelWedgeSpecificationByModelID", controllers.PFCHeelWedgeSpecificatio.GetAllPFCHeelWedgeSpecification)
+	router.POST("/pfcHeelWedgeSpecification", controllers.PFCHeelWedgeSpecificatio.InsertPFCHeelWedgeSpecification)
+	router.PUT("/pfcHeelWedgeSpecification", controllers.PFCHeelWedgeSpecificatio.UpdatePFCHeelWedgeSpecification)
+	router.DELETE("/pfcHeelWedgeSpecification", controllers.PFCHeelWedgeSpecificatio.DeletePFCHeelWedgeSpecification)
+
+	router.POST("/getPFCItemHeelWedgeSpecification", controllers.PFCHeelWedgeSpecificatio.GetAllPFCItemHeelWedgeSpecification) //item
+	router.POST("/pfcItemHeelWedgeSpecification", controllers.PFCHeelWedgeSpecificatio.InsertPFCItemHeelWedgeSpecification)    //item
+	router.PUT("/pfcItemHeelWedgeSpecification", controllers.PFCHeelWedgeSpecificatio.UpdatePFCItemHeelWedgeSpecification)     //item
+	router.DELETE("/pfcItemHeelWedgeSpecification", controllers.PFCHeelWedgeSpecificatio.DeletePFCItemHeelWedgeSpecification)  //item
+
+	//PFC Logo Application Process
+	router.POST("/getPFCLogoApplicationProcessByModelID", controllers.PFCLogoApplicationProces.GetAllPFCLogoApplicationProcess)
+	router.POST("/pfcLogoApplicationProcess", controllers.PFCLogoApplicationProces.InsertPFCLogoApplicationProcess)
+	router.PUT("/pfcLogoApplicationProcess", controllers.PFCLogoApplicationProces.UpdatePFCLogoApplicationProcess)
+	router.DELETE("/pfcLogoApplicationProcess", controllers.PFCLogoApplicationProces.DeletePFCLogoApplicationProcess)
+
+	router.POST("/getPFCItemLogoApplicationProcess", controllers.PFCLogoApplicationProces.GetAllPFCItemLogoApplicationProcess) //item
+	router.POST("/pfcItemLogoApplicationProcess", controllers.PFCLogoApplicationProces.InsertPFCItemLogoApplicationProcess)    //item
+	router.PUT("/pfcItemLogoApplicationProcess", controllers.PFCLogoApplicationProces.UpdatePFCItemLogoApplicationProcess)     //item
+	router.DELETE("/pfcItemLogoApplicationProcess", controllers.PFCLogoApplicationProces.DeletePFCItemLogoApplicationProcess)  //item
+
+	//PFC Sockliner Molding Process
+	router.POST("/getPFCSocklinerMoldingProcessByModelID", controllers.PFCSocklinerMoldingProces.GetAllPFCSocklinerMoldingProcess)
+	router.POST("/pfcSocklinerMoldingProcess", controllers.PFCSocklinerMoldingProces.InsertPFCSocklinerMoldingProcess)
+	router.PUT("/pfcSocklinerMoldingProcess", controllers.PFCSocklinerMoldingProces.UpdatePFCSocklinerMoldingProcess)
+	router.DELETE("/pfcSocklinerMoldingProcess", controllers.PFCSocklinerMoldingProces.DeletePFCSocklinerMoldingProcess)
+
+	router.POST("/getPFCItemSocklinerMoldingProcess", controllers.PFCSocklinerMoldingProces.GetAllPFCItemSocklinerMoldingProcess) //item
+	router.POST("/pfcItemSocklinerMoldingProcess", controllers.PFCSocklinerMoldingProces.InsertPFCItemSocklinerMoldingProcess)    //item
+	router.PUT("/pfcItemSocklinerMoldingProcess", controllers.PFCSocklinerMoldingProces.UpdatePFCItemSocklinerMoldingProcess)     //item
+	router.DELETE("/pfcItemSocklinerMoldingProcess", controllers.PFCSocklinerMoldingProces.DeletePFCItemSocklinerMoldingProcess)  //item
+
+	//PFC Sockliner Graphic Process
+	router.POST("/getPFCSocklinerGraphicProcessByModelID", controllers.PFCSocklinerGraphicProces.GetAllPFCSocklinerGraphicProcess)
+	router.POST("/pfcSocklinerGraphicProcess", controllers.PFCSocklinerGraphicProces.InsertPFCSocklinerGraphicProcess)
+	router.PUT("/pfcSocklinerGraphicProcess", controllers.PFCSocklinerGraphicProces.UpdatePFCSocklinerGraphicProcess)
+	router.DELETE("/pfcSocklinerGraphicProcess", controllers.PFCSocklinerGraphicProces.DeletePFCSocklinerGraphicProcess)
+
+	router.POST("/getPFCItemSocklinerGraphicProcess", controllers.PFCSocklinerGraphicProces.GetAllPFCItemSocklinerGraphicProcess) //item
+	router.POST("/pfcItemSocklinerGraphicProcess", controllers.PFCSocklinerGraphicProces.InsertPFCItemSocklinerGraphicProcess)    //item
+	router.PUT("/pfcItemSocklinerGraphicProcess", controllers.PFCSocklinerGraphicProces.UpdatePFCItemSocklinerGraphicProcess)     //item
+	router.DELETE("/pfcItemSocklinerGraphicProcess", controllers.PFCSocklinerGraphicProces.DeletePFCItemSocklinerGraphicProcess)  //item
+
+	//PFC Outside Conveyor Process
+	router.POST("/getPFCOutsideConveyorProcessByModelID", controllers.PFCOutsideConveyorProces.GetAllPFCOutsideConveyorProcess)
+	router.POST("/pfcOutsideConveyorProcess", controllers.PFCOutsideConveyorProces.InsertPFCOutsideConveyorProcess)
+	router.PUT("/pfcOutsideConveyorProcess", controllers.PFCOutsideConveyorProces.UpdatePFCOutsideConveyorProcess)
+	router.DELETE("/pfcOutsideConveyorProcess", controllers.PFCOutsideConveyorProces.DeletePFCOutsideConveyorProcess)
+
+	router.POST("/getPFCItemOutsideConveyorProcess", controllers.PFCOutsideConveyorProces.GetAllPFCItemOutsideConveyorProcess) //item
+	router.POST("/pfcItemOutsideConveyorProcess", controllers.PFCOutsideConveyorProces.InsertPFCItemOutsideConveyorProcess)    //item
+	router.PUT("/pfcItemOutsideConveyorProcess", controllers.PFCOutsideConveyorProces.UpdatePFCItemOutsideConveyorProcess)     //item
+	router.DELETE("/pfcItemOutsideConveyorProcess", controllers.PFCOutsideConveyorProces.DeletePFCItemOutsideConveyorProcess)  //item
+
+	//PFC Assembling Process
+	router.POST("/getPFCAssemblingProcessByModelID", controllers.PFCAssemblingProces.GetAllPFCAssemblingProcess)
+	router.POST("/pfcAssemblingProcess", controllers.PFCAssemblingProces.InsertPFCAssemblingProcess)
+	router.PUT("/pfcAssemblingProcess", controllers.PFCAssemblingProces.UpdatePFCAssemblingProcess)
+	router.DELETE("/pfcAssemblingProcess", controllers.PFCAssemblingProces.DeletePFCAssemblingProcess)
+
+	router.POST("/getPFCItemAssemblingProcess", controllers.PFCAssemblingProces.GetAllPFCItemAssemblingProcess) //item
+	router.POST("/pfcItemAssemblingProcess", controllers.PFCAssemblingProces.InsertPFCItemAssemblingProcess)    //item
+	router.PUT("/pfcItemAssemblingProcess", controllers.PFCAssemblingProces.UpdatePFCItemAssemblingProcess)     //item
+	router.DELETE("/pfcItemAssemblingProcess", controllers.PFCAssemblingProces.DeletePFCItemAssemblingProcess)  //item
+
+	//PFC Pressing Pad Specification
+	router.POST("/getPFCPressingPadSpecificationByModelID", controllers.PFCPressingPadSpecificatio.GetAllPFCPressingPadSpecification)
+	router.POST("/pfcPressingPadSpecification", controllers.PFCPressingPadSpecificatio.InsertPFCPressingPadSpecification)
+	router.PUT("/pfcPressingPadSpecification", controllers.PFCPressingPadSpecificatio.UpdatePFCPressingPadSpecification)
+	router.DELETE("/pfcPressingPadSpecification", controllers.PFCPressingPadSpecificatio.DeletePFCPressingPadSpecification)
+
+	router.POST("/getPFCItemPressingPadSpecification", controllers.PFCPressingPadSpecificatio.GetAllPFCItemPressingPadSpecification) //item
+	router.POST("/pfcItemPressingPadSpecification", controllers.PFCPressingPadSpecificatio.InsertPFCItemPressingPadSpecification)    //item
+	router.PUT("/pfcItemPressingPadSpecification", controllers.PFCPressingPadSpecificatio.UpdatePFCItemPressingPadSpecification)     //item
+	router.DELETE("/pfcItemPressingPadSpecification", controllers.PFCPressingPadSpecificatio.DeletePFCItemPressingPadSpecification)  //item
+
+	//PFC Production Checklist
+	router.POST("/getPFCProductionChecklistByModelID", controllers.PFCProductionChecklis.GetAllPFCProductionChecklist)
+	router.POST("/pfcProductionChecklist", controllers.PFCProductionChecklis.InsertPFCProductionChecklist)
+	router.PUT("/pfcProductionChecklist", controllers.PFCProductionChecklis.UpdatePFCProductionChecklist)
+	router.DELETE("/pfcProductionChecklist", controllers.PFCProductionChecklis.DeletePFCProductionChecklist)
+
+	router.POST("/getPFCItemProductionChecklist", controllers.PFCProductionChecklis.GetAllPFCItemProductionChecklist) //item
+	router.POST("/pfcItemProductionChecklist", controllers.PFCProductionChecklis.InsertPFCItemProductionChecklist)    //item
+	router.PUT("/pfcItemProductionChecklist", controllers.PFCProductionChecklis.UpdatePFCItemProductionChecklist)     //item
+	router.DELETE("/pfcItemProductionChecklist", controllers.PFCProductionChecklis.DeletePFCItemProductionChecklist)  //item
+
+	//PFC Production Checklist
+	router.POST("/getPFCUpperMeasurementSpecByModelID", controllers.PFCUpperMeasurementSpe.GetAllPFCUpperMeasurementSpec)
+	router.POST("/pfcUpperMeasurementSpec", controllers.PFCUpperMeasurementSpe.InsertPFCUpperMeasurementSpec)
+	router.PUT("/pfcUpperMeasurementSpec", controllers.PFCUpperMeasurementSpe.UpdatePFCUpperMeasurementSpec)
+	router.DELETE("/pfcUpperMeasurementSpec", controllers.PFCUpperMeasurementSpe.DeletePFCUpperMeasurementSpec)
+
+	router.POST("/getPFCItemUpperMeasurementSpec", controllers.PFCUpperMeasurementSpe.GetAllPFCItemUpperMeasurementSpec) //item
+	router.POST("/pfcItemUpperMeasurementSpec", controllers.PFCUpperMeasurementSpe.InsertPFCItemUpperMeasurementSpec)    //item
+	router.PUT("/pfcItemUpperMeasurementSpec", controllers.PFCUpperMeasurementSpe.UpdatePFCItemUpperMeasurementSpec)     //item
+	router.DELETE("/pfcItemUpperMeasurementSpec", controllers.PFCUpperMeasurementSpe.DeletePFCItemUpperMeasurementSpec)  //item
+
+	//PFC Key Manufacturing Details
+	router.POST("/getPFCKeyManufacturingDetailsByModelID", controllers.PFCKeyManufacturingDetail.GetAllPFCKeyManufacturingDetails)
+	router.POST("/pfcKeyManufacturingDetails", controllers.PFCKeyManufacturingDetail.InsertPFCKeyManufacturingDetails)
+	router.PUT("/pfcKeyManufacturingDetails", controllers.PFCKeyManufacturingDetail.UpdatePFCKeyManufacturingDetails)
+	router.DELETE("/pfcKeyManufacturingDetails", controllers.PFCKeyManufacturingDetail.DeletePFCKeyManufacturingDetails)
+
+	router.POST("/getPFCItemKeyManufacturingDetails", controllers.PFCKeyManufacturingDetail.GetAllPFCItemKeyManufacturingDetails) //item
+	router.POST("/pfcItemKeyManufacturingDetails", controllers.PFCKeyManufacturingDetail.InsertPFCItemKeyManufacturingDetails)    //item
+	router.PUT("/pfcItemKeyManufacturingDetails", controllers.PFCKeyManufacturingDetail.UpdatePFCItemKeyManufacturingDetails)     //item
+	router.DELETE("/pfcItemKeyManufacturingDetails", controllers.PFCKeyManufacturingDetail.DeletePFCItemKeyManufacturingDetails)  //item
+
 }

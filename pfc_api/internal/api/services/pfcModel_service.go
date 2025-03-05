@@ -41,9 +41,7 @@ func (s *PFCModelService) GetAllPFCModel() ([]types.PFCModel, error) {
 		HeelView,
 		KeyManufacturingProcesses,
 		IDS,
-		Converse,
-		MedialSideViewV1, LateralSideViewV1, BottomViewV1,
-		FrontViewV1, HeelViewV1
+		Converse
 	FROM PFC_Model
 `
 	err = db.Raw(query).Scan(&list).Error
@@ -75,8 +73,7 @@ func (s *PFCModelService) InsertNewModel(requestParams *types.PFCModel) (string,
 			ToolCode, PatternFileName, FirstSource,
 			MedialSideView, LateralSideView, BottomView,
 			FrontView, HeelView, KeyManufacturingProcesses,
-			IDS, Converse, MedialSideViewV1, LateralSideViewV1, BottomViewV1,
-			FrontViewV1, HeelViewV1
+			IDS, Converse
 		) 
 		VALUES (?, ?, ?, 
 				?, ?, ?, 
@@ -84,7 +81,7 @@ func (s *PFCModelService) InsertNewModel(requestParams *types.PFCModel) (string,
 				?, ?, ?, 
 				?, ?, ?, 
 				?, ?, ?, 
-				?, ?, ?, ?, ?, ?, ?)
+				?, ?)
 	`
 
 	if err := tx.Exec(query,
@@ -94,8 +91,7 @@ func (s *PFCModelService) InsertNewModel(requestParams *types.PFCModel) (string,
 		requestParams.ToolCode, requestParams.PatternFileName, requestParams.FirstSource,
 		requestParams.MedialSideView, requestParams.LateralSideView, requestParams.BottomView,
 		requestParams.FrontView, requestParams.HeelView, requestParams.KeyManufacturingProcesses,
-		requestParams.IDS, requestParams.Converse, requestParams.MedialSideViewV1, requestParams.LateralSideViewV1, requestParams.BottomViewV1,
-		requestParams.FrontViewV1, requestParams.HeelViewV1,
+		requestParams.IDS, requestParams.Converse,
 	).Error; err != nil {
 		tx.Rollback()
 		return "", fmt.Errorf("failed to execute query: %v", err)
@@ -141,12 +137,7 @@ func (s *PFCModelService) UpdatePFCModel(requestParams *types.PFCModel) (*types.
 			HeelView = ?,
 			KeyManufacturingProcesses = ?,
 			IDS = ?,
-			Converse = ?,
-			MedialSideViewV1 = ?, 
-			LateralSideViewV1 = ?, 
-			BottomViewV1 = ?,
-			FrontViewV1 = ?, 
-			HeelViewV1 = ?
+			Converse = ?
 		WHERE 
 			ModelID = ?
 			AND ColorWayID = ?
@@ -174,11 +165,6 @@ func (s *PFCModelService) UpdatePFCModel(requestParams *types.PFCModel) (*types.
 		requestParams.KeyManufacturingProcesses,
 		requestParams.IDS,
 		requestParams.Converse,
-		requestParams.MedialSideViewV1,
-		requestParams.LateralSideViewV1,
-		requestParams.BottomViewV1,
-		requestParams.FrontViewV1,
-		requestParams.HeelViewV1,
 		requestParams.ModelID,
 		requestParams.ColorWayID,
 		requestParams.BOMID,

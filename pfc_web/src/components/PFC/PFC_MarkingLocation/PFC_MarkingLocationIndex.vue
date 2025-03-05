@@ -433,7 +433,7 @@ const btnConfirmItemMarkingLocation = async () => {
         Component: pfcItemMarkingLocation.value.Component,
         ImageContent: pfcItemMarkingLocation.value.ImageContent,
         TitleImage: pfcItemMarkingLocation.value.TitleImage,
-        
+
         Process: pfcItemMarkingLocation.value.Process,
         ItemIndex: pfcItemMarkingLocation.value.ItemIndex.toString(),
     }

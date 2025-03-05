@@ -11,22 +11,13 @@ interface PFC_BottomSilkScreenProcess {
 interface PFC_ItemBottomSilkScreenProcess {
     ItemBottomSilkScreenProcessID: string
     BottomSilkScreenProcessID: string
-    ItemIndex: string
-    Component: string
+    ComponentName: string
     Material: string
     Vendor: string
+    TableRow1: string
     Remarks: string
-    RemarksImages: string
-    RemarksSize: string
-    TotalWBProcesses: string
-    TotalSBProcesses: string
-    Process: string
-    Chemical: string
-    Hardener: string
-    WBSB: string
-    Temp: string
-    Time: string
-    Mesh: string
+    Size: string
+    TotalWBSB: string
 }
 
 export { PFC_BottomSilkScreenProcess, PFC_ItemBottomSilkScreenProcess }

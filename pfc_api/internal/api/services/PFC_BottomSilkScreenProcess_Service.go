@@ -28,14 +28,6 @@ func (s *PFCBottomSilkScreenProcess) GetAllPFCBottomSilkScreenProcess(pfcModel *
 		ModelName,
 		MaterialNumber,
 		Title,
-		Component,
-		Material,
-		Vendor,
-		Remarks,
-		RemarksImages,
-		RemarksSize,
-		TotalWBProcesses,
-		TotalSBProcesses,
 		ItemIndex
 	FROM PFC_BottomSilkScreenProcess
 	WHERE
@@ -74,10 +66,10 @@ func (s *PFCBottomSilkScreenProcess) InsertNewPFCBottomSilkScreenProcess(req *ty
 	query := `
 		INSERT INTO PFC_BottomSilkScreenProcess
 		(
-		BottomSilkScreenProcessID , ModelType, ModelName, MaterialNumber, Title, Component, Material, Vendor, Remarks, RemarksImages, RemarksSize,TotalWBProcesses,TotalSBProcesses, ItemIndex
+		BottomSilkScreenProcessID , ModelType, ModelName, MaterialNumber, Title,ItemIndex
 		)
 		OUTPUT CAST(INSERTED.BottomSilkScreenProcessID AS NVARCHAR(36)) AS BottomSilkScreenProcessID
-		VALUES (NEWID(), ?, ?, ?, ?, ?,?,?, ?, ?, ?, ?, ?, ?)
+		VALUES (NEWID(), ?, ?, ?, ?, ?)
 
 	`
 	if err := tx.Raw(
@@ -86,14 +78,6 @@ func (s *PFCBottomSilkScreenProcess) InsertNewPFCBottomSilkScreenProcess(req *ty
 		req.ModelName,
 		req.MaterialNumber,
 		req.Title,
-		req.Component,
-		req.Material,
-		req.Vendor,
-		req.Remarks,
-		req.RemarksImages,
-		req.RemarksSize,
-		req.TotalWBProcesses,
-		req.TotalSBProcesses,
 		req.ItemIndex,
 	).Scan(
 		&BottomSilkScreenProcessID,
@@ -123,15 +107,7 @@ func (s *PFCBottomSilkScreenProcess) UpdatePFCBottomSilkScreenProcess(req *types
 
 	query := `
 		UPDATE PFC_BottomSilkScreenProcess
-		SET Title = ?,
-		Component = ?,
-		Material = ?,
-		Vendor = ?,
-		Remarks = ?,
-		RemarksImages = ?,
-		RemarksSize = ?,
-		TotalWBProcesses = ?,
-		TotalSBProcesses = ?
+		SET Title = ?
 		OUTPUT CAST(INSERTED.BottomSilkScreenProcessID AS NVARCHAR(36))
 		WHERE BottomSilkScreenProcessID = ?;
 		`
@@ -139,14 +115,6 @@ func (s *PFCBottomSilkScreenProcess) UpdatePFCBottomSilkScreenProcess(req *types
 	if err := tx.Raw(
 		query,
 		req.Title,
-		req.Component,
-		req.Material,
-		req.Vendor,
-		req.Remarks,
-		req.RemarksImages,
-		req.RemarksSize,
-		req.TotalWBProcesses,
-		req.TotalSBProcesses,
 		req.BottomSilkScreenProcessID,
 	).Scan(
 		&BottomSilkScreenProcessID,
@@ -209,23 +177,22 @@ func (s *PFCBottomSilkScreenProcess) InsertNewPFCItemBottomSilkScreenProcess(req
 	query := `
 		INSERT INTO PFC_ItemBottomSilkScreenProcess
 		(
-		ItemBottomSilkScreenProcessID ,BottomSilkScreenProcessID, ItemIndex, Process,Chemical,Hardener,WBSB, Temp, Time, Mesh
+		ItemBottomSilkScreenProcessID ,BottomSilkScreenProcessID, ComponentName, Material,Vendor,TableRow1, Remarks, Size, TotalWBSB
 		)
 		OUTPUT CAST(INSERTED.ItemBottomSilkScreenProcessID AS NVARCHAR(36)) AS ItemBottomSilkScreenProcessID
-		VALUES (NEWID(), ?, ?, ?, ?, ?, ?, ?, ?, ?)
+		VALUES (NEWID(), ?, ?, ?, ?, ?, ?, ?, ?)
 
 	`
 	if err := tx.Raw(
 		query,
 		req.BottomSilkScreenProcessID,
-		req.ItemIndex,
-		req.Process,
-		req.Chemical,
-		req.Hardener,
-		req.WBSB,
-		req.Temp,
-		req.Time,
-		req.Mesh,
+		req.ComponentName,
+		req.Material,
+		req.Vendor,
+		req.TableRow1,
+		req.Remarks,
+		req.Size,
+		req.TotalWBSB,
 	).Scan(
 		&ItemBottomSilkScreenProcessID,
 	).Error; err != nil {
@@ -251,17 +218,11 @@ func (s *PFCBottomSilkScreenProcess) GetAllPFCItemBottomSilkScreenProcess(pfcBot
 	SELECT
 		CAST(ItemBottomSilkScreenProcessID AS NVARCHAR(36)) AS ItemBottomSilkScreenProcessID,
 		CAST(BottomSilkScreenProcessID AS NVARCHAR(36)) AS BottomSilkScreenProcessID,
-		ItemIndex, 
-		Process,
-		Chemical,
-		Hardener,
-		WBSB, 
-		Temp, 
-		Time, 
-		Mesh
+		ComponentName, 
+		Material,
+		Vendor,TableRow1, Remarks, Size, TotalWBSB
 	FROM PFC_ItemBottomSilkScreenProcess
-	WHERE BottomSilkScreenProcessID = @BottomSilkScreenProcessID
-	ORDER BY ItemIndex ASC
+	WHERE BottomSilkScreenProcessID = @BottomSilkScreenProcessID 
 `
 	err = db.Raw(query,
 		sql.Named("BottomSilkScreenProcessID", pfcBottomSilkScreenProcess.BottomSilkScreenProcessID),
@@ -291,27 +252,25 @@ func (s *PFCBottomSilkScreenProcess) UpdatePFCItemBottomSilkScreenProcess(req *t
 	query := `
 		UPDATE PFC_ItemBottomSilkScreenProcess
 		SET 
-		ItemIndex = ?, 
-		Process = ?,
-		Chemical = ?,
-		Hardener = ?,
-		WBSB = ?, 
-		Temp = ?, 
-		Time = ?, 
-		Mesh = ?
+		ComponentName = ? , 
+		Material = ? ,
+		Vendor = ? ,
+		TableRow1 = ? , 
+		Remarks = ? , 
+		Size = ? , 
+		TotalWBSB = ? 
 		OUTPUT CAST(INSERTED.ItemBottomSilkScreenProcessID AS NVARCHAR(36)) AS ItemBottomSilkScreenProcessID
 		WHERE ItemBottomSilkScreenProcessID = ?
 	`
 	if err := tx.Raw(
 		query,
-		req.ItemIndex,
-		req.Process,
-		req.Chemical,
-		req.Hardener,
-		req.WBSB,
-		req.Temp,
-		req.Time,
-		req.Mesh,
+		req.ComponentName,
+		req.Material,
+		req.Vendor,
+		req.TableRow1,
+		req.Remarks,
+		req.Size,
+		req.TotalWBSB,
 		req.ItemBottomSilkScreenProcessID,
 	).Scan(
 		&ItemBottomSilkScreenProcessID,
@@ -355,4 +314,3 @@ func (s *PFCBottomSilkScreenProcess) DeletePFCItemBottomSilkScreenProcess(req *t
 
 	return "delete success", nil
 }
-

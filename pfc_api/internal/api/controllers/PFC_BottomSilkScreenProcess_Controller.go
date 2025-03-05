@@ -157,4 +157,3 @@ func (c *PFCBottomSilkScreenProcess) DeletePFCItemBottomSilkScreenProcess(ctx *g
 	}
 	response.OkWithData(ctx, result)
 }
-

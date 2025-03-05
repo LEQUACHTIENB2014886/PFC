@@ -142,7 +142,7 @@ func NHUERPConnection() (*gorm.DB, error) {
 
 func TESTERPConnection() (*gorm.DB, error) {
 	configuration := config.GetConfig()
-	configuration.Database.Host = "ATX-PC"
+	configuration.Database.Host = "DESKTOP-SKO7BVN"
 	configuration.Database.Username = "sa"
 	configuration.Database.Password = "Erp@admin2309"
 	configuration.Database.Dbname = "PFC"

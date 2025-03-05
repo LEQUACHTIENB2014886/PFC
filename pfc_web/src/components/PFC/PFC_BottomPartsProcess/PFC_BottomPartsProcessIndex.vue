@@ -228,7 +228,7 @@
                                 </template>
                                 <template #default="{ row }">
                                     <div v-if="!row.editingRemarksSize" @click="enableEdit(row, 'RemarksSize')"
-                                        style="min-height: 20px; cursor: pointer;">
+                                        style="min-height: 58px; cursor: pointer;">
                                         {{ row.RemarksSize }}
                                     </div>
                                     <el-input v-else v-model="row.RemarksSize" @blur="disableEdit(row, 'RemarksSize')" />
@@ -236,7 +236,6 @@
                             </el-table-column>
                         </el-table-column>
                     </el-table>
-
                 </el-form-item>
             </el-form>
 
@@ -413,7 +412,9 @@ const btnAddItemNewBottomPartsProcess = () => {
     pfcItemBottomPartsProcess.value = {};
     // pfcItemBottomPartsProcess.value.ItemIndex = `${arrItemBottomPartsProcess.value.length + 1}`
     pfcItemBottomPartsProcess.value.BottomPartsProcessID = pfcBottomPartsProcess.value.BottomPartsProcessID;
-    arrComponent.value = Array.from({ length: 16 }, () => ({}));
+    arrComponent.value = Array.from({ length: 16 }, (_, i) => ({
+        No: i + 1,
+    }));
     arrRemarks.value = Array.from({ length: 10 }, () => ({}));
     formData_Content.delete("file");
     formData_Content.delete("ModelName");

@@ -20,4 +20,3 @@ type PFC_ItemBottomLogoSpecification struct {
 	Size                          string `gorm:"column:Size"`
 	ItemIndex                     string `gorm:"column:ItemIndex"`
 }
-

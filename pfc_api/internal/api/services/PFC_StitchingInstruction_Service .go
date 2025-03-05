@@ -169,7 +169,6 @@ func (s *PFCStitchingInstruction) InsertNewPFCItemStitchingInstruction(req *type
 		return "", fmt.Errorf("failed to begin transaction: %v", tx.Error)
 	}
 
-	fmt.Printf(req.Component)
 	var ItemStitchingInstructionID string
 
 	query := `

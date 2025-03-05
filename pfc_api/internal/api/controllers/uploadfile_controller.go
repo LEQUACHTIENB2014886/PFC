@@ -18,10 +18,7 @@ type UploadFileController struct {
 }
 
 var UploadFile = &UploadFileController{}
-
 var urlDir = `\\192.168.123.113\pfc\PFCModel_Picture\`
-
-// var urlDir = "./uploads"
 
 func (c *UploadFileController) UploadFilePFCModel(ctx *gin.Context) {
 	file, err := ctx.FormFile("file")
@@ -167,20 +164,7 @@ func (c *UploadFileController) DownloadFilePFCModelFromFolderPFCModel(ctx *gin.C
 	filePath := filepath.Join(destDir, query.Filename)
 
 	cleanFilePath := filepath.Clean(filePath)
-
-	absBaseDir, err := filepath.Abs(baseDir)
-	if err != nil {
-		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error resolving base directory"})
-		return
-	}
-
-	absCleanFilePath, err := filepath.Abs(cleanFilePath)
-	if err != nil {
-		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error resolving file path"})
-		return
-	}
-
-	if !strings.HasPrefix(absCleanFilePath, absBaseDir) {
+	if !strings.HasPrefix(cleanFilePath, baseDir) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid file path"})
 		return
 	}
@@ -235,19 +219,7 @@ func (c *UploadFileController) DeleteFilePFCModelFromFolderPFCModel(ctx *gin.Con
 	filePath := filepath.Join(destDir, query.Filename)
 
 	cleanFilePath := filepath.Clean(filePath)
-	absBaseDir, err := filepath.Abs(baseDir)
-	if err != nil {
-		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error resolving base directory"})
-		return
-	}
-
-	absCleanFilePath, err := filepath.Abs(cleanFilePath)
-	if err != nil {
-		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error resolving file path"})
-		return
-	}
-
-	if !strings.HasPrefix(absCleanFilePath, absBaseDir+string(os.PathSeparator)) {
+	if !strings.HasPrefix(cleanFilePath, baseDir) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid file path"})
 		return
 	}

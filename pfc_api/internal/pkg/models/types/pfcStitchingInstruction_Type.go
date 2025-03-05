@@ -10,7 +10,7 @@ type PFC_StitchingInstruction struct {
 }
 
 type PFC_ItemStitchingInstruction struct {
-	ItemStitchingInstructionID string `gorm:"column:ItemStitchingInstructionID"`
+	ItemStitchingInstructionID string `gorm:"column:ItemCCCID"`
 	StitchingInstructionID     string `gorm:"column:StitchingInstructionID"`
 	Component                  string `gorm:"column:Component"`
 	ImageContent               string `gorm:"column:ImageContent"`
