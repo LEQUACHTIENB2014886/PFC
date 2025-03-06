@@ -261,8 +261,8 @@
                                     Lượng hao hụt trung bình trên từng phần:
                                 </div>
                             </div>
-                            <div class="waste-value-container" v-if="averageWasteGrVal">
-                                <div class="waste-value">{{ averageWasteGrVal }} </div>
+                            <div class="waste-value-container">
+                                <div class="waste-value">{{ pfcItemOutsolePressingProcess.AverageWastePerPart }} </div>
                                 <span class="waste-unit">gr</span>
                             </div>
                         </div>
@@ -274,8 +274,8 @@
                                     Tỷ lệ hao hụt trung bình trên từng phần:
                                 </div>
                             </div>
-                            <div class="waste-value-container" v-if="averageWasteRateVal">
-                                <div class="waste-value">{{ averageWasteRateVal }} </div>
+                            <div class="waste-value-container">
+                                <div class="waste-value">{{ pfcItemOutsolePressingProcess.VerageWasteRatePerPart }} </div>
                                 <span class="waste-unit">%</span>
                             </div>
                         </div>
@@ -576,7 +576,6 @@ const btnConfirmItemOutsolePressingProcess = async () => {
     showLoading()
 
     //
-    
     function calculateAverage(data, key) {
         const validValues = data
             .map(row => row[key])
@@ -590,7 +589,7 @@ const btnConfirmItemOutsolePressingProcess = async () => {
     }
     averageWasteGrVal.value = calculateAverage(arrTableRow2.value, 'D');
     averageWasteRateVal.value = calculateAverage(arrTableRow2.value, 'E');
-    // console.log(averageWasteGrVal.value, averageWasteRateVal.value)
+
 
     //
 
@@ -599,8 +598,11 @@ const btnConfirmItemOutsolePressingProcess = async () => {
         OutsolePressingProcessID: pfcItemOutsolePressingProcess.value.OutsolePressingProcessID,
         TableRow1: JSON.stringify(arrTableRow1.value),
         TableRow2: JSON.stringify(arrTableRow2.value),
+        AverageWastePerPart: averageWasteGrVal.value,
+        VerageWasteRatePerPart: averageWasteRateVal.value
     }
 
+    console.log(itemOutsolePressingProcess.AverageWastePerPart, itemOutsolePressingProcess.VerageWasteRatePerPart);
     if (titleDialogForm2.value === "ADD NEW ITEM OUTSOLE PRESSING PROCESS") {
         try {
             if (formData_Content && formData_Content.entries().next().value) {
