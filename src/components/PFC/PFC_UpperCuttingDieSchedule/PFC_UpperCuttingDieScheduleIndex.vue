@@ -2,9 +2,27 @@
     <div style="overflow: auto; height: 80vh; width: 100%;">
         <el-col :span="24">
             <h4 style="width: 100%; text-align: center;">Upper Cutting Die Schedule</h4>
-            <el-button class="btn-add" type="primary" plain size="small" @click="btnAddNewUpperCuttingDieSchedule">Add
-                New Page
-                Upper Cutting Die Schedule</el-button>
+
+            <div style="display: flex; justify-content: space-between;">
+                <div style="margin-left:35px">
+                    <el-button class="btn-add" type="primary" plain size="small"
+                        @click="btnAddNewUpperCuttingDieSchedule">Add
+                        New Page
+                        Upper Cutting Die Schedule</el-button>
+
+                </div>
+                <div style="margin-right:35px">
+                    <el-button type="success" circle style="margin-right: 5px;">
+                        <img src="@/assets/icon/export_excel.png" alt="export_excel" style="width: 16px; height: 16px;" />
+                    </el-button>
+                    <el-button type="danger" circle style="margin-right: 5px;">
+                        <img src="@/assets/icon/export_pdf.png" alt="export_pdf" style="width: 16px; height: 16px;" />
+                    </el-button>
+                    <el-button type="primary" circle>
+                        <img src="@/assets/icon/saving.png" alt="saving" style="width: 16px; height: 16px;" />
+                    </el-button>
+                </div>
+            </div>
             <div style="margin: 20px;">
                 <el-table :data="filterTableData" style="width: 100%" :row-class-name="tableRowClassName">
                     <el-table-column prop="PageIndex" label="Page Index" width="100" />
@@ -142,8 +160,7 @@
                 </el-form-item>
                 <el-form-item label="Size range: ">
                     <el-select v-model="itemUpperCuttingDieSchedule.SizeRange" clearable placeholder="Select">
-                        <el-option v-for="item in optionIDS" :key="item.value" :label="item.label"
-                            :value="item.value" />
+                        <el-option v-for="item in optionIDS" :key="item.value" :label="item.label" :value="item.value" />
                     </el-select>
                 </el-form-item>
                 <el-form-item label="Size range are same: ">
@@ -160,8 +177,8 @@
                                         <Plus />
                                     </el-icon>
                                 </el-upload>
-                                <el-button v-if="imageUrl_ImageContent" type="danger" icon="Delete"
-                                    class="delete-button" @click="handleDelete_ImageContent" size="small">
+                                <el-button v-if="imageUrl_ImageContent" type="danger" icon="Delete" class="delete-button"
+                                    @click="handleDelete_ImageContent" size="small">
                                 </el-button>
                                 <h5 style="margin-top: 10px;">Image Content</h5>
                             </el-col>

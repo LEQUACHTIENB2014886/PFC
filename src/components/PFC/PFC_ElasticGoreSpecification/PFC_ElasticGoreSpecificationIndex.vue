@@ -1,10 +1,26 @@
 <template>
     <el-col :span="24" style="height: 100vh;">
         <h4 style="width: 100%; text-align: center;">ELASTIC GORE SPECIFICATION</h4>
+    
+        <div style="display: flex; justify-content: space-between;">
+    <div style="margin-left:35px">
         <el-button class="btn-add" type="primary" plain size="small" @click="btnAddNewElasticGoreSpecification">
             ADD NEW ELASTIC GORE SPECIFICATION
         </el-button>
 
+    </div>
+    <div style="margin-right:35px">
+        <el-button type="success" circle style="margin-right: 5px;">
+            <img src="@/assets/icon/export_excel.png" alt="export_excel" style="width: 16px; height: 16px;" />
+        </el-button>
+        <el-button type="danger" circle style="margin-right: 5px;">
+            <img src="@/assets/icon/export_pdf.png" alt="export_pdf" style="width: 16px; height: 16px;" />
+        </el-button>
+        <el-button type="primary" circle>
+            <img src="@/assets/icon/saving.png" alt="saving" style="width: 16px; height: 16px;" />
+        </el-button>
+    </div>
+</div>
         <div style="margin: 20px;">
             <el-table :data="filterTableData" style="width: 100%">
                 <el-table-column prop="ItemIndex" label="Item Index" width="100" />

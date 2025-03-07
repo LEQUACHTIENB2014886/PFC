@@ -14,8 +14,8 @@
                         :size="size">
                         <el-form-item label="Model Type:">
                             <el-col :span="11">
-                                <el-select v-model="ModelType" clearable placeholder="Select model type"
-                                    style="width: 100%" :disabled="true">
+                                <el-select v-model="ModelType" clearable placeholder="Select model type" style="width: 100%"
+                                    :disabled="true">
                                     <el-option v-for="item in optionModelType" :key="item.value" :label="item.label"
                                         :value="item.value" />
                                 </el-select>
@@ -53,8 +53,7 @@
                         </el-form-item>
                         <el-form-item label="Converse:">
                             <el-col :span="11">
-                                <el-select v-model="Converse" clearable placeholder="Select converse"
-                                    style="width: 100%">
+                                <el-select v-model="Converse" clearable placeholder="Select converse" style="width: 100%">
                                     <el-option v-for="item in optionConverse" :key="item.value" :label="item.label"
                                         :value="item.value" />
                                 </el-select>
@@ -86,6 +85,7 @@
                         <h4>Model Picture</h4>
                         <el-form-item>
                             <el-button type="warning" icon="Printer" circle @click="exportThisSheet" />
+                            <el-button type="success" icon="Guide" circle />
                             <el-button type="primary" icon="Check" circle @click="onSubmit" />
                         </el-form-item>
                     </el-row>
@@ -95,8 +95,8 @@
                                 title="Medial Side View" :widthCm="10" :heightCm="4" style="padding-bottom: 20px;" />
                             <ResizableImageView ref="lateralSideViewRef" v-model:model="lateralSideView" :widthCm="10"
                                 :heightCm="5" title="Lateral Side View" style="padding-bottom: 20px;" />
-                            <ResizableImageView ref="bottomViewRef" v-model:model="bottomView" :widthCm="10"
-                                :heightCm="5" title="Bottom View" style="padding-bottom: 20px;" />
+                            <ResizableImageView ref="bottomViewRef" v-model:model="bottomView" :widthCm="10" :heightCm="5"
+                                title="Bottom View" style="padding-bottom: 20px;" />
                             <ResizableImageView ref="frontViewRef" v-model:model="frontView" :widthCm="7" :heightCm="8"
                                 title="Front View" style="padding-bottom: 20px;" />
                             <ResizableImageView ref="heelViewRef" v-model:model="heelView" :widthCm="7" :heightCm="8"
