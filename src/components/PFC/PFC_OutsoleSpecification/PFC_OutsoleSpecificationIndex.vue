@@ -86,12 +86,12 @@
         </el-button>
         <div style="margin: 20px;">
             <el-table :data="filterTableData1" style="width: 100%">
-                <el-table-column label="OUTSOLE SPECIFICATION" >
+                <el-table-column label="OUTSOLE SPECIFICATION">
                     <template #default="{ row }">
                         {{ pfcOutsoleSpecification.Title }}
-                    </template> 
+                    </template>
                 </el-table-column>
-         
+
                 <el-table-column align="right" width="200">
                     <template #header>
                         <el-input v-model="search1" size="small" placeholder="Type to search" />

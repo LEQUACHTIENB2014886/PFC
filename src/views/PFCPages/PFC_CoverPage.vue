@@ -114,7 +114,7 @@ import PFC_RubberComponentSpecificationIndex from "@/components/PFC/PFC_RubberCo
 // import PFC_CommonSilkScreenProcessIndex from "@/components/PFC/PFC_CommonSilkScreenProcess/PFC_CommonSilkScreenProcessIndex.vue"
 
 // 27
-// import PFC_SocklinerSpecificationIndex from "@/components/PFC/PFC_SocklinerSpecification/PFC_SocklinerSpecificationIndex.vue"
+import PFC_SocklinerSpecificationIndex from "@/components/PFC/PFC_SocklinerSpecification/PFC_SocklinerSpecificationIndex.vue"
 
 // 28
 // import PFC_HeelWedgeSpecificationIndex from "@/components/PFC/PFC_HeelWedgeSpecification/PFC_HeelWedgeSpecificationIndex.vue"
@@ -211,7 +211,7 @@ const currentComponent = computed(() => {
     case "24": return PFC_OutsolePressingProcessIndex;
     case "25": return PFC_RubberComponentSpecificationIndex;
     // case "26": return PFC_CommonSilkScreenProcessIndex;
-    // case "27": return PFC_SocklinerSpecificationIndex;
+    case "27": return PFC_SocklinerSpecificationIndex;
     // case "28": return PFC_HeelWedgeSpecificationIndex;
     // case "29": return PFC_LogoApplicationProcessIndex;
     // case "30": return PFC_SocklinerMoldingProcessIndex;
