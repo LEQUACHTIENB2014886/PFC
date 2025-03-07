@@ -1,8 +1,8 @@
 <template>
     <el-col :span="24" style="height: 100vh;">
-        <h4 style="width: 100%; text-align: center;">OUTSOLE SPECIFICATION</h4>
-        <el-button class="btn-add" type="primary" plain size="small" @click="btnAddNewOutsoleSpecification">
-            ADD NEW OUTSOLE SPECIFICATION
+        <h4 style="width: 100%; text-align: center;">AUTOCLAVE - RUBBER COMPONENT SPECIFICATION</h4>
+        <el-button class="btn-add" type="primary" plain size="small" @click="btnAddNewRubberComponentSpecification">
+            ADD NEW AUTOCLAVE - RUBBER COMPONENT SPECIFICATION
         </el-button>
 
         <div style="margin: 20px;">
@@ -17,19 +17,19 @@
                         <el-input v-model="search" size="small" placeholder="Type to search" />
                     </template>
                     <template #default="scope">
-                        <el-button size="small" @click="btnUpdatePFCOutsoleSpecification(scope.$index, scope.row)"
+                        <el-button size="small" @click="btnUpdatePFCRubberComponentSpecification(scope.$index, scope.row)"
                             style="width: 100px; height: 30px;">
                             Edit
                         </el-button>
                         <br />
                         <el-button size="small" type="warning"
-                            @click="btnItemPFCOutsoleSpecification(scope.$index, scope.row)"
+                            @click="btnItemPFCRubberComponentSpecification(scope.$index, scope.row)"
                             style="margin-top: 10px; margin-bottom: 10px; width: 100px; height: 30px;">
                             Item
                         </el-button>
                         <br />
                         <el-button size="small" type="danger"
-                            @click="btnDeletePFCOutsoleSpecification(scope.$index, scope.row)"
+                            @click="btnDeletePFCRubberComponentSpecification(scope.$index, scope.row)"
                             style="width: 100px; height: 30px;">
                             Delete
                         </el-button>
@@ -46,22 +46,22 @@
                 {{ titleDialogForm1 }}
             </div>
         </template>
-        <el-form style="width: 30vw" :model="pfcOutsoleSpecification" label-width="auto" label-position="right"
+        <el-form style="width: 30vw" :model="pfcRubberComponentSpecification" label-width="auto" label-position="right"
             size="default">
             <el-form-item label="Item Index: ">
-                <el-input v-model="pfcOutsoleSpecification.ItemIndex" :disabled="true" />
+                <el-input v-model="pfcRubberComponentSpecification.ItemIndex" :disabled="true" />
             </el-form-item>
             <el-form-item label="Model Type: ">
-                <el-input v-model="pfcOutsoleSpecification.ModelType" :disabled="true" />
+                <el-input v-model="pfcRubberComponentSpecification.ModelType" :disabled="true" />
             </el-form-item>
             <el-form-item label="Model Name: ">
-                <el-input v-model="pfcOutsoleSpecification.ModelName" :disabled="true" />
+                <el-input v-model="pfcRubberComponentSpecification.ModelName" :disabled="true" />
             </el-form-item>
             <el-form-item label="Material Number: ">
-                <el-input v-model="pfcOutsoleSpecification.MaterialNumber" :disabled="true" />
+                <el-input v-model="pfcRubberComponentSpecification.MaterialNumber" :disabled="true" />
             </el-form-item>
             <el-form-item label="Title: ">
-                <el-input v-model="pfcOutsoleSpecification.Title" />
+                <el-input v-model="pfcRubberComponentSpecification.Title" />
             </el-form-item>
         </el-form>
         <template #footer>
@@ -78,32 +78,32 @@
         style="min-height: 60vh;">
         <template #header>
             <div style="text-align: center; width: 100%; font-weight: bold;">
-                ITEM OUTSOLE SPECIFICATION
+                ITEM AUTOCLAVE - RUBBER COMPONENT SPECIFICATION
             </div>
         </template>
-        <el-button class="btn-add" type="primary" plain size="small" @click="btnAddItemNewOutsoleSpecification">
-            ADD NEW ITEM OUTSOLE SPECIFICATION
+        <el-button class="btn-add" type="primary" plain size="small" @click="btnAddItemNewRubberComponentSpecification">
+            ADD NEW ITEM AUTOCLAVE - RUBBER COMPONENT SPECIFICATION
         </el-button>
         <div style="margin: 20px;">
             <el-table :data="filterTableData1" style="width: 100%">
-                <el-table-column label="OUTSOLE SPECIFICATION" >
+                <el-table-column label="AUTOCLAVE - RUBBER COMPONENT SPECIFICATION">
                     <template #default="{ row }">
-                        {{ pfcOutsoleSpecification.Title }}
-                    </template> 
+                        {{ pfcRubberComponentSpecification.Title }}
+                    </template>
                 </el-table-column>
-         
+
                 <el-table-column align="right" width="200">
                     <template #header>
                         <el-input v-model="search1" size="small" placeholder="Type to search" />
                     </template>
                     <template #default="scope">
-                        <el-button size="small" @click="btnEditItemNewOutsoleSpecification(scope.$index, scope.row)"
+                        <el-button size="small" @click="btnEditItemNewRubberComponentSpecification(scope.$index, scope.row)"
                             style="margin-top: 10px; margin-bottom: 10px; width: 100px; height: 30px;">
                             Edit
                         </el-button>
                         <br />
                         <el-button size="small" type="danger"
-                            @click="btnDeleteItemNewOutsoleSpecification(scope.$index, scope.row)"
+                            @click="btnDeleteItemNewRubberComponentSpecification(scope.$index, scope.row)"
                             style="width: 100px; height: 30px;">
                             Delete
                         </el-button>
@@ -119,7 +119,8 @@
                 {{ titleDialogForm2 }}
             </div>
         </template>
-        <el-form style="width:95vw" :model="pfcItemOutsoleSpecification" label-width="auto" label-position="right"
+        <!-- TableRow1 -->
+        <el-form style="width:95vw" :model="pfcItemRubberComponentSpecification" label-width="auto" label-position="right"
             size="default">
             <el-form-item label=" ">
                 <el-col>
@@ -133,7 +134,7 @@
                                 <el-input v-else v-model="row.No" @blur="disableEdit(row, 'No')" />
                             </template>
                         </el-table-column>
-                        <el-table-column align="center" prop="arrTableRow1.Section" label="Section 部件Chi tiết" width="420">
+                        <el-table-column align="center" prop="arrTableRow1.Section" label="Section 部件Chi tiết" width="370">
                             <template #default="{ row }">
                                 <div v-if="!row.editingSection" @click="enableEdit(row, 'Section')"
                                     style="min-height: 20px; text-align: left;">
@@ -153,7 +154,7 @@
                             </template>
                         </el-table-column>
 
-                        <el-table-column align="center" prop="arrTableRow1.Hardness" label="Hardness 硬度Độ cứng" width="250">
+                        <el-table-column align="center" prop="arrTableRow1.Hardness" label="Hardness 硬度Độ cứng" width="200">
                             <template #default="{ row }">
                                 <div v-if="!row.editingHardness" @click="enableEdit(row, 'Hardness')"
                                     style="min-height: 20px;">
@@ -163,7 +164,7 @@
                             </template>
                         </el-table-column>
 
-                        <el-table-column align="center" prop="arrTableRow1.SG" label="S.G.(G/CC)" width="250">
+                        <el-table-column align="center" prop="arrTableRow1.SG" label="S.G.(G/CC)" width="200">
                             <template #default="{ row }">
                                 <div v-if="!row.editingSG" @click="enableEdit(row, 'SG')" style="min-height: 20px;">
                                     {{ row.SG }}
@@ -172,7 +173,7 @@
                             </template>
                         </el-table-column>
 
-                        <el-table-column align="center" prop="arrTableRow1.MCS" label="MCS #" width="250">
+                        <el-table-column align="center" prop="arrTableRow1.MCS" label="MCS #" width="200">
                             <template #default="{ row }">
                                 <div v-if="!row.editingMCS" @click="enableEdit(row, 'MCS')" style="min-height: 20px;">
                                     {{ row.MCS }}
@@ -184,28 +185,82 @@
                 </el-col>
             </el-form-item>
         </el-form>
+        <!-- TableRow1 -->
+
+        <!-- LengthGrading -->
         <el-form style="width: 95vw" label-width="auto" label-position="right" size="default">
             <el-form-item label=" ">
                 <div class="table-container">
                     <div class="row header">
-                        <div class="cell-title-1">Preform parts & Nesting Diagram 大底与垫片还没压 Đế lớn và miếng chêm chưa ép
+                        <div class="cell-title-1">Part Information 部位通讯Thông tin bộ vị
                         </div>
-                        <div class="cell-title-2">Final part 成品 Thành phẩm </div>
+                        <div class="cell-title-2">Length Grading 长度规格 Qui cách chiều dài</div>
                     </div>
                     <div class="row empty">
                         <div class="cell-1"></div>
-                        <div class="cell-2"></div>
+                        <div class="cell-2">
+                            <el-table v-click-outside="handleClickOutside3" :data="arrLengthGrading"
+                                :row-style="{ height: '30px' }" border>
+                                <el-table-column align="center"
+                                    label="Foxing Tape  Length Grading  内边条长度规格 Qui cách chiều talon thân trong (mm)"
+                                    width="100">
+                                    <el-table-column align="center" prop="arrLengthGrading.Group1" label="Group">
+                                        <template #default="{ row }">
+                                            <div v-if="!row.editingGroup1" @click="enableEdit3(row, 'Group1')"
+                                                style="min-height: 40px; ">
+                                                {{ row.Group1 }}
+                                            </div>
+                                            <el-input v-else v-model="row.Group1" @blur="disableEdit3(row, 'Group1')" />
+                                        </template>
+                                    </el-table-column>
+
+                                    <el-table-column align="center" prop="arrLengthGrading.Length1"
+                                        label="Length 长度 Chiều dài ">
+                                        <template #default="{ row }">
+                                            <div v-if="!row.editingLength1" @click="enableEdit3(row, 'Length1')"
+                                                style="min-height: 40px; text-align: left;">
+                                                {{ row.Length1 }}
+                                            </div>
+                                            <el-input v-else v-model="row.Length1" @blur="disableEdit3(row, 'Length1')" />
+                                        </template>
+                                    </el-table-column>
+
+                                    <el-table-column align="center" prop="arrLengthGrading.Group2" label="">
+                                        <template #default="{ row }">
+                                            <div v-if="!row.editingGroup2" @click="enableEdit3(row, 'Group2')"
+                                                style="min-height: 40px;">
+                                                {{ row.Group2 }}
+                                            </div>
+                                            <el-input v-else v-model="row.Group2" @blur="disableEdit3(row, 'Group2')" />
+                                        </template>
+                                    </el-table-column>
+
+                                    <el-table-column align="center" prop="arrLengthGrading.Length2"
+                                        label="Length 长度 Chiều dài">
+                                        <template #default="{ row }">
+                                            <div v-if="!row.editingLength2" @click="enableEdit3(row, 'Length2')"
+                                                style="min-height: 40px;">
+                                                {{ row.Length2 }}
+                                            </div>
+                                            <el-input v-else v-model="row.Length2" @blur="disableEdit3(row, 'Length2')" />
+                                        </template>
+                                    </el-table-column>
+                                </el-table-column>
+                            </el-table>
+                        </div>
                     </div>
                 </div>
             </el-form-item>
         </el-form>
+        <!-- LengthGrading -->
 
-        <el-form style="width: 95vw" :model="pfcItemOutsoleSpecification" label-width="auto" label-position="right"
+        <!-- TableRow1 -->
+        <el-form style="width: 95vw" :model="pfcItemRubberComponentSpecification" label-width="auto" label-position="right"
             size="default">
             <el-form-item label=" ">
                 <el-col>
                     <el-table v-click-outside="handleClickOutside2" :data="arrTableRow2" :row-style="{ height: '30px' }"
-                        border :span-method="mergeCells">
+                        border>
 
                         <el-table-column align="center" prop="arrTableRow2.PreformPart" label="Preform Part" width="120">
                             <template #default="{ row }">
@@ -227,7 +282,7 @@
                             </template>
                         </el-table-column>
 
-                        <el-table-column align="center" prop="arrTableRow2.WeightType" label="Weight Type" width="120">
+                        <el-table-column align="center" prop="arrTableRow2.WeightType" label=" " width="120">
                             <template #default="{ row }">
                                 <div v-if="!row.editingWeightType" @click="enableEdit2(row, 'WeightType')"
                                     style="min-height: 20px; text-align: center;">
@@ -461,10 +516,12 @@
             </el-form-item>
 
         </el-form>
+        <!-- TableRow1 -->
+
         <template #footer>
             <div class="dialog-footer">
                 <el-button @click="dialogForm3Visible = false">Cancel</el-button>
-                <el-button type="primary" @click="btnConfirmItemOutsoleSpecification">
+                <el-button type="primary" @click="btnConfirmItemRubberComponentSpecification">
                     Confirm
                 </el-button>
             </div>
@@ -473,7 +530,7 @@
 </template>
 
 <script lang="ts" setup>
-import { deletePFCItemOutsoleSpecification, deletePFCOutsoleSpecification, getPFCItemOutsoleSpecification, getPFCOutsoleSpecificationByModelID, insertItemPFCOutsoleSpecification, insertPFCOutsoleSpecification, updatePFCItemOutsoleSpecification, updatePFCOutsoleSpecification } from '@/hooks/PFC/useOutsoleSpecification';
+import { deletePFCItemRubberComponentSpecification, deletePFCRubberComponentSpecification, getPFCItemRubberComponentSpecification, getPFCRubberComponentSpecificationByModelID, insertItemPFCRubberComponentSpecification, insertPFCRubberComponentSpecification, updatePFCItemRubberComponentSpecification, updatePFCRubberComponentSpecification } from '@/hooks/PFC/useRubberComponentSpecification';
 import { deleteFilePFCModelFromFolderPFCModel, uploadFilePFCModelFromFolderPFCModel } from '@/hooks/PFC/usePFC';
 import { getURLImage } from '@/hooks/useHome';
 import { usePFCStore } from '@/stores/PFCStore';
@@ -496,7 +553,7 @@ const filterTableData = computed(() =>
 );
 
 const filterTableData1 = computed(() =>
-    (arrItemOutsoleSpecification.value || []).filter(
+    (arrItemRubberComponentSpecification.value || []).filter(
         (data) =>
             !search1.value ||
             data.ComponentName.toLowerCase().includes(search1.value.toLowerCase())
@@ -507,27 +564,16 @@ const filterTableData1 = computed(() =>
 const tableData = ref([]);
 const arrTableRow1 = ref([]);
 const arrTableRow2 = ref([]);
-
-const mergeCells = ({ rowIndex, columnIndex }) => {
-    if (columnIndex === 0) { // cột thứ a ban đầu
-        if (rowIndex === 7) { // hàng thứ b bắt đầu
-            return [7, 3] // [c,d] gộp n từ [a,b] với [c,d]
-        }
-    }
-    if (rowIndex >= 7 && rowIndex < 7 + 7 && columnIndex >= 0 && columnIndex < 0 + 3) {
-        return [0, 0] // Đánh dấu ô này thuộc vùng hợp của ô gốc nên hiển thị riêng -> k bị dư witdh
-    }
-    return [1, 1] // còn lại thì 1x1 k gộp
-}
+const arrLengthGrading = ref([]);
 
 const dialogForm1Visible = ref(false)
 const dialogForm2Visible = ref(false)
 const dialogForm3Visible = ref(false)
-const titleDialogForm1 = ref("ADD NEW OUTSOLE SPECIFICATION")
-const titleDialogForm2 = ref("ADD NEW ITEM OUTSOLE SPECIFICATION")
-const pfcOutsoleSpecification = ref({} as Record<string, any>)
-const pfcItemOutsoleSpecification = ref({} as Record<string, any>)
-const arrItemOutsoleSpecification = ref([]);
+const titleDialogForm1 = ref("ADD NEW AUTOCLAVE - RUBBER COMPONENT SPECIFICATION")
+const titleDialogForm2 = ref("ADD NEW ITEM AUTOCLAVE - RUBBER COMPONENT SPECIFICATION")
+const pfcRubberComponentSpecification = ref({} as Record<string, any>)
+const pfcItemRubberComponentSpecification = ref({} as Record<string, any>)
+const arrItemRubberComponentSpecification = ref([]);
 
 onMounted(async () => {
     showLoading();
@@ -544,38 +590,37 @@ onMounted(async () => {
 })
 
 const reloadData = async () => {
-    const { res, _ } = await getPFCOutsoleSpecificationByModelID(pfcModel.value)
+    const { res, _ } = await getPFCRubberComponentSpecificationByModelID(pfcModel.value)
     tableData.value = res.data.data ? res.data.data : [];
 }
 
-const btnAddNewOutsoleSpecification = () => {
-    titleDialogForm1.value = "ADD NEW OUTSOLE SPECIFICATION"
-    pfcOutsoleSpecification.value = {};
-    pfcOutsoleSpecification.value.ModelType = pfcModel.value.ModelType
-    pfcOutsoleSpecification.value.ModelName = pfcModel.value.ModelName
-    pfcOutsoleSpecification.value.MaterialNumber = pfcModel.value.MaterialNumber
-    pfcOutsoleSpecification.value.ItemIndex = `${tableData.value.length + 1}`
+const btnAddNewRubberComponentSpecification = () => {
+    titleDialogForm1.value = "ADD NEW AUTOCLAVE - RUBBER COMPONENT SPECIFICATION"
+    pfcRubberComponentSpecification.value = {};
+    pfcRubberComponentSpecification.value.ModelType = pfcModel.value.ModelType
+    pfcRubberComponentSpecification.value.ModelName = pfcModel.value.ModelName
+    pfcRubberComponentSpecification.value.MaterialNumber = pfcModel.value.MaterialNumber
+    pfcRubberComponentSpecification.value.ItemIndex = `${tableData.value.length + 1}`
     dialogForm1Visible.value = true;
-
 }
 
 const btnConfirm = async () => {
     dialogForm1Visible.value = false;
     showLoading();
-    if (titleDialogForm1.value === "ADD NEW OUTSOLE SPECIFICATION") {
+    if (titleDialogForm1.value === "ADD NEW AUTOCLAVE - RUBBER COMPONENT SPECIFICATION") {
         try {
-            await insertPFCOutsoleSpecification(pfcOutsoleSpecification.value)
-            success("Insert new OUTSOLE SPECIFICATION successfully!")
+            await insertPFCRubberComponentSpecification(pfcRubberComponentSpecification.value)
+            success("Insert new AUTOCLAVE - RUBBER COMPONENT SPECIFICATION successfully!")
             await reloadData()
         } catch (e) {
             error(e);
         }
     }
 
-    if (titleDialogForm1.value === "UPDATE OUTSOLE SPECIFICATION") {
+    if (titleDialogForm1.value === "UPDATE AUTOCLAVE - RUBBER COMPONENT SPECIFICATION") {
         try {
-            await updatePFCOutsoleSpecification(pfcOutsoleSpecification.value)
-            success("Update OUTSOLE SPECIFICATION successfully!")
+            await updatePFCRubberComponentSpecification(pfcRubberComponentSpecification.value)
+            success("Update AUTOCLAVE - RUBBER COMPONENT SPECIFICATION successfully!")
             await reloadData()
         } catch (e) {
             error(e);
@@ -584,7 +629,7 @@ const btnConfirm = async () => {
     hideLoading();
 }
 
-const btnDeletePFCOutsoleSpecification = async (index: number, row) => {
+const btnDeletePFCRubberComponentSpecification = async (index: number, row) => {
     ElMessageBox.confirm(
         `Proxy will permanently delete the TITLE: "${row.Title}". Continue?`,
         'Warning',
@@ -595,11 +640,11 @@ const btnDeletePFCOutsoleSpecification = async (index: number, row) => {
             type: 'warning',
 
         }).then(async () => {
-            const { res, _ } = await getPFCItemOutsoleSpecification(row)
+            const { res, _ } = await getPFCItemRubberComponentSpecification(row)
 
             if (!res.data.data || res.data.data.length === 0) {
                 showLoading();
-                await deletePFCOutsoleSpecification(row);
+                await deletePFCRubberComponentSpecification(row);
                 await reloadData();
                 hideLoading();
             } else {
@@ -612,29 +657,29 @@ const btnDeletePFCOutsoleSpecification = async (index: number, row) => {
         })
 }
 
-const btnUpdatePFCOutsoleSpecification = async (index: number, row) => {
-    pfcOutsoleSpecification.value = {};
-    pfcOutsoleSpecification.value = Object.assign({}, row);
-    titleDialogForm1.value = "UPDATE OUTSOLE SPECIFICATION"
+const btnUpdatePFCRubberComponentSpecification = async (index: number, row) => {
+    pfcRubberComponentSpecification.value = {};
+    pfcRubberComponentSpecification.value = Object.assign({}, row);
+    titleDialogForm1.value = "UPDATE AUTOCLAVE - RUBBER COMPONENT SPECIFICATION"
     dialogForm1Visible.value = true;
 }
 
-const btnItemPFCOutsoleSpecification = async (index: number, row) => {
+const btnItemPFCRubberComponentSpecification = async (index: number, row) => {
     showLoading();
-    pfcOutsoleSpecification.value = {};
-    pfcOutsoleSpecification.value = Object.assign({}, row);
-    const { res, _ } = await getPFCItemOutsoleSpecification(pfcOutsoleSpecification.value)
-    arrItemOutsoleSpecification.value = res.data.data ? res.data.data : [];
-    // console.log(pfcOutsoleSpecification.value)
+    pfcRubberComponentSpecification.value = {};
+    pfcRubberComponentSpecification.value = Object.assign({}, row);
+    const { res, _ } = await getPFCItemRubberComponentSpecification(pfcRubberComponentSpecification.value)
+    arrItemRubberComponentSpecification.value = res.data.data ? res.data.data : [];
+    // console.log(pfcRubberComponentSpecification.value)
     dialogForm2Visible.value = true;
     hideLoading();
 }
 
-const btnAddItemNewOutsoleSpecification = async () => {
-    titleDialogForm2.value = "ADD NEW ITEM OUTSOLE SPECIFICATION";
-    pfcItemOutsoleSpecification.value = {};
-    pfcItemOutsoleSpecification.value.OutsoleSpecificationID = pfcOutsoleSpecification.value.OutsoleSpecificationID;
-    arrTableRow1.value = Array.from({ length: 6 }, (_, i) => ({
+const btnAddItemNewRubberComponentSpecification = async () => {
+    titleDialogForm2.value = "ADD NEW ITEM AUTOCLAVE - RUBBER COMPONENT SPECIFICATION";
+    pfcItemRubberComponentSpecification.value = {};
+    pfcItemRubberComponentSpecification.value.RubberComponentSpecificationID = pfcRubberComponentSpecification.value.RubberComponentSpecificationID;
+    arrTableRow1.value = Array.from({ length: 3 }, (_, i) => ({
         No: i + 1,
         Section: "",
         Material: "",
@@ -642,25 +687,20 @@ const btnAddItemNewOutsoleSpecification = async () => {
         SG: "",
         MCS: ""
     }));
-
-    arrTableRow2.value = Array.from({ length: 8 }, (_, i) => {
-        const obj = {
-            PreformPart: "",
-            Thickness: "",
-            WeightType: "",
-            A: "", B: "", C: "", D: "", E: "", F: "", G: "", H: "",
-            I: "", J: "", K: "", L: "", M: "", N: "", O: "", P: "",
-            Q: "", R: "", S: "", T: "", U: "", V: "", W: "", X: ""
-        };
-
-        if (i < 6) {
-            obj.PreformPart = i % 2 === 0 ? String(i / 2 + 1) : "";
-            obj.WeightType = i % 2 === 0 ? "Gross" : "Net";
-        } else if (i === 7) {
-            obj.PreformPart = "Tổng trọng lượng trên size 号码总重量 Total Weight per Size";
-        }
-        return obj;
-    });
+    arrTableRow2.value = Array.from({ length: 5 }, (_, i) => ({
+        PreformPart: "",
+        Thickness: "",
+        WeightType: "",
+        A: "", B: "", C: "", D: "", E: "", F: "", G: "", H: "",
+        I: "", J: "", K: "", L: "", M: "", N: "", O: "", P: "",
+        Q: "", R: "", S: "", T: "", U: "", V: "", W: "", X: ""
+    }));
+    arrLengthGrading.value = Array.from({ length: 7 }, (_, i) => ({
+        Group1: "",
+        Length1: "",
+        Group2: "",
+        Length2: "",
+    }));
 
     formData_Content.delete("file");
     formData_Content.delete("ModelName");
@@ -669,27 +709,29 @@ const btnAddItemNewOutsoleSpecification = async () => {
     dialogForm3Visible.value = true;
 }
 
-const btnEditItemNewOutsoleSpecification = async (index: number, row) => {
-    pfcItemOutsoleSpecification.value = Object.assign({}, row);
+const btnEditItemNewRubberComponentSpecification = async (index: number, row) => {
+    pfcItemRubberComponentSpecification.value = Object.assign({}, row);
     // oldImageUrl_Content.value = row.Images.toString();
 
     try {
-        arrTableRow1.value = row.TableRow1 ? JSON.parse(row.TableRow1) : Array.from({ length: 6 }, () => ({}));
-        arrTableRow2.value = row.TableRow2 ? JSON.parse(row.TableRow2) : Array.from({ length: 8 }, () => ({}));
+        arrTableRow1.value = row.TableRow1 ? JSON.parse(row.TableRow1) : Array.from({ length: 3 }, () => ({}));
+        arrTableRow2.value = row.TableRow2 ? JSON.parse(row.TableRow2) : Array.from({ length: 5 }, () => ({}));
+        arrLengthGrading.value = row.TableRow2 ? JSON.parse(row.TableRow2) : Array.from({ length: 7 }, () => ({}));
     } catch (error) {
         console.error("Lỗi khi parse JSON:", error);
-        arrTableRow1.value = Array.from({ length: 6 }, () => ({}));
-        arrTableRow2.value = Array.from({ length: 8 }, () => ({}));
+        arrTableRow1.value = Array.from({ length: 3 }, () => ({}));
+        arrTableRow2.value = Array.from({ length: 5 }, () => ({}));
+        arrLengthGrading.value = Array.from({ length: 7 }, () => ({}));
     }
 
     imageUrl_Content.value = getURLImage(row.ImagesImages, pfcModel.value);
-    titleDialogForm2.value = "UPDATE ITEM OUTSOLE SPECIFICATION";
+    titleDialogForm2.value = "UPDATE ITEM AUTOCLAVE - RUBBER COMPONENT SPECIFICATION";
     dialogForm3Visible.value = true;
 };
 
 
 
-const btnDeleteItemNewOutsoleSpecification = async (index: number, row) => {
+const btnDeleteItemNewRubberComponentSpecification = async (index: number, row) => {
     ElMessageBox.confirm(
         `Proxy will permanently delete the Component: "${row.ComponentName}". Continue?`,
         'Warning',
@@ -702,10 +744,10 @@ const btnDeleteItemNewOutsoleSpecification = async (index: number, row) => {
             if (row.ImagesImages) {
                 await deleteFilePFCModelFromFolderPFCModel(row.ImagesImages, pfcModel.value)
             }
-            await deletePFCItemOutsoleSpecification(row);
-            const { res, _ } = await getPFCItemOutsoleSpecification(pfcOutsoleSpecification.value)
-            arrItemOutsoleSpecification.value = res.data.data;
-            success("Delete PFC Item OUTSOLE SPECIFICATION successfully!")
+            await deletePFCItemRubberComponentSpecification(row);
+            const { res, _ } = await getPFCItemRubberComponentSpecification(pfcRubberComponentSpecification.value)
+            arrItemRubberComponentSpecification.value = res.data.data;
+            success("Delete PFC Item AUTOCLAVE - RUBBER COMPONENT SPECIFICATION successfully!")
             hideLoading()
         })
         .catch(() => {
@@ -715,7 +757,7 @@ const btnDeleteItemNewOutsoleSpecification = async (index: number, row) => {
 
 const formData_Content = new FormData();
 const imageUrl_Content = ref('')
-const oldImageUrl_Content = ref('')
+// const oldImageUrl_Content = ref('')
 
 const capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -813,67 +855,60 @@ const handleClickOutside2 = (event) => {
     });
 };
 
+const enableEdit3 = (row, field) => {
+    row.editingGroup1 = false;
+    row.editingLength1 = false;
+    row.editingGroup2 = false;
+    row.editingLength2 = false;
+    row[`editing${capitalize(field)}`] = true;
+};
 
-const btnConfirmItemOutsoleSpecification = async () => {
+const disableEdit3 = (row, field) => {
+    row[`editing${capitalize(field)}`] = false;
+};
+const handleClickOutside3 = (event) => {
+    arrLengthGrading.value.forEach((row) => {
+        row.editingGroup1 = false;
+        row.editingLength1 = false;
+        row.editingGroup2 = false;
+        row.editingLength2 = false;
+    });
+};
+
+const btnConfirmItemRubberComponentSpecification = async () => {
     dialogForm3Visible.value = false;
     showLoading();
 
-    // tinh gia tri
-    const columns = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X'];
-
-    function updateRowToTwoDemacia(row) {
-        columns.forEach(col => {
-            if (row[col] !== "" && row[col] !== null) {
-                let value = parseFloat(row[col]);
-                row[col] = isNaN(value) ? row[col] : value.toFixed(2);
-            }
-        });
-    }
-
-    const firstRow = arrTableRow2.value[0];
-    let hasData = columns.some(col => firstRow[col] !== "" && firstRow[col] !== null);
-
-    if (hasData) {
-        const row8 = arrTableRow2.value[7];
-        columns.forEach(col => {
-            if (firstRow[col] !== "" && firstRow[col] !== null) {
-                let value = parseFloat(firstRow[col]);
-                row8[col] = (value * 2).toFixed(2);
-            }
-        });
-    }
-    updateRowToTwoDemacia(firstRow);
-    //
-
-    const itemOutsoleSpecification = {
-        ItemOutsoleSpecificationID: pfcItemOutsoleSpecification.value.ItemOutsoleSpecificationID,
-        OutsoleSpecificationID: pfcItemOutsoleSpecification.value.OutsoleSpecificationID,
+    const itemRubberComponentSpecification = {
+        ItemRubberComponentSpecificationID: pfcItemRubberComponentSpecification.value.ItemRubberComponentSpecificationID,
+        RubberComponentSpecificationID: pfcItemRubberComponentSpecification.value.RubberComponentSpecificationID,
         TableRow1: JSON.stringify(arrTableRow1.value),
         TableRow2: JSON.stringify(arrTableRow2.value),
+        LengthGrading: JSON.stringify(arrLengthGrading.value),
     };
-    // console.log(itemOutsoleSpecification)
-    if (titleDialogForm2.value === "ADD NEW ITEM OUTSOLE SPECIFICATION") {
+    console.log(itemRubberComponentSpecification)
+    if (titleDialogForm2.value === "ADD NEW ITEM AUTOCLAVE - RUBBER COMPONENT SPECIFICATION") {
         try {
             if (formData_Content && formData_Content.entries().next().value) {
 
             }
-            await insertItemPFCOutsoleSpecification(itemOutsoleSpecification);
-            const { res, _ } = await getPFCItemOutsoleSpecification(pfcOutsoleSpecification.value)
-            arrItemOutsoleSpecification.value = res.data.data;
-            success("Insert new Item OUTSOLE SPECIFICATION successfully!")
+            await insertItemPFCRubberComponentSpecification(itemRubberComponentSpecification);
+            const { res, _ } = await getPFCItemRubberComponentSpecification(pfcRubberComponentSpecification.value)
+            arrItemRubberComponentSpecification.value = res.data.data;
+            success("Insert new Item AUTOCLAVE - RUBBER COMPONENT SPECIFICATION successfully!")
         } catch (e) {
             error(e)
         }
     }
 
-    if (titleDialogForm2.value === "UPDATE ITEM OUTSOLE SPECIFICATION") {
+    if (titleDialogForm2.value === "UPDATE ITEM AUTOCLAVE - RUBBER COMPONENT SPECIFICATION") {
         try {
             if (formData_Content && formData_Content.entries().next().value) {
             }
-            await updatePFCItemOutsoleSpecification(itemOutsoleSpecification)
-            const { res, _ } = await getPFCItemOutsoleSpecification(pfcOutsoleSpecification.value)
-            arrItemOutsoleSpecification.value = res.data.data;
-            success("Insert new Item OUTSOLE SPECIFICATION successfully!")
+            await updatePFCItemRubberComponentSpecification(itemRubberComponentSpecification)
+            const { res, _ } = await getPFCItemRubberComponentSpecification(pfcRubberComponentSpecification.value)
+            arrItemRubberComponentSpecification.value = res.data.data;
+            success("Insert new Item AUTOCLAVE - RUBBER COMPONENT SPECIFICATION successfully!")
         } catch (e) {
             error(e)
         }
@@ -896,7 +931,7 @@ const btnConfirmItemOutsoleSpecification = async () => {
 
 .cell-title-1 {
     display: table-cell;
-    width: 40%;
+    width: 50vw;
     border: 1px solid rgb(235, 238, 245);
     padding: 10px;
     text-align: center;
@@ -905,7 +940,7 @@ const btnConfirmItemOutsoleSpecification = async () => {
 
 .cell-title-2 {
     display: table-cell;
-    width: 60%;
+    width: 50vw;
     border: 1px solid rgb(235, 238, 245);
     padding: 10px;
     text-align: center;
@@ -914,7 +949,7 @@ const btnConfirmItemOutsoleSpecification = async () => {
 
 .cell-1 {
     display: table-cell;
-    width: 40%;
+    width: 50vw;
     border: 1px solid rgb(235, 238, 245);
     padding: 10px;
     /* background-color: rgba(240, 240, 42, 0.411); */
@@ -922,7 +957,8 @@ const btnConfirmItemOutsoleSpecification = async () => {
 
 .cell-2 {
     display: table-cell;
-    width: 60%;
+    width: 50vw;
+
     border: 1px solid rgb(235, 238, 245);
     padding: 10px;
     /* background-color: rgba(240, 240, 42, 0.411); */
@@ -933,6 +969,6 @@ const btnConfirmItemOutsoleSpecification = async () => {
 }
 
 .empty {
-    height: 400px;
+    height: auto;
 }
 </style>
