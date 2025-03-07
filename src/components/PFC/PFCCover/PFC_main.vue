@@ -2,6 +2,7 @@
     <div style="height: 80vh; width: 83vw;">
         <el-row :span="24" style="height: 80vh;">
             <h4 style="width: 100%; text-align: center;">COVER</h4>
+            
             <el-divider border-style="dashed" />
 
             <el-row style="height: 75vh; overflow: auto; width: 90vw;">
@@ -84,9 +85,17 @@
                     <el-row style="padding: 20px; display: flex; justify-content: space-between;">
                         <h4>Model Picture</h4>
                         <el-form-item>
-                            <el-button type="warning" icon="Printer" circle @click="exportThisSheet" />
-                            <el-button type="success" icon="Guide" circle />
-                            <el-button type="primary" icon="Check" circle @click="onSubmit" />
+                            <el-button type="success" circle style="margin-right: 5px;">
+                                <img src="@/assets/icon/export_excel.png" alt="export_excel"
+                                    style="width: 16px; height: 16px;" />
+                            </el-button>
+                            <el-button type="danger" circle style="margin-right: 5px;">
+                                <img src="@/assets/icon/export_pdf.png" alt="export_pdf"
+                                    style="width: 16px; height: 16px;" />
+                            </el-button>
+                            <el-button type="primary" circle>
+                                <img src="@/assets/icon/saving.png" alt="saving" style="width: 16px; height: 16px;" />
+                            </el-button>
                         </el-form-item>
                     </el-row>
                     <el-row>
