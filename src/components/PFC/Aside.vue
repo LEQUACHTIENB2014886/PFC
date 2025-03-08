@@ -216,7 +216,7 @@
                     <el-icon>
                         <Printer />
                     </el-icon>
-                    <template #title>Assembly Process</template>
+                    <template #title>Assembling Process</template>
                 </el-menu-item>
                 <el-menu-item index="35">
                     <el-icon>

@@ -135,7 +135,7 @@ import PFC_OutsideConveyorProcessIndex from "@/components/PFC/PFC_OutsideConveyo
 // import PFC_CommonAssemblingProcessIndex from "@/components/PFC/PFC_CommonAssemblingProcess/PFC_CommonAssemblingProcessIndex.vue"
 
 // 34
-// import PFC_AssemblyProcessIndex from "@/components/PFC/PFC_AssemblyProcess/PFC_AssemblyProcessIndex.vue"
+import PFC_AssemblingProcessIndex from "@/components/PFC/PFC_AssemblingProcess/PFC_AssemblingProcessIndex.vue"
 
 // 35
 // import PFC_PressingPadSpecificationIndex from "@/components/PFC/PFC_PressingPadSpecification/PFCPressingPadSpecificationIndex.vue"
@@ -217,7 +217,7 @@ const currentComponent = computed(() => {
     case "31": return PFC_SocklinerGraphicProcessIndex;
     case "32": return PFC_OutsideConveyorProcessIndex;
     // case "33": return PFC_CommonAssemblingProcessIndex;
-    // case "34": return PFC_AssemblyProcessIndex;
+    case "34": return PFC_AssemblingProcessIndex;
     // case "35": return PFC_PressingPadSpecificationIndex;
     // case "36": return PFC_ProductionChecklistIndex;
     // case "37": return PFC_UpperMeasurementSpecIndex;

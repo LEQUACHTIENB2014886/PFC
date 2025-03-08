@@ -152,8 +152,6 @@
         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
             <el-form style="width: 60vw" :model="pfcItemOutsideConveyorProcess" label-width="auto" label-position="right"
                 size="default">
-
-
                 <el-form-item label="">
                     <el-col>
                         <el-table v-click-outside="handleClickOutside" :data="arrComponent" :row-style="{ height: '200px' }"
@@ -193,7 +191,7 @@
             </el-form>
             <div style="width: 35vw;">
                 <div class="pictures"
-                    style="height: 40px; display:  flex;border: 1px solid #dcdfe6;  justify-content: center; align-items: center;">
+                    style="height: 40px; display:  flex; border: 1px solid #dcdfe6; color: rgb(144, 147, 153); font-weight: 600; justify-content: center; align-items: center;">
                     Pictures 图示Hình
                 </div>
                 <div class="images" style="height: 217px;border: 1px solid #dcdfe6;   "></div>
