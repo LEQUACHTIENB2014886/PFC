@@ -126,7 +126,7 @@ import PFC_LogoApplicationProcessIndex from "@/components/PFC/PFC_LogoApplicatio
 import PFC_SocklinerMoldingProcessIndex from "@/components/PFC/PFC_SocklinerMoldingProcess/PFC_SocklinerMoldingProcessIndex.vue"
 
 // 31
-// import PFC_SocklinerGraphicProcessIndex from "@/components/PFC/PFC_SocklinerGraphicProcess/PFC_SocklinerGraphicProcessIndex.vue"
+import PFC_SocklinerGraphicProcessIndex from "@/components/PFC/PFC_SocklinerGraphicProcess/PFC_SocklinerGraphicProcessIndex.vue"
 
 // 32
 // import PFC_OutsideConveyorProcessIndex from "@/components/PFC/PFC_OutsideConveyorProcess/PFC_OutsideConveyorProcessIndex.vue"
@@ -215,7 +215,7 @@ const currentComponent = computed(() => {
     case "28": return PFC_HeelWedgeSpecificationIndex;
     case "29": return PFC_LogoApplicationProcessIndex;
     case "30": return PFC_SocklinerMoldingProcessIndex;
-    // case "31": return PFC_SocklinerGraphicProcessIndex;
+    case "31": return PFC_SocklinerGraphicProcessIndex;
     // case "32": return PFC_OutsideConveyorProcessIndex;
     // case "33": return PFC_CommonAssemblingProcessIndex;
     // case "34": return PFC_AssemblyProcessIndex;
