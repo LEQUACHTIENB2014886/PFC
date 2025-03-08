@@ -158,7 +158,7 @@
                                     <el-input v-else v-model="row.No" @blur="disableEdit(row, 'No')" />
                                 </template>
                             </el-table-column>
-                            <el-table-column align="center" prop="arrComponent.Process" label=" Process 工段 Công đoạn"
+                            <el-table-column align="center" prop="arrComponent.Process" label="Process 工段 Công đoạn"
                                 width="200">
                                 <template #default="{ row }">
                                     <div v-if="!row.editingProcess" @click="enableEdit(row, 'Process')"
@@ -168,8 +168,8 @@
                                     <el-input v-else v-model="row.Process" @blur="disableEdit(row, 'Process')" />
                                 </template>
                             </el-table-column>
-                            <el-table-column label="Pressing 压 Ép" align="center">
-                                <el-table-column align="center" prop="arrComponent.Chemical" label="Chemical">
+                            <el-table-column label="Process details 明细流程Chi tiết lưu trình" align="center">
+                                <el-table-column align="center" prop="arrComponent.Chemical" label="Chemical 化品 Hóa chất ">
                                     <template #default="{ row }">
                                         <div v-if="!row.editingChemical" @click="enableEdit(row, 'Chemical')"
                                             style="min-height: 20px;">
@@ -178,33 +178,17 @@
                                         <el-input v-else v-model="row.Chemical" @blur="disableEdit(row, 'Chemical')" />
                                     </template>
                                 </el-table-column>
-                                <el-table-column align="center" prop="arrComponent.Hardener" label="Hardener">
+                                <el-table-column align="center" prop="arrComponent.Temp" label="Temp℃ 温度 Nhiệt độ">
                                     <template #default="{ row }">
-                                        <div v-if="!row.editingHardener" @click="enableEdit(row, 'Chemical')"
-                                            style="min-height: 20px;">
-                                            {{ row.Hardener }}
-                                        </div>
-                                        <el-input v-else v-model="row.Hardener" @blur="disableEdit(row, 'Hardener')" />
-                                    </template>
-                                </el-table-column>
-                                <el-table-column align="center" prop="arrComponent.WB" label="WB/SB">
-                                    <template #default="{ row }">
-                                        <div v-if="!row.editingWB" @click="enableEdit(row, 'WB')" style="min-height: 20px;">
-                                            {{ row.WB }}
-                                        </div>
-                                        <el-input v-else v-model="row.WB" @blur="disableEdit(row, 'WB')" />
-                                    </template>
-                                </el-table-column>
-                                <el-table-column align="center" prop="arrComponent.Temp" label="Temp">
-                                    <template #default="{ row }">
-                                        <div v-if="!row.editingTemp" @click="enableEdit(row, 'Temp')"
+                                        <div v-if="!row.editingTemp" @click="enableEdit(row, 'Chemical')"
                                             style="min-height: 20px;">
                                             {{ row.Temp }}
                                         </div>
                                         <el-input v-else v-model="row.Temp" @blur="disableEdit(row, 'Temp')" />
                                     </template>
                                 </el-table-column>
-                                <el-table-column align="center" prop="arrComponent.Time" label="Time">
+
+                                <el-table-column align="center" prop="arrComponent.Time" label="Time 时间 Thời gian">
                                     <template #default="{ row }">
                                         <div v-if="!row.editingTime" @click="enableEdit(row, 'Time')"
                                             style="min-height: 20px;">
@@ -213,13 +197,13 @@
                                         <el-input v-else v-model="row.Time" @blur="disableEdit(row, 'Time')" />
                                     </template>
                                 </el-table-column>
-                                <el-table-column align="center" prop="arrComponent.Mesh" label="Mesh">
+                                <el-table-column align="center" prop="arrComponent.Pressure" label="Pressure 压力 Lực ép">
                                     <template #default="{ row }">
-                                        <div v-if="!row.editingMesh" @click="enableEdit(row, 'Mesh')"
+                                        <div v-if="!row.editingPressure" @click="enableEdit(row, 'Pressure')"
                                             style="min-height: 20px;">
-                                            {{ row.Mesh }}
+                                            {{ row.Pressure }}
                                         </div>
-                                        <el-input v-else v-model="row.Mesh" @blur="disableEdit(row, 'Mesh')" />
+                                        <el-input v-else v-model="row.Pressure" @blur="disableEdit(row, 'Pressure')" />
                                     </template>
                                 </el-table-column>
                             </el-table-column>
@@ -426,11 +410,9 @@ const btnAddItemNewSocklinerMoldingProcess = () => {
         No: i + 1,
         Process: '',
         Chemical: '',
-        Hardener: '',
-        WB: '',
         Temp: '',
         Time: '',
-        Mesh: ''
+        Pressure: ''
     }));
 
     imageUrl_Content.value = null;
@@ -496,10 +478,10 @@ const enableEdit = (row, field) => {
     row.editingProcess = false;
     row.editingTemp = false;
     row.editingChemical = false;
-    row.editingHardener = false;
+    row.editingTemp = false;
     row.editingWB = false;
     row.editingTime = false;
-    row.editingMesh = false;
+    row.editingPressure = false;
     row[`editing${capitalize(field)}`] = true;
 };
 const disableEdit = (row, field) => {
@@ -514,9 +496,9 @@ const handleClickOutside = (event) => {
         row.editingTime = false;
         row.editingPressure = false;
         row.editingChemical = false;
-        row.editingHardener = false;
+        row.editingTemp = false;
         row.editingWB = false;
-        row.editingMesh = false;
+        row.editingPressure = false;
     });
 
 };

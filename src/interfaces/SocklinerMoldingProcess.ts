@@ -1,23 +1,23 @@
-interface PFC_SocklinerGraphicProcess {
-    SocklinerGraphicProcessID: string;
-    ModelType: string;
-    ModelName: string;
-    MaterialNumber: string;
-    Title: string;
-    ItemIndex: string;
-    ItemSocklinerGraphicProcessID: PFC_ItemSocklinerGraphicProcess[]
+interface PFC_SocklinerMoldingProcess {
+    SocklinerMoldingProcessID: string
+    ModelType: string
+    ModelName: string
+    MaterialNumber: string
+    Title: string
+    ItemIndex: string
+    ItemSocklinerMoldingProcessID: PFC_ItemSocklinerMoldingProcess[]
 }
 
-interface PFC_ItemSocklinerGraphicProcess {
-    ItemSocklinerGraphicProcessID: string;
-    SocklinerGraphicProcessID: string;
-    ComponentName: string;
-    SocklinerLogo: string;
-    Vendor: string;
-    TableRow1: string;
-    Remarks: string;
-    RemarksImage: string;
-    ModelSize: string;
+interface PFC_ItemSocklinerMoldingProcess {
+    ItemSocklinerMoldingProcessID: string
+    SocklinerMoldingProcessID: string
+    RawMaterialName: string
+    Vendor: string
+    TableRow1: string
+    Remarks: string
+    RemarksImage: string
+    Model: string
+    Size: string
 }
 
-export { PFC_SocklinerGraphicProcess, PFC_ItemSocklinerGraphicProcess }
+export { PFC_SocklinerMoldingProcess, PFC_ItemSocklinerMoldingProcess }
